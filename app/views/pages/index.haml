@@ -3,5 +3,25 @@
 %div#main
   %p who is party pete
 
+  %div#visualizer
+    this is the vizualizeur
+
+  %div#song
+
+
 %script#app-template{type: 'text/template'}
   %p pete has left the party
+
+%script#songs-template{type: 'text/template'}
+  {{ #each models }}
+
+  %div
+    {{ title }}
+  %div
+    {{ duration }}
+  %div
+    {{ share_url }}
+
+  {{ /each }}
+
+%script#song-template{type: 'text/template'}

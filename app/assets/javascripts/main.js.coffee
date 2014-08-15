@@ -1,7 +1,8 @@
 window.app = window.app or {}
 $(document).ready ->
   app.templates = {
-    appView: $('#app-template').html();
+    appView: $('#app-template').html()
+    songsView: $('#songs-template').html()
 
   }
 
