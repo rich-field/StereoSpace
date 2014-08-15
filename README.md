@@ -12,11 +12,13 @@ StereoSpace is an online sound studio. As you build your song, StereoSpace will 
 + Web Audio API
 
 ### Todo
-+ [ ] User login
++ [ ] ~~User login~~
 + [ ] Layout
 + [ ] Soundboard trigger by keyboard
-+ [ ] Save songs to user
-+ [ ] Save songs to temp user if not logged in
++ [ ] ~~Save songs to user~~
++ [ ] Save songs to temp user
++ [ ] Share songs to collab
++ [ ] "Fork" song
 + [ ] Preloader
 + [ ] Visualisations
   + [ ] Ground
@@ -27,6 +29,6 @@ StereoSpace is an online sound studio. As you build your song, StereoSpace will 
   + [ ] Lightning storm
   + [ ] Space junk
   + [ ] Meteor Shower
-+ Email
-  + Confirmation emails
-  + Reset password emails
++ [ ] ~~Email~~
+  + [ ] ~~Confirmation emails~~
+  + [ ] ~~Reset password emails~~
