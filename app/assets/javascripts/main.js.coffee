@@ -18,12 +18,8 @@ $(document).ready ->
     app.router = new app.Router
     Backbone.history.start()
 
-
-  # poop = ->
-
   counter = 0
+
   app.songs.fetch().done ->
-    # poop()
-    (->
-      counter ++
-      startApp() if counter == 1)()
+    counter++
+    startApp() if counter == 1
