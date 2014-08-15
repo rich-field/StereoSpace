@@ -7,4 +7,4 @@ app.AppView = Backbone.View.extend
 
   render: ->
     console.log('appView has been rendered')
-    @.$el.html(app.templates.appView)
+    @.$el.html( app.templates.appView )
