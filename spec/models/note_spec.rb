@@ -7,6 +7,7 @@
 #  soundboard_id  :integer
 #  created_at     :datetime
 #  updated_at     :datetime
+#  track_id       :integer
 #
 
 require 'rails_helper'

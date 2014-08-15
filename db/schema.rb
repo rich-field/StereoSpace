@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140815034237) do
+ActiveRecord::Schema.define(version: 20140815051727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20140815034237) do
     t.integer  "soundboard_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "track_id"
   end
 
   create_table "samples", force: true do |t|
