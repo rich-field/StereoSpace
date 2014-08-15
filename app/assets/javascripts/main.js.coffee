@@ -1,7 +1,7 @@
 window.app = window.app or {}
 $(document).ready ->
   app.templates = {
-
+    appView: $('#app-template').html();
 
   }
 
@@ -12,3 +12,6 @@ $(document).ready ->
   app.soundboards = new app.Soundboards()
 
   console.log('write some words')
+
+  app.router = new app.Router
+  Backbone.history.start()

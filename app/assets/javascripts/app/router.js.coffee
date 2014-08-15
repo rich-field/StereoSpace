@@ -9,6 +9,7 @@ app.Router = Backbone.Router.extend
     console.log('Routes have been initialized')
 
   index: ->
+    app.appView = new app.AppView
 
   show: (id) ->
 
