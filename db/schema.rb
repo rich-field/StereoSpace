@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20140814235419) do
     t.string   "title"
     t.string   "genre"
     t.integer  "user_id"
+    t.string   "share_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -49,14 +50,6 @@ ActiveRecord::Schema.define(version: 20140814235419) do
     t.boolean  "looped"
     t.integer  "song_id"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "users", force: true do |t|
-    t.string   "username"
-    t.string   "email"
-    t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
