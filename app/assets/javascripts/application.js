@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require ./lib/underscore-min
+//= require ./lib/backbone-min
+//= require_tree./lib
 //= require_tree .
