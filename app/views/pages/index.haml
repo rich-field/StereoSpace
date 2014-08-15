@@ -13,20 +13,15 @@
   %p pete has left the party
 
 %script#songs-template{type: 'text/template'}
-  %p this is the songs list
-  {{ #each models }}
+  %h2 Recent songs, and Rich is gay. So very gay.
 
+%script#song-template{type: 'text/template'}
   %div
     {{ title }}
   %div
     {{ duration }}
   %div
     {{ share_url }}
-
-  {{ /each }}
-
-%script#song-template{type: 'text/template'}
-
 
 %script#song-show-template{type: 'text/template'}
   %h1 {{ title }} {{ duration }}
