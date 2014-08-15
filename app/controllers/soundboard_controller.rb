@@ -1,2 +1,2 @@
-class SoundboardsController < ActiveController::Base
+class SoundboardsController < ApplicationController
 end

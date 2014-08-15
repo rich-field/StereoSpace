@@ -1,2 +1,2 @@
-class NotesController < ActiveController::Base
+class NotesController < ApplicationController
 end

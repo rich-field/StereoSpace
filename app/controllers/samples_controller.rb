@@ -1,2 +1,2 @@
-class SamplesController < ActiveController::Base
+class SamplesController < ApplicationController
 end

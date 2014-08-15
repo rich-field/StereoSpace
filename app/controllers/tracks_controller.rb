@@ -1,2 +1,2 @@
-class TracksController < ActiveController::Base
+class TracksController < ApplicationController
 end

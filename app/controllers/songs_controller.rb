@@ -1,2 +1,2 @@
-class SongsController < ActiveController::Base
+class SongsController < ApplicationController
 end
