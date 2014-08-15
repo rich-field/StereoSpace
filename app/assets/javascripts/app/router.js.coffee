@@ -14,4 +14,5 @@ app.Router = Backbone.Router.extend
   show: (id) ->
 
   songsIndex: ->
-
+    app.songsView = new app.SongsView({collection: app.songs})
+    console.log("lols")

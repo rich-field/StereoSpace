@@ -11,4 +11,4 @@ app.SongsView = Backbone.View.extend
     songsTemplate = Handlebars.compile( app.templates.songsView )
 
 
-    @.$el.html()
+    @.$el.html("hello")
