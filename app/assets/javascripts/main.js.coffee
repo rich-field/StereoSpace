@@ -14,5 +14,16 @@ $(document).ready ->
 
   console.log('write some words')
 
-  app.router = new app.Router
-  Backbone.history.start()
+  startApp = ->
+    app.router = new app.Router
+    Backbone.history.start()
+
+
+  # poop = ->
+
+  counter = 0
+  app.songs.fetch().done ->
+    # poop()
+    (->
+      counter ++
+      startApp() if counter == 1)()
