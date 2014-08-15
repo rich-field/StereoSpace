@@ -3,6 +3,7 @@ $(document).ready ->
   app.templates = {
     appView: $('#app-template').html()
     songsView: $('#songs-template').html()
+    songView: $('#song-template').html()
 
   }
 
