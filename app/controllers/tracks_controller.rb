@@ -1,8 +1,7 @@
 class TracksController < ApplicationController
 
   def index
-    raise params.inspect
-    @tracks = Track.where(:song_id => params[:id])
+    @tracks = Track.where(:song_id => params[:song_id])
     render :json => @tracks
   end
 

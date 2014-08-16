@@ -10,11 +10,11 @@ $(document).ready ->
     trackView: $('#track-template').html()
   }
 
-  app.tracks = new app.Tracks()
-  app.samples = new app.Samples()
-  app.notes = new app.Notes()
-  app.songs = new app.Songs()
-  app.soundboards = new app.Soundboards()
+  app.tracks = new app.Tracks
+  app.samples = new app.Samples
+  app.notes = new app.Notes
+  app.songs = new app.Songs
+  app.soundboards = new app.Soundboards
 
   console.log('write some words')
 
@@ -27,6 +27,3 @@ $(document).ready ->
   app.songs.fetch().done ->
     counter++
     startApp() if counter == 1
-  # app.tracks.fetch().done ->
-    # counter++
-    # startApp() if counter == 2

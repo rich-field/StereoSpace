@@ -7,7 +7,7 @@ app.TimelinesView = Backbone.View.extend
     console.log('TimelinesView has been initialized')
     _.bindAll(this, 'render')
     this.collection.bind('add', this.render)
-
+    @.render()
   render: ->
     console.log('TimelinesView has been rendered')
     @.collection.each (model) =>
