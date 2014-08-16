@@ -13,6 +13,6 @@ app.TimelinesView = Backbone.View.extend
     console.log('TimelinesView has been rendered')
     @.collection.each (model) =>
       console.log(model)
-      timelineView = new app.TimelineView(model: model)
+      timelineView = new app.TimelineView({model: model})
       @.$el.append( "la dee da mr frenchman" )
       @.$el.append( timelineView.render() )

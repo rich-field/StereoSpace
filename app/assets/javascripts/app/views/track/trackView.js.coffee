@@ -9,7 +9,7 @@ app.TrackView = Backbone.View.extend
     console.log('TrackView has been initialized')
     _.bindAll(this, 'render')
     @.model.bind('change', this.render)
-    this.render()
+
 
 
   render: ->
