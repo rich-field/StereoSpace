@@ -13,5 +13,9 @@ t1_1 = Track.create(:duration => 5000)
 
 t1_2 = Track.create(:duration => 7000)
 
+t2_1 = Track.create(:duration => 12000)
+
 s1.tracks << t1_1 << t1_2
+
+s2.tracks << t2_1
 
