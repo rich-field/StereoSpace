@@ -14,7 +14,6 @@ app.Router = Backbone.Router.extend
   show: (id) ->
     console.log('show page hath been reachethed')
     app.song = app.songs.get(id)
-    console.log(app.song)
     view = new app.SongShowView( model: app.song )
     view.render()
 

@@ -16,8 +16,6 @@ $(document).ready ->
   app.songs = new app.Songs
   app.soundboards = new app.Soundboards
 
-  console.log('write some words')
-
   startApp = ->
     app.router = new app.Router
     Backbone.history.start()

@@ -11,10 +11,12 @@ app.TimelineView = Backbone.View.extend
 
   render: ->
     console.log('TimeLine has been rendered')
-    console.log(@.model)
     timelineHTML = Handlebars.compile( app.templates.timelineView )
-    # copy = timelineHTML( @.model.toJSON() )
+
+
+    # FIXME This needs to be an each loop to drop all the tracks on this timeline
     track = new app.TrackView({model: @.model})
+    # Must pass in the track rendered to the append
     @.$el.append( track.render() )
 
     return @.$el
