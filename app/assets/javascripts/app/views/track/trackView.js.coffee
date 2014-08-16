@@ -9,12 +9,14 @@ app.TrackView = Backbone.View.extend
     console.log('TrackView has been initialized')
     _.bindAll(this, 'render')
     @.model.bind('change', this.render)
+    this.render()
 
 
   render: ->
     console.log('TrackView has been rendered')
-    app.track = app.tracks.get(id)
+    app.track = app.tracks.get('id')
     trackHTML = Handlebars.compile( app.templates.trackView )
     copy = trackHTML( @.model.toJSON() )
     @.$el.append( copy )
+    @.$el.appendTo('#timelines')
     return @.$el
