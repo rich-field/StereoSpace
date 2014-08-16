@@ -7,5 +7,7 @@
     = csrf_meta_tags
   %body
 
-    %nav This is the navbar
+    %nav
+      %ul
+        %li= link_to("songs list", "#songs")
     = yield

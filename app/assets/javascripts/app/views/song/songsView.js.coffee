@@ -10,8 +10,9 @@ app.SongsView = Backbone.View.extend
     songsTemplate = Handlebars.compile( app.templates.songsView )
 
     viewAll = this
-    _(@collection).each (model) ->
-      planeView = new app.SongsView(model: model)
-      viewAll.$el.append planeView.render()
-    # @.$el.html("hello")
+
+    @.collection.each (model) ->
+      console.log(model)
+      songView = new app.SongView(model: model)
+      viewAll.$el.append( songView.render() )
 

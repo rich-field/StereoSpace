@@ -33,6 +33,7 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'simplecov', :require => false
 end
 
 # Use ActiveModel has_secure_password

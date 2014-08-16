@@ -1,0 +1,98 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/straw/projects/wdi-5/deploy/stereospace/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/straw/projects/wdi-5/deploy/stereospace/app/models/note.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/straw/projects/wdi-5/deploy/stereospace/app/models/sample.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/straw/projects/wdi-5/deploy/stereospace/app/models/song.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/straw/projects/wdi-5/deploy/stereospace/app/models/soundboard.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/straw/projects/wdi-5/deploy/stereospace/app/models/track.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null
+      ]
+    },
+    "timestamp": 1408155333
+  }
+}
