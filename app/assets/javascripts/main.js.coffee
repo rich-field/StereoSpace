@@ -4,7 +4,8 @@ $(document).ready ->
     appView: $('#app-template').html()
     songsView: $('#songs-template').html()
     songView: $('#song-template').html()
-
+    songShowView: $('#song-show-template').html()
+    timelineView: $('#timeline-template').html()
   }
 
   app.tracks = new app.Tracks()

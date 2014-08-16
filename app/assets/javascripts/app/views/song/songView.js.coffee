@@ -2,6 +2,9 @@ window.app = window.app or {}
 app.SongView = Backbone.View.extend
   tagName: 'div'
   className: 'song-in-list'
+  events:
+    'click': 'view'
+
 
   initialize: ->
     console.log('SongView has been initialized')
@@ -13,4 +16,7 @@ app.SongView = Backbone.View.extend
     copy = songHTML( @.model.toJSON() )
     @.$el.append( copy )
     return @.$el
+
+  view: ->
+    app.router.navigate("songs/#{@.model.get('id')}", true)
 

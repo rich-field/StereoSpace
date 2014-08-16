@@ -25,7 +25,9 @@
     URL: {{ share_url }}
 
 %script#song-show-template{type: 'text/template'}
-  %h1 {{ title }} {{ duration }}
+  %h1 Title: {{ title }}
+  %h2 Duration: {{ duration }}
+  %div#timelines
 
 
 %script#timeline-template{type: 'text/template'}
