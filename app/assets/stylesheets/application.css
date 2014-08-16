@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+
+.track {
+  height: 50px;
+  width: 60px;
+  background: red;
+}
