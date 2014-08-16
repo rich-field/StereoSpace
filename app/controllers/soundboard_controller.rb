@@ -1,2 +1,0 @@
-class SoundboardsController < ApplicationController
-end
