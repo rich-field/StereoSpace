@@ -9,8 +9,6 @@ app.TrackView = Backbone.View.extend
     _.bindAll(this, 'render')
     @.model.bind('change', this.render)
 
-
-
   render: ->
     app.track = app.tracks.get('id')
     trackHTML = Handlebars.compile( app.templates.trackView )

@@ -6,40 +6,44 @@ window.AudioContext = (->
 Sound =
   audioContextSetup: ->
     try
-      Sound.audioContext = new (window.AudioContext or window.webkitAudioContext)()
+      @.audioContext = new (window.AudioContext or window.webkitAudioContext)()
     catch e
       alert "Web Audio API is not supported in this browser"
     return
 
   createAudioObject: ->
-    Sound.audio0 = new Audio()
-    Sound.audio0.src = "/audio/kkjh_trustissues.mp3"
-    Sound.audio0.controls = true
-    Sound.audio0.autoplay = false
-    Sound.audio0.loop = true
+    @.audio0 = new Audio()
+    @.audio0.src = "/audio/kkjh_trustissues.mp3"
+    # @.audio0.src = @.audioContext.createMediaStreamSource(stream)
+    @.audio0.controls = true
+    @.audio0.autoplay = false
+    @.audio0.loop = true
     return
 
   setupAudioNodes: ->
-    Sound.sourceNode = Sound.audioContext.createMediaElementSource(Sound.audio0)
-    Sound.analyserNode = Sound.audioContext.createAnalyser()
-    Sound.analyserNode.fftSize = 1024
-    Sound.frequencyArray = new Uint8Array(Sound.analyserNode.frequencyBinCount)
+    @.sourceNode = @.audioContext.createMediaElementSource(@.audio0)
+    @.analyserNode = @.audioContext.createAnalyser()
+    @.analyserNode.fftSize = 32 #1024
+    @.frequencyArray = new Uint8Array(@.analyserNode.frequencyBinCount)
 
-    Sound.timeDomainArray = new Uint8Array(Sound.analyserNode.frequencyBinCount)
+    @.timeDomainArray = new Uint8Array(@.analyserNode.frequencyBinCount)
+
+    @.gainNode = @.audioContext.createGain()
     return
 
   connectAudioNodes: ->
-    Sound.sourceNode.connect Sound.analyserNode
-    Sound.analyserNode.connect Sound.audioContext.destination
+    @.sourceNode.connect @.gainNode
+    @.gainNode.connect @.analyserNode
+    @.analyserNode.connect @.audioContext.destination
     return
 
   getFrequencyDomain: ->
-    Sound.analyserNode.getByteFrequencyData Sound.frequencyArray
-    Sound.frequencyArray
+    @.analyserNode.getByteFrequencyData @.frequencyArray
+    @.frequencyArray
 
   getTimeDomain: ->
-    Sound.analyserNode.getByteTimeDomainData Sound.timeDomainArray
-    Sound.timeDomainArray
+    @.analyserNode.getByteTimeDomainData @.timeDomainArray
+    @.timeDomainArray
 
 
 $(document).ready ->
@@ -49,16 +53,19 @@ $(document).ready ->
   Sound.createAudioObject()
   Sound.setupAudioNodes()
   Sound.connectAudioNodes()
+  Sound.gainNode.gain.value = 500.5;
 
   # Appends the Audio object (audio0), which in modern browsers will appear
   # as a player in HTML5!!
-  $("#visualiser").append Sound.audio0
+  $("body").append Sound.audio0
 
   # Function that runs when #player audio is playing sound =)
   # Currently set to console log freq analysis data.
-  $("#timelines audio").on "playing", ->
+  $("body audio").on "playing", ->
     setInterval (->
       console.log Sound.frequencyArray
+      # console.log Sound.timeDomainArray
+      # console.log Sound.analyserNode.minDecibels,Sound.analyserNode.maxDecibels
       return
     ), 500
     return
