@@ -10,8 +10,9 @@ app.TimelineView = Backbone.View.extend
     @.model.bind('change', this.render)
 
   render: ->
+    console.log('TimeLine has been rendered')
     timelineHTML = Handlebars.compile( app.templates.timelineView)
     # copy = timelineHTML( @.model.toJSON() )
-    track = app.TrackView({model: @.model})
+    track = new app.TrackView({model: @.model})
     @.$el.append( copy )
     return @.$el

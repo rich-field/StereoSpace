@@ -12,6 +12,7 @@ app.TrackView = Backbone.View.extend
 
 
   render: ->
+    console.log('TrackView has been rendered')
     app.track = app.tracks.get(id)
     trackHTML = Handlebars.compile( app.templates.trackView )
     copy = trackHTML( @.model.toJSON() )
