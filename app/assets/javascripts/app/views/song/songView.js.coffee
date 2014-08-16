@@ -9,9 +9,8 @@ app.SongView = Backbone.View.extend
     @.model.bind('change', this.render)
 
   render: ->
-    console.log('songView has been rendered')
     songHTML = Handlebars.compile( app.templates.songView )
-    copy = songHTML( @.model.toJSON )
+    copy = songHTML( @.model.toJSON() )
     @.$el.append( copy )
     return @.$el
 
