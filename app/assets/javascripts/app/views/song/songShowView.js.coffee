@@ -14,7 +14,7 @@ app.SongShowView = Backbone.View.extend
     copy = html( this.model.toJSON() )
     app.tracks.fetch({data: {song_id: @.model.get('id')}} ).done ->
       # debugger
-      timeline = new app.TimelinesView({collection: app.tracks})
+      timelines = new app.TimelinesView({collection: app.tracks})
     $('#visualiser').html()
     @.$el.html( copy )
 
