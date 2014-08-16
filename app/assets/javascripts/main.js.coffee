@@ -6,6 +6,8 @@ $(document).ready ->
     songView: $('#song-template').html()
     songShowView: $('#song-show-template').html()
     timelineView: $('#timeline-template').html()
+    timelinesView: $('#timelines-template').html()
+    trackView: $('#track-template').html()
   }
 
   app.tracks = new app.Tracks()
@@ -24,4 +26,7 @@ $(document).ready ->
 
   app.songs.fetch().done ->
     counter++
-    startApp() if counter == 1
+    startApp() if counter == 2
+  app.tracks.fetch().done ->
+    counter++
+    startApp() if counter == 2
