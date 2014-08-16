@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20140815051727) do
 
   create_table "tracks", force: true do |t|
     t.integer  "duration"
-    t.boolean  "looped"
+    t.boolean  "looped",     default: false
     t.integer  "song_id"
     t.integer  "user_id"
     t.datetime "created_at"

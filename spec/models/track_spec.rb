@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  duration   :integer
-#  looped     :boolean
+#  looped     :boolean          default(FALSE)
 #  song_id    :integer
 #  user_id    :integer
 #  created_at :datetime
