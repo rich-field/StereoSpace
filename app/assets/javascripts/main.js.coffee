@@ -26,7 +26,7 @@ $(document).ready ->
 
   app.songs.fetch().done ->
     counter++
-    startApp() if counter == 2
-  app.tracks.fetch().done ->
-    counter++
-    startApp() if counter == 2
+    startApp() if counter == 1
+  # app.tracks.fetch().done ->
+    # counter++
+    # startApp() if counter == 2
