@@ -8,7 +8,6 @@ app.SongsView = Backbone.View.extend
     songsTemplate = Handlebars.compile( app.templates.songsView )
     @.$el.html( songsTemplate )
     viewAll = this
-
     @.collection.each (model) ->
       songView = new app.SongView(model: model)
       viewAll.$el.append( songView.render() )
