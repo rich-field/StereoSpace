@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require ./lib/jquery-ui-min
 //= require ./lib/underscore-min
 //= require ./lib/backbone-min
 //= require_tree ./lib
