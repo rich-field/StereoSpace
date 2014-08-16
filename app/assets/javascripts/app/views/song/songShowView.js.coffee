@@ -10,7 +10,11 @@ app.SongShowView = Backbone.View.extend
   render: ->
     console.log( 'this is the songShowView being rendered'  )
     html = Handlebars.compile( app.templates.songShowView )
+    # debugger
     copy = html( this.model.toJSON() )
+    app.tracks.fetch({data: {song_id: @.model.get('id')}} ).done ->
+      # debugger
+      timeline = new app.TimelinesView({collection: app.tracks})
     $('#visualiser').html()
     @.$el.html( copy )
 
