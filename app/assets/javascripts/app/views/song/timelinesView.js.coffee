@@ -10,4 +10,4 @@ app.TimelinesView = Backbone.View.extend
   render: ->
     @.collection.each (model) =>
       timelineView = new app.TimelineView(model: model)
-      viewAll.$el.append( timelineView.render() )
+      @.$el.append( timelineView.render() )
