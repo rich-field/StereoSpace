@@ -10,5 +10,6 @@
 #
 
 class Sample < ActiveRecord::Base
-  belongs_to :soundboard
+  belongs_to :track
+  has_many :notes
 end

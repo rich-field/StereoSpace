@@ -11,5 +11,5 @@
 #
 
 class Note < ActiveRecord::Base
-  belongs_to :soundboard
+  belongs_to :sample
 end
