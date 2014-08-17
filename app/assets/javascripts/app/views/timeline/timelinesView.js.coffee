@@ -9,10 +9,10 @@ app.TimelinesView = Backbone.View.extend
     @.render()
 
   render: ->
+
+    # Renders a single timeline and then
     @.collection.each (model) =>
       app.tracks = new app.Tracks
-      console.log(model)
       app.tracks.fetch({data: {timeline_id: model.get('id')}} ).done =>
-        console.log(app.tracks)
         timelineView = new app.TimelineView({collection: app.tracks})
         @.$el.append( timelineView.render() )

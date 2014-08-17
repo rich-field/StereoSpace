@@ -13,7 +13,6 @@ app.TimelineView = Backbone.View.extend
     console.log('TimeLine has been rendered')
     timelineHTML = Handlebars.compile( app.templates.timelineView )
 
-    console.log(@.collection)
     @.collection.each (model) =>
       trackView = new app.TrackView({model: model})
       @.$el.append( trackView.render() )

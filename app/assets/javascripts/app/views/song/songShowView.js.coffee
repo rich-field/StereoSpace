@@ -11,9 +11,11 @@ app.SongShowView = Backbone.View.extend
     html = Handlebars.compile( app.templates.songShowView )
     copy = html( this.model.toJSON() )
 
+    # Renders all the timelines this song has
     app.timelines = new app.Timelines
     app.timelines.fetch( {data: {song_id: @.model.get('id')}} ).done ->
       timelines = new app.TimelinesView({collection: app.timelines})
+
     @.$el.html( copy )
 
     $('#add-timeline').on 'click', =>

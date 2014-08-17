@@ -9,7 +9,7 @@ app.TrackView = Backbone.View.extend
     @.model.bind('change', this.render)
 
   render: ->
-    track = app.tracks.get('id')
+    console.log('Track rendered')
     trackHTML = Handlebars.compile( app.templates.trackView )
     copy = trackHTML( @.model.toJSON() )
     @.$el.css('left', @.model.get('start_time') )
