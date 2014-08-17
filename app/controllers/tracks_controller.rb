@@ -1,17 +1,18 @@
 class TracksController < ApplicationController
 
   def index
-    @tracks = Track.where(:song_id => params[:song_id])
+    # raise params.inspect
+    @tracks = Track.where(:timeline_id => params[:timeline_id])
     render :json => @tracks
   end
 
   def create
-    @track = Track.create(:duration => params[:duration], :song_id => params[:song_id])
+    @track = Track.create(:duration => params[:duration], :timeline_id => params[:timeline_id])
     render :json => @track
   end
 
   def update
-    @track = Track.where(:song_id => params[:song_id])
+    @track = Track.where(:timeline_id => params[:timeline_id])
     @track.save
     render :json => @track
   end

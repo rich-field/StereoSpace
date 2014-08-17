@@ -2,7 +2,8 @@ class CreateNotes < ActiveRecord::Migration
   def change
     create_table :notes do |t|
       t.integer :point_in_track
-      t.integer :soundboard_id
+      t.integer :sample_id
+      t.integer :track_id
 
       t.timestamps
     end

@@ -11,17 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140817031509) do
+ActiveRecord::Schema.define(version: 20140816080033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "notes", force: true do |t|
     t.integer  "point_in_track"
-    t.integer  "soundboard_id"
+    t.integer  "sample_id"
+    t.integer  "track_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "track_id"
   end
 
   create_table "samples", force: true do |t|
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20140817031509) do
     t.integer  "duration"
     t.string   "title"
     t.string   "genre"
-    t.integer  "user_id"
     t.string   "share_url"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -54,13 +53,11 @@ ActiveRecord::Schema.define(version: 20140817031509) do
 
   create_table "tracks", force: true do |t|
     t.integer  "duration"
+    t.integer  "start_time"
     t.boolean  "looped",      default: false
-    t.integer  "song_id"
-    t.integer  "user_id"
+    t.integer  "timeline_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "start_time"
-    t.integer  "timeline_id"
   end
 
 end

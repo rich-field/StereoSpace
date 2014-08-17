@@ -3,7 +3,6 @@ window.app = window.app or {}
 app.TrackView = Backbone.View.extend
   tagName: 'div'
   className: 'track'
-  # events:
 
   initialize: ->
     _.bindAll(this, 'render')

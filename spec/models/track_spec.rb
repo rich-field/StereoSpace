@@ -4,13 +4,11 @@
 #
 #  id          :integer          not null, primary key
 #  duration    :integer
+#  start_time  :integer
 #  looped      :boolean          default(FALSE)
-#  song_id     :integer
-#  user_id     :integer
+#  timeline_id :integer
 #  created_at  :datetime
 #  updated_at  :datetime
-#  start_time  :integer
-#  timeline_id :integer
 #
 
 require 'rails_helper'

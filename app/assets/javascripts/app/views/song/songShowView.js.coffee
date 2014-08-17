@@ -39,6 +39,7 @@ app.SongShowView = Backbone.View.extend
           $('.seeker').animate
             left: "#{ window.innerWidth - seekerWidth }", 1000
         else
-          $('.seeker').css('left', 0)
+          playing = false
+          # $('.seeker').css('left', 0)
           # pause
 
