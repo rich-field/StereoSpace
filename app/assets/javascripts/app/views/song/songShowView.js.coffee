@@ -18,5 +18,4 @@ app.SongShowView = Backbone.View.extend
       newTrack = new app.Track({duration: 5000, song_id: @.model.get('id')})
       newTrack.save();
       app.tracks.add(newTrack);
-    # console.log('this is reached')
 
