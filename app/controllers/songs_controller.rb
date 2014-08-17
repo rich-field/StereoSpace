@@ -4,6 +4,13 @@ class SongsController < ApplicationController
     render :json => @songs
   end
 
+  def create
+    @song = Song.new
+    # @song.tracks
+    @song.save
+    render :json => @song
+  end
+
   def update
   end
 

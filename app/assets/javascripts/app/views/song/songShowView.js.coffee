@@ -10,8 +10,10 @@ app.SongShowView = Backbone.View.extend
     $('#visualizer').html('')
     html = Handlebars.compile( app.templates.songShowView )
     copy = html( this.model.toJSON() )
-    app.tracks.fetch({data: {song_id: @.model.get('id')}} ).done ->
-      timelines = new app.TimelinesView({collection: app.tracks})
+
+    app.timelines = new app.Timelines
+    app.timelines.fetch( {data: {song_id: @.model.get('id')}} ).done ->
+      timelines = new app.TimelinesView({collection: app.timelines})
     @.$el.html( copy )
 
     $('#add-timeline').on 'click', =>
@@ -28,14 +30,12 @@ app.SongShowView = Backbone.View.extend
       playing = false
 
       if e.keyCode == 32
-        if playing == false
+        if playing == false# and $('.seeker').css('left') == (window.innerWidth - seekerWidth)
           playing = true
           seekerWidth = parseInt( $('.seeker').css('width') )
           $('.seeker').animate
-            left: "#{window.innerWidth - seekerWidth }", 1000
-        # else
+            left: "#{ window.innerWidth - seekerWidth }", 1000
+        else
+          $('.seeker').css('left', 0)
           # pause
-
-
-        console.log('WHY DO YOU FUCK WITH ME LIKE THIS.. WHY!')
 
