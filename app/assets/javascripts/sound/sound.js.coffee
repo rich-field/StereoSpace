@@ -23,9 +23,8 @@ Sound =
   setupAudioNodes: ->
     @.sourceNode = @.audioContext.createMediaElementSource(@.audio0)
     @.analyserNode = @.audioContext.createAnalyser()
-    @.analyserNode.fftSize = 32 #1024
+    @.analyserNode.fftSize = 32 # 1024
     @.frequencyArray = new Uint8Array(@.analyserNode.frequencyBinCount)
-
     @.timeDomainArray = new Uint8Array(@.analyserNode.frequencyBinCount)
 
     @.gainNode = @.audioContext.createGain()
@@ -63,9 +62,7 @@ $(document).ready ->
   # Currently set to console log freq analysis data.
   $("body audio").on "playing", ->
     setInterval (->
-      console.log Sound.frequencyArray
-      # console.log Sound.timeDomainArray
-      # console.log Sound.analyserNode.minDecibels,Sound.analyserNode.maxDecibels
+      console.log Sound.getFrequencyDomain()
       return
     ), 500
     return
