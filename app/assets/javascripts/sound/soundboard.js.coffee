@@ -1,10 +1,31 @@
 $(document).ready ->
   console.log('soundboard')
   keySounds =
-    81: #Q
-    87: #W
-    69: #E
-    82: #R
-    84: #T
-    89: #Y
-    85: #U
+    81: '/path/to/sound'#Q
+    87: '/path/to/sound'#W
+    69: '/path/to/sound'#E
+    82: '/path/to/sound'#R
+    84: '/path/to/sound'#T
+    89: '/path/to/sound'#Y
+    85: '/path/to/sound'#U
+    73: '/path/to/sound'#I
+    79: '/path/to/sound'#O
+    80: '/path/to/sound'#P
+    65: '/path/to/sound'#A
+    83: '/path/to/sound'#S
+    68: '/path/to/sound'#D
+    70: '/path/to/sound'#F
+    71: '/path/to/sound'#G
+    72: '/path/to/sound'#H
+    74: '/path/to/sound'#J
+    75: '/path/to/sound'#K
+    76: '/path/to/sound'#L
+    90: '/path/to/sound'#Z
+    88: '/path/to/sound'#X
+    67: '/path/to/sound'#C
+    86: '/path/to/sound'#V
+    66: '/path/to/sound'#B
+    78: '/path/to/sound'#N
+    77: '/path/to/sound'#M
+    192: '/path/to/sound'#`
+
