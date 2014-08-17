@@ -53,7 +53,7 @@ $(document).ready ->
   Sound.createAudioObject()
   Sound.setupAudioNodes()
   Sound.connectAudioNodes()
-  Sound.gainNode.gain.value = 500.5;
+  # Sound.gainNode.gain.value = 500.5;
 
   # Appends the Audio object (audio0), which in modern browsers will appear
   # as a player in HTML5!!
