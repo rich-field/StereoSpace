@@ -5,12 +5,9 @@ class TimelinesController < ApplicationController
     render :json => @timelines
   end
 
-  def new
-    @timeline = Timeline.new
-  end
-
   def create
-    render :json => @timelines
+    @timeline = Timeline.create(:song_id => params[:song_id])
+    render :json => @timeline
   end
 
   def update

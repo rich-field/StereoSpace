@@ -17,7 +17,7 @@ app.SongShowView = Backbone.View.extend
     @.$el.html( copy )
 
     $('#add-timeline').on 'click', =>
-      newTimeline = new app.Timeline#({duration: 5000, song_id: @.model.get('id')})
+      newTimeline = new app.Timeline({song_id: @.model.get('id')})
       newTimeline.save();
       app.timelines.add(newTimeline);
 
