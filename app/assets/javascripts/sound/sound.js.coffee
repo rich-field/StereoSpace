@@ -25,7 +25,6 @@ Sound =
     @.analyserNode = @.audioContext.createAnalyser()
     @.analyserNode.fftSize = 32 # 1024
     @.frequencyArray = new Uint8Array(@.analyserNode.frequencyBinCount)
-
     @.timeDomainArray = new Uint8Array(@.analyserNode.frequencyBinCount)
 
     @.gainNode = @.audioContext.createGain()

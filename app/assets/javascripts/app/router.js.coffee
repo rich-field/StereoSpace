@@ -9,6 +9,7 @@ app.Router = Backbone.Router.extend
     console.log('Routes have been initialized')
 
   index: ->
+    song = new app.Song
     view = new app.AppView
     view.render()
 
@@ -22,5 +23,4 @@ app.Router = Backbone.Router.extend
     # should make fetch happen here
     view = new app.SongsView({collection: app.songs})
     view.render()
-    console.log("lols")
 
