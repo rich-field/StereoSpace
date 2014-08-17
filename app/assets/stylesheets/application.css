@@ -34,3 +34,12 @@
   height: 300px;
   border: 1px solid black;
 }
+
+.seeker {
+  height: 200px;
+  width: 5px;
+  position: absolute;
+  z-index: 10;
+  /*vertical-align: bottom;*/
+  background-color: black;
+}
