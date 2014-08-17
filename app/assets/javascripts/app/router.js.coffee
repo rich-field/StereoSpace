@@ -9,8 +9,8 @@ app.Router = Backbone.Router.extend
     console.log('Routes have been initialized')
 
   index: ->
-    song = new app.Song
-    view = new app.AppView
+    app.song = new app.Song
+    view = new app.SongShowView( model: app.song )
     view.render()
 
   show: (id) ->

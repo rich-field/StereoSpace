@@ -62,7 +62,7 @@ $(document).ready ->
   # Currently set to console log freq analysis data.
   $("body audio").on "playing", ->
     setInterval (->
-      console.log Sound.getFrequencyDomain()
+      # console.log Sound.getFrequencyDomain()
       return
     ), 500
     return
