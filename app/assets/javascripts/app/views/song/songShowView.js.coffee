@@ -22,10 +22,20 @@ app.SongShowView = Backbone.View.extend
     $seeker = $('<div/>')
     $seeker.addClass('seeker')
     $('#timelines').append($seeker)
+
     $(document).on 'keydown', (e) ->
 
+      playing = false
+
       if e.keyCode == 32
-        $('.seeker').animate
-          left: "#{window.innerWidth}", 10000
+        if playing == false
+          playing = true
+          seekerWidth = parseInt( $('.seeker').css('width') )
+          $('.seeker').animate
+            left: "#{window.innerWidth - seekerWidth }", 1000
+        # else
+          # pause
+
+
         console.log('WHY DO YOU FUCK WITH ME LIKE THIS.. WHY!')
 
