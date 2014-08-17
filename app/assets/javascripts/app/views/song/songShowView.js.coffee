@@ -14,3 +14,9 @@ app.SongShowView = Backbone.View.extend
       timelines = new app.TimelinesView({collection: app.tracks})
     @.$el.html( copy )
 
+    $('#add-timeline').on 'click', =>
+      newTrack = new app.Track({duration: 5000, song_id: @.model.get('id')})
+      newTrack.save();
+      app.tracks.add(newTrack);
+    # console.log('this is reached')
+

@@ -6,6 +6,8 @@ class TracksController < ApplicationController
   end
 
   def create
+    @track = Track.create(:duration => params[:duration], :song_id => params[:song_id])
+    render :json => @track
   end
 
   def update
