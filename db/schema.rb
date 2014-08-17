@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140816080033) do
+ActiveRecord::Schema.define(version: 20140817031509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,12 +54,13 @@ ActiveRecord::Schema.define(version: 20140816080033) do
 
   create_table "tracks", force: true do |t|
     t.integer  "duration"
-    t.boolean  "looped",     default: false
+    t.boolean  "looped",      default: false
     t.integer  "song_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "start_time"
+    t.integer  "timeline_id"
   end
 
 end
