@@ -14,6 +14,6 @@ app.TrackView = Backbone.View.extend
     trackHTML = Handlebars.compile( app.templates.trackView )
     copy = trackHTML( @.model.toJSON() )
     @.$el.append( copy )
-    @.$el.draggable( {containment: '#timelines'} )
+    @.$el.draggable( {axis: 'x', containment: '#timelines'} )
     @.$el.appendTo('#timelines')
     return @.$el
