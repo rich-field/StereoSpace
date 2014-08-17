@@ -10,7 +10,7 @@ app.Router = Backbone.Router.extend
 
   index: ->
     app.song = new app.Song
-    app.song.save()
+    # app.song.save()
     view = new app.SongShowView( model: app.song )
     view.render()
 

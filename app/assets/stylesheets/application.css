@@ -30,6 +30,7 @@ body {
   width: 60px;
   border: 1px solid black;
   background: lime;
+  position: relative;
 }
 
 .timeline {
