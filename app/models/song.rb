@@ -13,4 +13,5 @@
 
 class Song < ActiveRecord::Base
   has_many :timelines
+  has_many :tracks, :through => :timelines
 end
