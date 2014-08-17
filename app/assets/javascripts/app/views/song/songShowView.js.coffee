@@ -21,6 +21,9 @@ app.SongShowView = Backbone.View.extend
       newTimeline.save();
       app.timelines.add(newTimeline);
 
+    $('#save-song').on 'click', =>
+      @.model.save()
+
     $seeker = $('<div/>')
     $seeker.addClass('seeker')
     $('#timelines').append($seeker)

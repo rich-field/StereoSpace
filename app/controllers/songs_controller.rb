@@ -12,6 +12,9 @@ class SongsController < ApplicationController
   end
 
   def update
+    @song = Song.find params[:id]
+    @song.save
+    render :json => @song
   end
 
   def destroy
