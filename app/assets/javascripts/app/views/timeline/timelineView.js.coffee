@@ -18,6 +18,8 @@ app.TimelineView = Backbone.View.extend
     @.collection.each (model) =>
       track = new app.TrackView({model: model})
       # Must pass in the track rendered to the append
-      @.$el.append( track.render() )
+      newTrack = track.render()
+      newTrack.css('left', track.model.get('start_time') )
+      @.$el.append( newTrack )
 
     return @.$el
