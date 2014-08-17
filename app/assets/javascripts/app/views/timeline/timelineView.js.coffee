@@ -16,10 +16,7 @@ app.TimelineView = Backbone.View.extend
     console.log(@.collection)
     # FIXME This needs to be an each loop to drop all the tracks on this timeline
     @.collection.each (model) =>
-      track = new app.TrackView({model: model})
-      # Must pass in the track rendered to the append
-      newTrack = track.render()
-      newTrack.css('left', track.model.get('start_time') )
-      @.$el.append( newTrack )
+      trackView = new app.TrackView({model: model})
+      @.$el.append( trackView.render() )
 
     return @.$el
