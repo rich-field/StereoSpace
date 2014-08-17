@@ -11,6 +11,9 @@ class TracksController < ApplicationController
   end
 
   def update
+    @track = Track.where(:song_id => params[:song_id])
+    @track.save
+    render :json => @track
   end
 
   def destroy
