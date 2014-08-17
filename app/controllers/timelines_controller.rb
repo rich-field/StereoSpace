@@ -6,15 +6,27 @@ class TimelinesController < ApplicationController
   end
 
   def new
+    @timeline = Timeline.new
+  end
 
+  def create
+    render :json => @timelines
   end
 
   def update
-
+    @timeline = Timeline.find params[:id]
+    @timeline.update timeline_params
+    @timeline.save
+    render :json => @timelines
   end
 
   def destroy
 
+  end
+
+  private
+  def timeline_params
+    params.require(:timeline).permit(:id, :song_id)
   end
 
 
