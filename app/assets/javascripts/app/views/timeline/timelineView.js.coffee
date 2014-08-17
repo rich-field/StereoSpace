@@ -14,7 +14,6 @@ app.TimelineView = Backbone.View.extend
     timelineHTML = Handlebars.compile( app.templates.timelineView )
 
     console.log(@.collection)
-    # FIXME This needs to be an each loop to drop all the tracks on this timeline
     @.collection.each (model) =>
       trackView = new app.TrackView({model: model})
       @.$el.append( trackView.render() )
