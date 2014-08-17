@@ -11,7 +11,7 @@ app.SongShowView = Backbone.View.extend
     html = Handlebars.compile( app.templates.songShowView )
     copy = html( this.model.toJSON() )
 
-    # Renders all the timelines this song has
+    # Renders all the timelines this song
     app.timelines = new app.Timelines
     app.timelines.fetch( {data: {song_id: @.model.get('id')}} ).done ->
       timelines = new app.TimelinesView({collection: app.timelines})
@@ -30,10 +30,9 @@ app.SongShowView = Backbone.View.extend
     $seeker.addClass('seeker')
     $('#timelines').append($seeker)
 
+    playing = false
+
     $(document).on 'keydown', (e) ->
-
-      playing = false
-
       if e.keyCode == 32
         if playing == false# and $('.seeker').css('left') == (window.innerWidth - seekerWidth)
           playing = true
@@ -42,6 +41,7 @@ app.SongShowView = Backbone.View.extend
             left: "#{ window.innerWidth - seekerWidth }", 1000
         else
           playing = false
-          # $('.seeker').css('left', 0)
+          $('.seeker').css('left', 0)
           # pause
-
+    $(document).on 'doubleclick', (e) ->
+      console.log(e)

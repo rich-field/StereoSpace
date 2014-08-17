@@ -43,8 +43,8 @@ body {
 }
 
 #timelines {
-  /*overflow: hidden;*/
-  /*position: relative;*/
+  overflow: hidden;
+  position: relative;
 }
 
 #visualizer {
@@ -58,5 +58,5 @@ body {
   position: absolute;
   z-index: 10;
   /*vertical-align: bottom;*/
-  background-color: black;
+  background-color: cyan;
 }
