@@ -15,6 +15,6 @@
 
 class Track < ActiveRecord::Base
   belongs_to :timeline
-  belong_to :song, through: :timeline
+  # belongs_to :song, :through => :timeline
   has_many :samples
 end
