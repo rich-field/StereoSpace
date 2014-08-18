@@ -20,9 +20,10 @@ class SegmentsController < ApplicationController
   end
 
   def update
-    @segments = Segment.where(:timeline_id => params[:timeline_id])
-    @segments.save
-    render :json => @segments
+    @segment = Segment.where(:timeline_id => params[:timeline_id]).where(:id => params[:id]).first
+    @segment.update(start_time: params[:start_time])
+    @segment.save
+    render :json => @segment
   end
 
   def destroy
