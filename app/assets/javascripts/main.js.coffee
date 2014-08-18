@@ -7,10 +7,10 @@ $(document).ready ->
     songShowView: $('#song-show-template').html()
     timelineView: $('#timeline-template').html()
     timelinesView: $('#timelines-template').html()
-    trackView: $('#track-template').html()
+    segmentView: $('#segment-template').html()
   }
 
-  app.tracks = new app.Tracks
+  app.segments = new app.Segments
   app.samples = new app.Samples
   app.notes = new app.Notes
   app.songs = new app.Songs
