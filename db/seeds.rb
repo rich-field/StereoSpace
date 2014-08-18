@@ -19,6 +19,10 @@ t2_1 = Track.create(:duration => 12000, :start_time => 900)
 t3_1 = Track.create(:duration => 120, :start_time => 0)
 t3_2 = Track.create(:duration => 1000, :start_time => 700)
 
+n1 = Note.create(:point_in_track => 20)
+n2 = Note.create()
+n3 = Note.create()
+
 tl1.tracks << t1_1 << t1_2
 tl2.tracks << t2_1
 tl3.tracks << t3_1 << t3_2
