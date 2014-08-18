@@ -13,10 +13,18 @@ app.SongShowView = Backbone.View.extend
 
     # Renders all the timelines this song
     app.timelines = new app.Timelines
-    app.timelines.fetch( {data: {song_id: @.model.get('id')}} ).done ->
-      timelines = new app.TimelinesView({collection: app.timelines})
+    app.timelines.fetch( {data: {song_id: @.model.get('id')}} ).done =>
+      timelines = new app.TimelinesView({collection: app.timelines, song: @.model})
 
     @.$el.html( copy )
+
+
+
+
+
+
+
+    # EVENTS
 
     $('#add-timeline').on 'click', =>
       newTimeline = new app.Timeline({song_id: @.model.get('id')})

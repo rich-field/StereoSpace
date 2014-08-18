@@ -26,7 +26,8 @@
 %script#song-show-template{type: 'text/template'}
   %h1 Title: {{ title }}
   %h2 Duration: {{ duration }}
-  %div#timelines
+  %div#timelines-outer
+    %div#timelines
   %div#song-controls
     %button#add-timeline Add new track
     %button#save-song save song
