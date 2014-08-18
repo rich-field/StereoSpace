@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: tracks
+# Table name: segments
 #
 #  id          :integer          not null, primary key
 #  duration    :integer
@@ -11,7 +11,7 @@
 #  updated_at  :datetime
 #
 
-class Track < ActiveRecord::Base
+class Segment < ActiveRecord::Base
   belongs_to :timeline
   has_many :samples
 end

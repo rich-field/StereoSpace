@@ -1,6 +1,6 @@
 Song.destroy_all
 Timeline.destroy_all
-Track.destroy_all
+Segment.destroy_all
 Note.destroy_all
 Soundboard.destroy_all
 Sample.destroy_all
@@ -13,19 +13,19 @@ tl1 = Timeline.create
 tl2 = Timeline.create
 tl3 = Timeline.create
 
-t1_1 = Track.create(:duration => 5000, :start_time => 0)
-t1_2 = Track.create(:duration => 7000, :start_time => 400)
-t2_1 = Track.create(:duration => 12000, :start_time => 900)
-t3_1 = Track.create(:duration => 120, :start_time => 0)
-t3_2 = Track.create(:duration => 1000, :start_time => 700)
+t1_1 = Segment.create(:duration => 5000, :start_time => 0)
+t1_2 = Segment.create(:duration => 7000, :start_time => 400)
+t2_1 = Segment.create(:duration => 12000, :start_time => 900)
+t3_1 = Segment.create(:duration => 120, :start_time => 0)
+t3_2 = Segment.create(:duration => 1000, :start_time => 700)
 
 n1 = Note.create(:point_in_track => 20)
 n2 = Note.create()
 n3 = Note.create()
 
-tl1.tracks << t1_1 << t1_2
-tl2.tracks << t2_1
-tl3.tracks << t3_1 << t3_2
+tl1.segments << t1_1 << t1_2
+tl2.segments << t2_1
+tl3.segments << t3_1 << t3_2
 
 s1.timelines << tl1 << tl3
 

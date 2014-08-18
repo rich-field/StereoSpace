@@ -9,7 +9,7 @@
 #
 
 class Timeline < ActiveRecord::Base
-  has_many :tracks
+  has_many :segments
   has_many :samples, through: :tracks
   belongs_to :song
 end

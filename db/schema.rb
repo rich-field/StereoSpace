@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20140816080033) do
   create_table "notes", force: true do |t|
     t.integer  "point_in_track"
     t.integer  "sample_id"
-    t.integer  "track_id"
+    t.integer  "segment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -27,6 +27,15 @@ ActiveRecord::Schema.define(version: 20140816080033) do
   create_table "samples", force: true do |t|
     t.string   "sound"
     t.integer  "soundboard_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "segments", force: true do |t|
+    t.integer  "duration"
+    t.integer  "start_time"
+    t.boolean  "looped",      default: false
+    t.integer  "timeline_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -47,15 +56,6 @@ ActiveRecord::Schema.define(version: 20140816080033) do
 
   create_table "timelines", force: true do |t|
     t.integer  "song_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "tracks", force: true do |t|
-    t.integer  "duration"
-    t.integer  "start_time"
-    t.boolean  "looped",      default: false
-    t.integer  "timeline_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

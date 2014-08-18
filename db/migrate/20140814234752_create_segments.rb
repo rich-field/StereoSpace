@@ -1,6 +1,6 @@
-class CreateTracks < ActiveRecord::Migration
+class CreateSegments < ActiveRecord::Migration
   def change
-    create_table :tracks do |t|
+    create_table :segments do |t|
       t.integer :duration
       t.integer :start_time
       t.boolean :looped, :default => false
