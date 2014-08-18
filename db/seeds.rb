@@ -19,7 +19,7 @@ t2_1 = Segment.create(:duration => 12000, :start_time => 900)
 t3_1 = Segment.create(:duration => 120, :start_time => 0)
 t3_2 = Segment.create(:duration => 1000, :start_time => 700)
 
-n1 = Note.create(:point_in_track => 20)
+# n1 = Note.create(:point_in_track => 20)
 n2 = Note.create()
 n3 = Note.create()
 

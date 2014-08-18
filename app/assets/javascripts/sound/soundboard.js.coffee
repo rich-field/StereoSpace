@@ -1,31 +1,45 @@
 $(document).ready ->
   console.log('soundboard')
   keySounds =
-    81: '/path/to/sound'#Q
-    87: '/path/to/sound'#W
-    69: '/path/to/sound'#E
-    82: '/path/to/sound'#R
-    84: '/path/to/sound'#T
-    89: '/path/to/sound'#Y
-    85: '/path/to/sound'#U
-    73: '/path/to/sound'#I
-    79: '/path/to/sound'#O
-    80: '/path/to/sound'#P
-    65: '/path/to/sound'#A
-    83: '/path/to/sound'#S
-    68: '/path/to/sound'#D
-    70: '/path/to/sound'#F
-    71: '/path/to/sound'#G
-    72: '/path/to/sound'#H
-    74: '/path/to/sound'#J
-    75: '/path/to/sound'#K
-    76: '/path/to/sound'#L
-    90: '/path/to/sound'#Z
-    88: '/path/to/sound'#X
-    67: '/path/to/sound'#C
-    86: '/path/to/sound'#V
-    66: '/path/to/sound'#B
-    78: '/path/to/sound'#N
-    77: '/path/to/sound'#M
-    192: '/path/to/sound'#`
+    81: '/audio/hk1.wav'#Q
+    87: '/audio/hk4.wav'#W
+    69: '/audio/ka1.wav'#E
+    82: '/audio/ka2.wav'#R
+    84: '/audio/lk1.wav'#T
+    89: '/audio/lk2.wav'#Y
+    85: '/audio/sound'#U
+    73: '/audio/sound'#I
+    79: '/audio/sound'#O
+    80: '/audio/sound'#P
+    65: '/audio/sound'#A
+    83: '/audio/sound'#S
+    68: '/audio/sound'#D
+    70: '/audio/sound'#F
+    71: '/audio/sound'#G
+    72: '/audio/sound'#H
+    74: '/audio/sound'#J
+    75: '/audio/sound'#K
+    76: '/audio/sound'#L
+    90: '/audio/sound'#Z
+    88: '/audio/sound'#X
+    67: '/audio/sound'#C
+    86: '/audio/sound'#V
+    66: '/audio/sound'#B
+    78: '/audio/sound'#N
+    77: '/audio/sound'#M
+
+  $(document).on 'keydown', (e) ->
+    soundId = keySounds[e.keyCode]
+    console.log(soundId)
+
+    # audioRouting = (data) ->
+    #   source = context.createBufferSource() # Create sound source
+    #   #gain = context.createGain();
+    #   buffer = context.createBuffer(data, true) # Create source buffer from raw binary
+    #   source.buffer = buffer # Add buffered data to object
+    #   #source.connect(gain);
+    #   source.connect context.destination # Connect sound source to output
+    #   source.start 0 #Important line to get the sound to play!
+    #   return
+
 
