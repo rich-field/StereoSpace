@@ -43,7 +43,8 @@ app.SongShowView = Backbone.View.extend
 
     $(document).on 'keydown', (e) ->
       if e.keyCode == 32
-        if app.playing == false# and $('.seeker').css('left') == (window.innerWidth - seekerWidth)
+        if app.playing == false
+          console.log('Play')
           app.playing = true
           seekerWidth = parseInt( $('.seeker').css('width') )
           timelineWidth = parseInt( $('#timelines').css('width') )
@@ -56,5 +57,5 @@ app.SongShowView = Backbone.View.extend
 
           console.log('Pause')
           # pause
-    $(document).on 'doubleclick', (e) ->
+    $(document).on 'dblclick', (e) ->
       console.log(e)

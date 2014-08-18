@@ -2,7 +2,7 @@ class TimelinesController < ApplicationController
 
   def index
     @timelines = Timeline.where(:song_id => params[:song_id])
-    render :json => @timelines
+    render :json => @timelines, :include => :segments
   end
 
   def create
