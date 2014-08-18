@@ -14,7 +14,6 @@ app.TimelinesView = Backbone.View.extend
     @.collection.each (model) =>
       segments = new app.Segments
       segments.fetch( {data: {timeline_id: model.get('id')}} ).done =>
-        console.log(segments)
         timelineView = new app.TimelineView({collection: segments})
         @.$el.append( timelineView.render() )
     # console.log( @.$el.css('width') )

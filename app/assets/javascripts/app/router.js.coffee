@@ -6,7 +6,6 @@ app.Router = Backbone.Router.extend
     "songs": "songsIndex" # All Songs
 
   initialize: ->
-    console.log('Routes have been initialized')
 
   index: ->
     app.song = new app.Song
@@ -15,7 +14,6 @@ app.Router = Backbone.Router.extend
     view.render()
 
   show: (id) ->
-    console.log('show page hath been reachethed')
     app.song = app.songs.get(id)
     view = new app.SongShowView( model: app.song )
     view.render()

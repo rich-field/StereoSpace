@@ -37,19 +37,24 @@ app.SongShowView = Backbone.View.extend
     $seeker = $('<div/>')
     $seeker.addClass('seeker')
     $('#timelines').append($seeker)
+    $('.seeker').draggable({axis: 'x', containment: '#timelines'})
 
-    playing = false
+    app.playing = false
 
     $(document).on 'keydown', (e) ->
       if e.keyCode == 32
-        if playing == false# and $('.seeker').css('left') == (window.innerWidth - seekerWidth)
-          playing = true
+        if app.playing == false# and $('.seeker').css('left') == (window.innerWidth - seekerWidth)
+          app.playing = true
           seekerWidth = parseInt( $('.seeker').css('width') )
+          timelineWidth = parseInt( $('#timelines').css('width') )
           $('.seeker').animate
-            left: "#{ window.innerWidth - seekerWidth }", 1000
+            left: "#{ ( timelineWidth - seekerWidth) }", 10000
         else
-          playing = false
-          $('.seeker').css('left', 0)
+          app.playing = false
+          # $('.seeker').css('left', 0)
+          $('.seeker').stop()
+
+          console.log('Pause')
           # pause
     $(document).on 'doubleclick', (e) ->
       console.log(e)
