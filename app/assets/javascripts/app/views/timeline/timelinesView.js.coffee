@@ -5,11 +5,12 @@ app.TimelinesView = Backbone.View.extend
 
   initialize: (options) ->
     _.bindAll(this, 'render')
-    this.collection.bind('add', this.render)
+    @.collection.bind('add', this.render)
     @.song = options.song
     @.render()
 
   render: ->
+    @.$el.html('')
     # Renders a single timeline and then
     @.collection.each (model) =>
       segments = new app.Segments
