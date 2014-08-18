@@ -32,6 +32,26 @@ $(document).ready ->
     soundId = keySounds[e.keyCode]
     console.log(soundId)
 
+        # Load the Sound with XMLHttpRequest
+    playSound = (sound, silent) ->
+      unless sounds[sound]
+
+        # Note: this will load asynchronouslys
+        request = new XMLHttpRequest()
+        request.open "GET", "/audio/" + sound + ".wav", true
+        request.responseType = "arraybuffer" # Read as binary data
+
+        # Asynchronous callback
+        request.onload = ->
+          data = request.response
+          sounds[sound] = data
+          audioRouting sounds[sound]  unless silent
+
+        request.send()
+      else
+        audioRouting sounds[sound]  unless silent
+      console.log "showing fetched sounds", sounds
+
     audioRouting = (data) ->
       source = context.createBufferSource() # Create sound source
       #gain = context.createGain();
