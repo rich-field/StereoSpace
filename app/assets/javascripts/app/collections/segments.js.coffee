@@ -1,4 +1,4 @@
 window.app = window.app or {}
-app.Segment = Backbone.Collection.extend
+app.Segments = Backbone.Collection.extend
   url: '/segments'
   model: app.Segment
