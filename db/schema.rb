@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20140816080033) do
   enable_extension "plpgsql"
 
   create_table "notes", force: true do |t|
-    t.integer  "point_in_track"
+    t.integer  "point_in_segment"
     t.integer  "sample_id"
     t.integer  "segment_id"
     t.datetime "created_at"

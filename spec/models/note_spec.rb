@@ -2,12 +2,12 @@
 #
 # Table name: notes
 #
-#  id             :integer          not null, primary key
-#  point_in_track :integer
-#  sample_id      :integer
-#  segment_id     :integer
-#  created_at     :datetime
-#  updated_at     :datetime
+#  id               :integer          not null, primary key
+#  point_in_segment :integer
+#  sample_id        :integer
+#  segment_id       :integer
+#  created_at       :datetime
+#  updated_at       :datetime
 #
 
 require 'rails_helper'
