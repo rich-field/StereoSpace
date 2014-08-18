@@ -9,6 +9,7 @@ app.TimelineView = Backbone.View.extend
     @.collection.bind('change', this.render)
 
   render: ->
+    @.$el.html('')
     timelineHTML = Handlebars.compile( app.templates.timelineView )
     @.collection.each (model) =>
       segmentView = new app.SegmentView({model: model})
