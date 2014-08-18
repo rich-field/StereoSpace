@@ -12,5 +12,5 @@ require 'rails_helper'
 
 RSpec.describe Timeline, :type => :model do
   # it { is_expected.to have_many(:tracks) }
-  it { should have_many :tracks }
+  it { should have_many :segments }
 end

@@ -10,6 +10,6 @@
 
 class Timeline < ActiveRecord::Base
   has_many :segments
-  has_many :samples, through: :tracks
+  has_many :samples, through: :segments
   belongs_to :song
 end

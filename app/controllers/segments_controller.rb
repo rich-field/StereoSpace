@@ -1,7 +1,6 @@
 class SegmentsController < ApplicationController
 
   def index
-    # raise params.inspect
     @segments = Segment.where(:timeline_id => params[:timeline_id])
     # last_start_time = @tracks.pluck
     # @last_track = @tracks.where(:start_time => last_start_time)
@@ -22,7 +21,6 @@ class SegmentsController < ApplicationController
   def update
     @segment = Segment.where(:timeline_id => params[:timeline_id]).where(:id => params[:id]).first
     @segment.update(start_time: params[:start_time])
-    @segment.save
     render :json => @segment
   end
 
