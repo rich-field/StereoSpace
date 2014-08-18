@@ -2,7 +2,7 @@ class SegmentsController < ApplicationController
 
   def index
     # raise params.inspect
-    @segments = segments.where(:timeline_id => params[:timeline_id])
+    @segments = Segment.where(:timeline_id => params[:timeline_id])
     # last_start_time = @tracks.pluck
     # @last_track = @tracks.where(:start_time => last_start_time)
 
