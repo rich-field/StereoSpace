@@ -32,14 +32,12 @@ $(document).ready ->
     soundId = keySounds[e.keyCode]
     console.log(soundId)
 
-    # audioRouting = (data) ->
-    #   source = context.createBufferSource() # Create sound source
-    #   #gain = context.createGain();
-    #   buffer = context.createBuffer(data, true) # Create source buffer from raw binary
-    #   source.buffer = buffer # Add buffered data to object
-    #   #source.connect(gain);
-    #   source.connect context.destination # Connect sound source to output
-    #   source.start 0 #Important line to get the sound to play!
-    #   return
-
+    audioRouting = (data) ->
+      source = context.createBufferSource() # Create sound source
+      #gain = context.createGain();
+      buffer = context.createBuffer(data, true) # Create source buffer from raw binary
+      source.buffer = buffer # Add buffered data to object
+      #source.connect(gain);
+      source.connect context.destination # Connect sound source to output
+      source.start 0 #Important line to get the sound to play!
 
