@@ -16,6 +16,6 @@ app.TimelinesView = Backbone.View.extend
       tracks.fetch({data: {timeline_id: model.get('id')}} ).done =>
         timelineView = new app.TimelineView({collection: tracks})
         @.$el.append( timelineView.render() )
-    console.log( @.$el.css('width') )
-    console.log( @.song.get('duration') )
-    @.$el.css('width', @.song.get('duration') + 'px')
+    # console.log( @.$el.css('width') )
+    # console.log( @.song.get('duration') )
+    @.$el.css('width', @.song.get('duration') +  + 'px')
