@@ -13,19 +13,22 @@ tl1 = Timeline.create
 tl2 = Timeline.create
 tl3 = Timeline.create
 
-t1_1 = Segment.create(:duration => 5000, :start_time => 0)
-t1_2 = Segment.create(:duration => 7000, :start_time => 400)
-t2_1 = Segment.create(:duration => 12000, :start_time => 900)
-t3_1 = Segment.create(:duration => 120, :start_time => 0)
-t3_2 = Segment.create(:duration => 1000, :start_time => 700)
+s1_1 = Segment.create(:duration => 5000, :start_time => 0)
+s1_2 = Segment.create(:duration => 7000, :start_time => 400)
+s2_1 = Segment.create(:duration => 12000, :start_time => 900)
+s3_1 = Segment.create(:duration => 120, :start_time => 0)
+s3_2 = Segment.create(:duration => 1000, :start_time => 700)
 
-n1 = Note.create(:point_in_track => 20)
-n2 = Note.create()
-n3 = Note.create()
+n1 = Note.create(:point_in_segment => 20)
+n2 = Note.create(:point_in_segment => 90)
+n3 = Note.create(:point_in_segment => 50)
 
-tl1.segments << t1_1 << t1_2
-tl2.segments << t2_1
-tl3.segments << t3_1 << t3_2
+s1_1.notes << n1 << n2
+s1_2.notes << n3
+
+tl1.segments << s1_1 << s1_2
+tl2.segments << s2_1
+tl3.segments << s3_1 << s3_2
 
 s1.timelines << tl1 << tl3
 

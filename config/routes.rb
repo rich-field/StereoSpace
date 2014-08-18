@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   resources :songs
   resources :timelines
   resources :segments
+  resources :notes
 end
 

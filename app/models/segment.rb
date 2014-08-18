@@ -13,5 +13,5 @@
 
 class Segment < ActiveRecord::Base
   belongs_to :timeline
-  has_many :samples
+  has_many :notes
 end

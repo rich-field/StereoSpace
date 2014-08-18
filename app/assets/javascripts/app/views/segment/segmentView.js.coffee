@@ -16,4 +16,9 @@ app.SegmentView = Backbone.View.extend
     @.$el.css('left', @.model.get('start_time') )
     @.$el.append( copy )
     @.$el.draggable( {containment: '#timelines', snap: ".timeline"} )
+    notes = new app.Notes
+    notes.fetch({data: {segment_id: @.model.get('id')}}).done ->
+      notes.each (model) ->
+        noteView = new app.NoteView({model: model})
+
     return @.$el
