@@ -5,6 +5,7 @@ app.SegmentView = Backbone.View.extend
   className: 'segment'
   events:
     'mouseup' : 'moveTrack'
+    'click': 'selectSegment'
   initialize: ->
     _.bindAll(this, 'render')
     @.model.bind('change', this.render)
@@ -33,6 +34,12 @@ app.SegmentView = Backbone.View.extend
   renderNotes: ->
     # Clears notes before re rendering notes
     @.$el.html("")
+    console.log @.model.collection.length, "notes?"
     @.model.collection.each (model) =>
       noteView = new app.NoteView({model: model})
       @.$el.append( noteView.render() )
+
+  selectSegment: ->
+    console.log(@.model)
+    console.log('selected')
+    @.$el.toggleClass('selected')

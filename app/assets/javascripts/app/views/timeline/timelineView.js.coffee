@@ -3,6 +3,8 @@ window.app = window.app or {}
 app.TimelineView = Backbone.View.extend
   tagName: 'div'
   className: 'timeline'
+  events:
+    'click': 'selectTimeline'
 
   initialize: ->
     _.bindAll(this, 'render')
@@ -19,3 +21,9 @@ app.TimelineView = Backbone.View.extend
         @.$el.append( segmentView.render() )
 
     return @.$el
+  selectTimeline: ->
+    # console.log(@.model)
+    console.log('selected')
+    @.$el.toggleClass('selected')
+    app.selectedTimeline = @.model
+    console.log(app.selectedTimeline)

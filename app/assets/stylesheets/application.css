@@ -62,6 +62,10 @@ body {
   background-color: #333;
 }
 
+.timeline.selected {
+  background-color: #bf0000;
+}
+
 .segment {
   height: 48px;
   width: 60px;
@@ -69,6 +73,10 @@ body {
   background: lime;
   position: absolute;
   display: inline-block;
+}
+
+.segment.selected {
+  background-color: #0000bf
 }
 
 .note {

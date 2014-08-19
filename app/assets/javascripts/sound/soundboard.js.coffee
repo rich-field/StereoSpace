@@ -1,7 +1,8 @@
 $(document).ready ->
   console.log('soundboard')
+  # sounds = {}
   sounds =
-    81: 'hk1'#Q
+    81: 'kkjh_trustissues'#Q
     87: 'hk4'#W
     69: 'ka1'#E
     82: 'ka2'#R
@@ -38,14 +39,14 @@ $(document).ready ->
 
         # Note: this will load asynchronouslys
         request = new XMLHttpRequest()
-        request.open "GET", "/audio/" + sound + ".wav", true
+        request.open "GET", "/audio/" + sound + ".mp3", true
         request.responseType = "arraybuffer" # Read as binary data
 
         # Asynchronous callback
         request.onload = ->
           data = request.response
           sounds[sound] = data
-          audioRouting 32  unless silent
+          audioRouting sounds[sound] unless silent
 
         request.send()
       else
@@ -53,9 +54,11 @@ $(document).ready ->
       console.log "showing fetched sounds", sounds
 
     audioRouting = (data) ->
+      console.log('inside audiorouting')
+      console.log(data)
       source = app.Sound.audioContext.createBufferSource() # Create sound source
       #gain = context.createGain();
-      buffer = app.Sound.audioContext.createBuffer(data, true, 44100) # Create source buffer from raw binary
+      buffer = app.Sound.audioContext.createBuffer(data, true, 41000) # Create source buffer from raw binary
       source.buffer = buffer # Add buffered data to object
       #source.connect(gain);
       source.connect app.Sound.audioContext.destination # Connect sound source to output

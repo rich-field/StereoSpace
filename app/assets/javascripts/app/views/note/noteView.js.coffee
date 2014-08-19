@@ -1,14 +1,15 @@
 window.app = window.app or {}
 
 app.NoteView = Backbone.View.extend
-  el: '.track'
+  tagName: 'div'
+  className: 'note'
 
   initialize: ->
-    # _.bindAll(this, 'render')
-    # @.collection.bind('change', this.render)
+
   render: ->
+    console.log @$el.length, "tracks"
     console.log('note rendered')
-    $note = $('<div/>')
-    $note.addClass('note')
-    $note.css('left', @.model.get('point_in_segment'))
-    return $note
+    # $note = $('<div/>')
+    # $note.addClass('note')
+    @$el.css('left', @.model.get('point_in_segment'))
+    return @$el
