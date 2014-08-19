@@ -54,10 +54,10 @@ processAudio = (data) ->
     source.connect app.Sound.analyserNode
     app.Sound.analyserNode.connect app.Sound.audioContext.destination
     source.loop = false
-    setInterval (->
-      console.log app.Sound.getFrequencyDomain()
-      return
-    ), 500
+    # setInterval (->
+      # console.log app.Sound.getFrequencyDomain()
+      # return
+    # ), 500
     source.start(0);
     return
 
