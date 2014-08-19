@@ -19,7 +19,7 @@ s2_1 = Segment.create(:duration => 12000, :start_time => 900)
 s3_1 = Segment.create(:duration => 120, :start_time => 0)
 s3_2 = Segment.create(:duration => 1000, :start_time => 700)
 
-n1 = Note.create(:point_in_segment => 20)
+n1 = Note.create(:point_in_segment => 20, :sample_path => '#')
 n2 = Note.create(:point_in_segment => 90)
 n3 = Note.create(:point_in_segment => 50)
 

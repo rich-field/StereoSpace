@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: tracks
+# Table name: segments
 #
 #  id          :integer          not null, primary key
 #  duration    :integer

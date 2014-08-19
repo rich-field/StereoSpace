@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140816080033) do
     t.integer  "point_in_segment"
     t.integer  "sample_id"
     t.integer  "segment_id"
+    t.string   "sample_path"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

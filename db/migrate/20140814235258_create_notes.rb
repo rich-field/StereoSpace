@@ -4,6 +4,7 @@ class CreateNotes < ActiveRecord::Migration
       t.integer :point_in_segment
       t.integer :sample_id
       t.integer :segment_id
+      t.string :sample_path
 
       t.timestamps
     end
