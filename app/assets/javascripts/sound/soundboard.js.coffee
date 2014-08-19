@@ -1,7 +1,6 @@
 $(document).ready ->
-  console.log('soundboard')
-  # sounds = {}
-  sounds =
+  sounds = {}
+  soundKeys =
     81: 'hk1'#Q
     87: 'hk4'#W
     69: 'ka1'#E
@@ -30,14 +29,14 @@ $(document).ready ->
     77: 'sound'#M
 
   $(document).on 'keydown', (e) ->
-    soundId = sounds[e.keyCode]
+    soundId = soundKeys[e.keyCode]
     console.log(soundId)
 
         # Load the Sound with XMLHttpRequest
     playSound = (sound, silent) ->
       unless sounds[sound]
-        source = app.Sound.audioContext.createBufferSource()
-        # Note: this will load asynchronouslys
+
+        # Note: this will load asynchronously
         request = new XMLHttpRequest()
         request.open "GET", "/audio/" + sound + ".wav", true
         request.responseType = "arraybuffer" # Read as binary data
@@ -45,17 +44,23 @@ $(document).ready ->
         # Asynchronous callback
         request.onload = ->
           audioData = request.response;
+          sounds[sound] = audioData
+          processAudio(audioData)
 
-          app.Sound.audioContext.decodeAudioData audioData, (buffer) ->
+        request.send()
+      else
+          processAudio(sounds[sound])
+
+      # console.log "showing fetched sounds", sounds
+
+
+    processAudio = (data) ->
+        app.Sound.audioContext.decodeAudioData data, (buffer) ->
+            source = app.Sound.audioContext.createBufferSource()
             myBuffer = buffer
             source.buffer = myBuffer
             source.connect app.Sound.audioContext.destination
             source.loop = false
             source.start(0);
             return
-
-
-        request.send()
-      console.log "showing fetched sounds", sounds
-
     playSound(soundId)
