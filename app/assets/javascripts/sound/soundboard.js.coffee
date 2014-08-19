@@ -2,32 +2,36 @@ $(document).ready ->
   console.log('soundboard')
   # sounds = {}
   sounds =
-    81: 'hk1'#Q
-    87: 'hk4'#W
-    69: 'ka1'#E
-    82: 'ka2'#R
-    84: 'lk1'#T
-    89: 'lk2'#Y
-    85: 'sound'#U
-    73: 'sound'#I
-    79: 'sound'#O
-    80: 'sound'#P
-    65: 'sound'#A
-    83: 'sound'#S
-    68: 'sound'#D
-    70: 'sound'#F
-    71: 'sound'#G
-    72: 'sound'#H
-    74: 'sound'#J
-    75: 'sound'#K
-    76: 'sound'#L
-    90: 'sound'#Z
-    88: 'sound'#X
-    67: 'sound'#C
-    86: 'sound'#V
-    66: 'sound'#B
-    78: 'sound'#N
-    77: 'sound'#M
+    81: 'q'#Q
+    87: 'w'#W
+    69: 'e'#E
+    82: 'r'#R
+    84: 't'#T
+    89: 'y'#Y
+    85: 'u'#U
+    73: 'i'#I
+    79: 'o'#O
+    80: 'p'#P
+    65: 'a'#A
+    83: 's'#S
+    68: 'd'#D
+    70: 'f'#F
+    71: 'g'#G
+    72: 'h'#H
+    74: 'j'#J
+    75: 'k'#K
+    76: 'l'#L
+    90: 'z'#Z
+    88: 'x'#X
+    67: 'c'#C
+    86: 'v'#V
+    66: 'b'#B
+    78: 'n'#N
+    77: 'm'#M
+    186: 'semicolon'#;
+    191: 'slash'#/
+    190: 'fullstop'#.
+    188: 'comma'#,
 
   $(document).on 'keydown', (e) ->
     soundId = sounds[e.keyCode]
