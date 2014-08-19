@@ -38,5 +38,6 @@ app.SegmentView = Backbone.View.extend
       @.$el.append( noteView.render() )
 
   selectSegment: ->
+    $('.timeline').toggleClass('stop-mouse-event')
     app.selectedSegment = @.model
     @.$el.toggleClass('selected')
