@@ -53,24 +53,8 @@ $(document).ready ->
             source.loop = false
             source.start(0);
             return
-        #   data = request.response
-        #   sounds[sound] = data
-        #   audioRouting sounds[sound] unless silent
 
         request.send()
-      # else
-        # audioRouting sounds[sound]  unless silent
       console.log "showing fetched sounds", sounds
-
-    audioRouting = (data) ->
-      console.log('inside audiorouting')
-      console.log(data)
-      source = app.Sound.audioContext.createBufferSource() # Create sound source
-      #gain = context.createGain();
-      buffer = app.Sound.audioContext.createBuffer(data, true, 41000) # Create source buffer from raw binary
-      source.buffer = buffer # Add buffered data to object
-      #source.connect(gain);
-      source.connect app.Sound.audioContext.destination # Connect sound source to output
-      source.start 0 #Important line to get the sound to play!
 
     playSound(soundId)
