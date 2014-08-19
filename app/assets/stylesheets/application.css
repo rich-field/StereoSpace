@@ -88,6 +88,6 @@ body {
   display: inline-block;
 }
 
-.stop-mouse-event{
+/*.stop-mouse-event{
   pointer-events: none;
-}
+}*/

@@ -63,8 +63,6 @@ app.processAudio = (data) ->
       # return
     # ), 500
     app.source.start(0)
-
-    # source.stop(0)
     return
 
 # Load all sounds
@@ -78,4 +76,6 @@ $(document).ready ->
       app.source.stop(0) if app.currentSound == app.sounds[soundId]
       app.playSound(soundId)
       app.currentSound = app.sounds[soundId]
+    # if soundId && app.currentSound
+
 

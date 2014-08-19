@@ -12,7 +12,6 @@ app.TimelinesView = Backbone.View.extend
 
   render: ->
     # Renders a single timeline and then
-    console.log('Timelines rendered')
     @.collection.each (model) =>
       timelineView = new app.TimelineView({model: model})
       @.$el.append( timelineView.render() )
@@ -21,6 +20,5 @@ app.TimelinesView = Backbone.View.extend
   renderOne: (view, collection, event) ->
     timeline = collection.last()
     timelineView = new app.TimelineView({model: timeline})
-    # debugger
     @.$el.append( timelineView.render() )
 

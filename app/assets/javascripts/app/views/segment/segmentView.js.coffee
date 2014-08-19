@@ -4,12 +4,17 @@ app.SegmentView = Backbone.View.extend
   tagName: 'div'
   className: 'segment'
   events:
-    'mousedown': 'selectSegment'
+    'click': 'selectSegment'
     'mouseup' : 'moveTrack'
   initialize: ->
     _.bindAll(this, 'render')
+    _.bindAll(this, 'keyControls')
+    _.bindAll(this, 'deleteSegment')
     @.model.bind('change', this.render)
     @.renderNotes()
+
+    $(document).on 'keydown', (e) =>
+      @.keyControls(e)
 
   render: ->    # The model is the specific track passed into the timeline view
     segmentHTML = Handlebars.compile( app.templates.segmentView )
@@ -38,6 +43,19 @@ app.SegmentView = Backbone.View.extend
       @.$el.append( noteView.render() )
 
   selectSegment: ->
-    $('.timeline').toggleClass('stop-mouse-event')
+    app.selectedTimeline = null
+    $('.timeline.selected').removeClass('selected')
+    $('.segment.selected').removeClass('selected')
     app.selectedSegment = @.model
     @.$el.toggleClass('selected')
+
+  keyControls: (e) ->
+    if e.keyCode == 8 and app.selectedSegment
+      e.stopPropagation();
+      e.preventDefault()
+      @.deleteSegment
+
+  deleteSegment: ->
+      $('.segment.selected').remove()
+      app.selectedSegment.destroy()
+      app.selectedSegment = null

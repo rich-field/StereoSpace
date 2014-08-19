@@ -7,6 +7,8 @@ app.TimelineView = Backbone.View.extend
     'click': 'selectTimeline'
   initialize: ->
     _.bindAll(this, 'render')
+    _.bindAll(this, 'keyControls')
+    _.bindAll(this, 'deleteTimeline')
     @.model.bind('change', this.render)
 
     $(document).on 'keydown', (e) =>
@@ -21,16 +23,19 @@ app.TimelineView = Backbone.View.extend
         @.$el.append( segmentView.render() )
 
     return @.$el
+
   selectTimeline: ->
     $('.selected').toggleClass('selected')
     @.$el.toggleClass('selected')
     app.selectedTimeline = @.model
 
   keyControls: (e) ->
-
     if e.keyCode == 8 and app.selectedTimeline
       e.stopPropagation();
       e.preventDefault()
+      @.deleteTimeline
+
+  deleteTimeline: ->
       $('.timeline.selected').remove()
       app.selectedTimeline.destroy()
       app.selectedTimeline = null
