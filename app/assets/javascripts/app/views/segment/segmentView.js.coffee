@@ -7,8 +7,6 @@ app.SegmentView = Backbone.View.extend
     'mouseup' : 'moveTrack'
   initialize: ->
     _.bindAll(this, 'render')
-    console.log(@.model.collection)
-    console.log('supposed to be notes above me')
     @.model.bind('change', this.render)
     @.model.collection.bind('add', this.renderNotes)
     @.renderNotes()
@@ -32,9 +30,6 @@ app.SegmentView = Backbone.View.extend
     if @.point_in_timeline != @.$el.css('left')
       @.model.save({start_time: parseInt(@.$el.css('left')) })
 
-    console.log(@.model.get('id'))
-    console.log(@.$el.css('left'))
-    console.log('You stopped dragging me')
   renderNotes: ->
     # Clears notes before re rendering notes
     @.$el.html("")
