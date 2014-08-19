@@ -1,9 +1,9 @@
 window.AudioContext = (->
   window.webkitAudioContext or window.AudioContext or window.mozAudioContext
 )()
-
+window.app = window.app or {}
 # Audio factory
-Sound =
+app.Sound =
   audioContextSetup: ->
     try
       @.audioContext = new (window.AudioContext or window.webkitAudioContext)()
@@ -49,24 +49,24 @@ Sound =
 $(document).ready ->
 
   # Initial Audio setup
-  Sound.audioContextSetup()
-  Sound.createAudioObject('lk1')
+  app.Sound.audioContextSetup()
+  app.Sound.createAudioObject('lk1')
   # lowKick = Sound.createAudioObject('lk1')
   # highKick = Sound.createAudioObject('hk1')
-  Sound.setupAudioNodes()
-  Sound.connectAudioNodes()
+  app.Sound.setupAudioNodes()
+  app.Sound.connectAudioNodes()
   # Sound.gainNode.gain.value = 500.5;
 
   # Appends the Audio object (audio0), which in modern browsers will appear
   # as a player in HTML5!!
-  $("body").append Sound.audio0
+  $("body").append app.Sound.audio0
   # $("body").append highKick
 
   # Function that runs when #player audio is playing sound =)
   # Currently set to console log freq analysis data.
   $("body audio").on "playing", ->
     setInterval (->
-      console.log Sound.getFrequencyDomain()
+      console.log app.Sound.getFrequencyDomain()
       return
     ), 500
     return
