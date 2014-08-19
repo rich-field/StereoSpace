@@ -17,8 +17,9 @@ app.TimelinesView = Backbone.View.extend
       @.$el.append( timelineView.render() )
     @.$el.css('width', @.song.get('duration') + 'px')
 
-  renderOne: (view, collection, event)->
+  renderOne: (view, collection, event) =>
     timeline = collection.last()
     timelineView = new app.TimelineView({model: timeline})
+    # debugger
     @.$el.append( timelineView.render() )
 
