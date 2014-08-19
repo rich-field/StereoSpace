@@ -1,6 +1,5 @@
-$(document).ready ->
-  sounds = {}
-  soundKeys =
+sounds = {}
+soundKeys =
     81: 'hk1'#Q
     87: 'hk4'#W
     69: 'ka1'#E
@@ -28,39 +27,39 @@ $(document).ready ->
     78: 'sound'#N
     77: 'sound'#M
 
+playSound = (sound, silent) ->
+  unless sounds[sound]
+    # Note: this will load asynchronously
+    request = new XMLHttpRequest()
+    request.open "GET", "/audio/" + sound + ".wav", true
+    request.responseType = "arraybuffer" # Read as binary data
+
+    # Asynchronous callback
+    request.onload = ->
+      audioData = request.response;
+      sounds[sound] = audioData
+      processAudio(audioData)
+
+    request.send()
+  else
+    processAudio(sounds[sound])
+
+processAudio = (data) ->
+  app.Sound.audioContext.decodeAudioData data, (buffer) ->
+    source = app.Sound.audioContext.createBufferSource()
+    myBuffer = buffer
+    source.buffer = myBuffer
+    source.connect app.Sound.audioContext.destination
+    source.loop = false
+    source.start(0);
+    return
+
+$(document).ready ->
+
   $(document).on 'keydown', (e) ->
     soundId = soundKeys[e.keyCode]
-    console.log(soundId)
-
+    if soundId
+      console.log(soundId)
+      playSound(soundId)
         # Load the Sound with XMLHttpRequest
-    playSound = (sound, silent) ->
-      unless sounds[sound]
 
-        # Note: this will load asynchronously
-        request = new XMLHttpRequest()
-        request.open "GET", "/audio/" + sound + ".wav", true
-        request.responseType = "arraybuffer" # Read as binary data
-
-        # Asynchronous callback
-        request.onload = ->
-          audioData = request.response;
-          sounds[sound] = audioData
-          processAudio(audioData)
-
-        request.send()
-      else
-          processAudio(sounds[sound])
-
-      # console.log "showing fetched sounds", sounds
-
-
-    processAudio = (data) ->
-        app.Sound.audioContext.decodeAudioData data, (buffer) ->
-            source = app.Sound.audioContext.createBufferSource()
-            myBuffer = buffer
-            source.buffer = myBuffer
-            source.connect app.Sound.audioContext.destination
-            source.loop = false
-            source.start(0);
-            return
-    playSound(soundId)
