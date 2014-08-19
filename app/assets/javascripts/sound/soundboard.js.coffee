@@ -62,10 +62,9 @@ app.processAudio = (data) ->
       # console.log app.Sound.getFrequencyDomain()
       # return
     # ), 500
-    console.log(source)
     source.start(0)
+
     # source.stop(0)
-    console.log(source)
     return
 
 $(document).ready ->

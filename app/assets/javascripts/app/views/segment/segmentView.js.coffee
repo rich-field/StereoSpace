@@ -9,7 +9,6 @@ app.SegmentView = Backbone.View.extend
   initialize: ->
     _.bindAll(this, 'render')
     @.model.bind('change', this.render)
-    # @.model.collection.bind('add', this.renderNotes)
     @.renderNotes()
 
   render: ->    # The model is the specific track passed into the timeline view
@@ -34,7 +33,7 @@ app.SegmentView = Backbone.View.extend
   renderNotes: ->
     # Clears notes before re rendering notes
     @.$el.html("")
-    @.model.collection.each (model) =>
+    @.model.attributes.notes.each (model) =>
       noteView = new app.NoteView({model: model})
       @.$el.append( noteView.render() )
 

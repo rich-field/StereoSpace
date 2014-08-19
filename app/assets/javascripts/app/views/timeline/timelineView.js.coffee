@@ -5,13 +5,14 @@ app.TimelineView = Backbone.View.extend
   className: 'timeline'
   events:
     'click': 'selectTimeline'
-
   initialize: ->
     _.bindAll(this, 'render')
     @.model.bind('change', this.render)
 
+    $(document).on 'keydown', (e) =>
+      @.keyControls(e)
+
   render: ->
-    # @.$el.html('')
     console.log('Timeline rendered')
     timelineHTML = Handlebars.compile( app.templates.timelineView )
     segments = new app.Segments
@@ -22,8 +23,15 @@ app.TimelineView = Backbone.View.extend
 
     return @.$el
   selectTimeline: ->
-    # console.log(@.model)
-    console.log('selected')
+    $('.selected').removeClass('selected')
     @.$el.toggleClass('selected')
     app.selectedTimeline = @.model
-    console.log(app.selectedTimeline)
+
+  keyControls: (e) ->
+
+    if e.which == 8 and app.selectedTimeline
+      e.stopPropagation();
+      e.preventDefault()
+      $('.timeline.selected').remove()
+      app.selectedTimeline.destroy()
+      app.selectedTimeline = null

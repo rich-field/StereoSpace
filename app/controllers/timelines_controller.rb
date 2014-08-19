@@ -18,7 +18,10 @@ class TimelinesController < ApplicationController
   end
 
   def destroy
-
+    # raise params.inspect
+    @timeline = Timeline.find params[:id]
+    @timeline.destroy
+    render :json => @timeline
   end
 
   private

@@ -7,6 +7,5 @@ app.NoteView = Backbone.View.extend
   initialize: ->
 
   render: ->
-    console.log('note rendered')
     @$el.css('left', @.model.get('point_in_segment'))
     return @$el
