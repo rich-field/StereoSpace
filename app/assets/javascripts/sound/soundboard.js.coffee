@@ -33,9 +33,6 @@ app.soundKeys =
     190: 'fullstop'#.
     188: 'comma'#,
 
-console.log soundKeys[sound] for sound of app.soundKeys
-
-
 app.playSound = (sound, silent) ->
   unless app.sounds[sound]
     # Note: this will load asynchronously
@@ -65,10 +62,15 @@ app.processAudio = (data) ->
       # console.log app.Sound.getFrequencyDomain()
       # return
     # ), 500
-    source.start(0);
+    console.log(source)
+    source.start(0)
+    # source.stop(0)
+    console.log(source)
     return
 
 $(document).ready ->
+  # Load all sounds when doc is ready
+  app.playSound(app.soundKeys[sound], true) for sound of app.soundKeys
 
   $(document).on 'keydown', (e) ->
     soundId = app.soundKeys[e.keyCode]
