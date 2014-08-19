@@ -4,8 +4,8 @@ app.SegmentView = Backbone.View.extend
   tagName: 'div'
   className: 'segment'
   events:
+    'mousedown': 'selectSegment'
     'mouseup' : 'moveTrack'
-    'click': 'selectSegment'
   initialize: ->
     _.bindAll(this, 'render')
     @.model.bind('change', this.render)

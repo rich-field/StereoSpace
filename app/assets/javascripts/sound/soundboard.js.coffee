@@ -52,27 +52,30 @@ app.playSound = (sound, silent) ->
 
 app.processAudio = (data) ->
   app.Sound.audioContext.decodeAudioData data, (buffer) ->
-    source = app.Sound.audioContext.createBufferSource()
+    app.source = app.Sound.audioContext.createBufferSource()
     myBuffer = buffer
-    source.buffer = myBuffer
-    source.connect app.Sound.analyserNode
+    app.source.buffer = myBuffer
+    app.source.connect app.Sound.analyserNode
     app.Sound.analyserNode.connect app.Sound.audioContext.destination
-    source.loop = false
+    app.source.loop = false
     # setInterval (->
       # console.log app.Sound.getFrequencyDomain()
       # return
     # ), 500
-    source.start(0)
+    app.source.start(0)
 
     # source.stop(0)
     return
 
+# Load all sounds
+app.playSound(app.soundKeys[sound], true) for sound of app.soundKeys
+
 $(document).ready ->
-  # Load all sounds when doc is ready
-  app.playSound(app.soundKeys[sound], true) for sound of app.soundKeys
 
   $(document).on 'keydown', (e) ->
     soundId = app.soundKeys[e.keyCode]
     if soundId
+      app.source.stop(0) if app.currentSound == app.sounds[soundId]
       app.playSound(soundId)
+      app.currentSound = app.sounds[soundId]
 
