@@ -53,12 +53,12 @@ $(document).ready ->
       console.log "showing fetched sounds", sounds
 
     audioRouting = (data) ->
-      source = AudioContext.createBufferSource() # Create sound source
+      source = app.Sound.audioContext.createBufferSource() # Create sound source
       #gain = context.createGain();
-      buffer = AudioContext.createBuffer(data, true) # Create source buffer from raw binary
+      buffer = app.Sound.audioContext.createBuffer(data, true, 44100) # Create source buffer from raw binary
       source.buffer = buffer # Add buffered data to object
       #source.connect(gain);
-      source.connect AudioContext.destination # Connect sound source to output
+      source.connect app.Sound.audioContext.destination # Connect sound source to output
       source.start 0 #Important line to get the sound to play!
 
     playSound(soundId)
