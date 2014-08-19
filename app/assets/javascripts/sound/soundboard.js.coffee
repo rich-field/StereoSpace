@@ -1,35 +1,35 @@
 $(document).ready ->
   console.log('soundboard')
-  keySounds =
-    81: '/audio/hk1.wav'#Q
-    87: '/audio/hk4.wav'#W
-    69: '/audio/ka1.wav'#E
-    82: '/audio/ka2.wav'#R
-    84: '/audio/lk1.wav'#T
-    89: '/audio/lk2.wav'#Y
-    85: '/audio/sound'#U
-    73: '/audio/sound'#I
-    79: '/audio/sound'#O
-    80: '/audio/sound'#P
-    65: '/audio/sound'#A
-    83: '/audio/sound'#S
-    68: '/audio/sound'#D
-    70: '/audio/sound'#F
-    71: '/audio/sound'#G
-    72: '/audio/sound'#H
-    74: '/audio/sound'#J
-    75: '/audio/sound'#K
-    76: '/audio/sound'#L
-    90: '/audio/sound'#Z
-    88: '/audio/sound'#X
-    67: '/audio/sound'#C
-    86: '/audio/sound'#V
-    66: '/audio/sound'#B
-    78: '/audio/sound'#N
-    77: '/audio/sound'#M
+  sounds =
+    81: 'hk1'#Q
+    87: 'hk4'#W
+    69: 'ka1'#E
+    82: 'ka2'#R
+    84: 'lk1'#T
+    89: 'lk2'#Y
+    85: 'sound'#U
+    73: 'sound'#I
+    79: 'sound'#O
+    80: 'sound'#P
+    65: 'sound'#A
+    83: 'sound'#S
+    68: 'sound'#D
+    70: 'sound'#F
+    71: 'sound'#G
+    72: 'sound'#H
+    74: 'sound'#J
+    75: 'sound'#K
+    76: 'sound'#L
+    90: 'sound'#Z
+    88: 'sound'#X
+    67: 'sound'#C
+    86: 'sound'#V
+    66: 'sound'#B
+    78: 'sound'#N
+    77: 'sound'#M
 
   $(document).on 'keydown', (e) ->
-    soundId = keySounds[e.keyCode]
+    soundId = sounds[e.keyCode]
     console.log(soundId)
 
         # Load the Sound with XMLHttpRequest
@@ -53,11 +53,12 @@ $(document).ready ->
       console.log "showing fetched sounds", sounds
 
     audioRouting = (data) ->
-      source = context.createBufferSource() # Create sound source
+      source = AudioContext.createBufferSource() # Create sound source
       #gain = context.createGain();
-      buffer = context.createBuffer(data, true) # Create source buffer from raw binary
+      buffer = AudioContext.createBuffer(data, true) # Create source buffer from raw binary
       source.buffer = buffer # Add buffered data to object
       #source.connect(gain);
-      source.connect context.destination # Connect sound source to output
+      source.connect AudioContext.destination # Connect sound source to output
       source.start 0 #Important line to get the sound to play!
 
+    playSound(soundId)
