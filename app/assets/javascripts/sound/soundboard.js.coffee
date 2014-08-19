@@ -27,6 +27,8 @@ soundKeys =
     78: 'sound'#N
     77: 'sound'#M
 
+
+
 playSound = (sound, silent) ->
   unless sounds[sound]
     # Note: this will load asynchronously
@@ -38,7 +40,7 @@ playSound = (sound, silent) ->
     request.onload = ->
       audioData = request.response;
       sounds[sound] = audioData
-      processAudio(audioData)
+      processAudio(audioData) unless silent
 
     request.send()
   else
@@ -49,8 +51,13 @@ processAudio = (data) ->
     source = app.Sound.audioContext.createBufferSource()
     myBuffer = buffer
     source.buffer = myBuffer
-    source.connect app.Sound.audioContext.destination
+    source.connect app.Sound.analyserNode
+    app.Sound.analyserNode.connect app.Sound.audioContext.destination
     source.loop = false
+    setInterval (->
+      console.log app.Sound.getFrequencyDomain()
+      return
+    ), 500
     source.start(0);
     return
 
@@ -61,5 +68,4 @@ $(document).ready ->
     if soundId
       console.log(soundId)
       playSound(soundId)
-        # Load the Sound with XMLHttpRequest
 
