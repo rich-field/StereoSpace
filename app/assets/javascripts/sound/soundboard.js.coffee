@@ -45,7 +45,7 @@ $(document).ready ->
         request.onload = ->
           data = request.response
           sounds[sound] = data
-          audioRouting sounds[sound]  unless silent
+          audioRouting 32  unless silent
 
         request.send()
       else
