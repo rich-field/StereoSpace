@@ -33,6 +33,7 @@ app.soundKeys =
     190: 'fullstop'#.
     188: 'comma'#,
 
+console.log soundKeys[sound] for sound of app.soundKeys
 
 
 app.playSound = (sound, silent) ->

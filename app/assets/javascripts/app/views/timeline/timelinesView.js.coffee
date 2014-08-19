@@ -5,6 +5,7 @@ app.TimelinesView = Backbone.View.extend
 
   initialize: (options) ->
     _.bindAll(this, 'render')
+    _.bindAll(this, 'renderOne')
     @.collection.bind('add', this.renderOne)
     @.song = options.song
     @.render()
@@ -17,7 +18,7 @@ app.TimelinesView = Backbone.View.extend
       @.$el.append( timelineView.render() )
     @.$el.css('width', @.song.get('duration') + 'px')
 
-  renderOne: (view, collection, event) =>
+  renderOne: (view, collection, event) ->
     timeline = collection.last()
     timelineView = new app.TimelineView({model: timeline})
     # debugger
