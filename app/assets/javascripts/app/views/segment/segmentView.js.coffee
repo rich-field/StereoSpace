@@ -44,10 +44,11 @@ app.SegmentView = Backbone.View.extend
       noteView = new app.NoteView({model: model})
       @.$el.append( noteView.render() )
 
-  selectSegment: (e)->
+  selectSegment: (e) ->
+    # Prevent the event propogating to parent
     e.stopPropagation()
-    $('.selected').removeClass('selected')
-    @.$el.toggleClass('selected')
+    $('.segment.selected').removeClass('selected')
+    @.$el.addClass('selected')
     app.selectedSegment = @.model
     app.selectedTimeline = null
 

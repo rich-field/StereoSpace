@@ -19,7 +19,7 @@ app.TimelineView = Backbone.View.extend
     # Fetches segments for this timeline
     segments = new app.Segments
     segments.fetch(({data: {timeline_id: @.model.get('id')}})).done =>
-      #
+      # Renders each segment for this timeline
       segments.each (model) =>
         segmentView = new app.SegmentView({model: model})
         @.$el.append( segmentView.render() )
