@@ -24,36 +24,18 @@ app.SongShowView = Backbone.View.extend
 
     @.$el.html( copy )
 
-
-    # EVENTS
-
     # adds seeker to timelines div
     $seeker = $('<div/>')
     $seeker.addClass('seeker')
     $('#timelines').append($seeker)
     $('.seeker').draggable({axis: 'x', containment: '#timelines'})
 
-
-
     # SEEKER PLAY
     app.playing = false # Init app.playing to be false
 
     $(document).on 'keydown', (e) =>
       # Spacebar controls play/pause
-      if e.keyCode == 32 && !app.recording
-        if app.playing == false
-          console.log('Play')
-          app.playing = true
-          app.playNotes = setInterval ->
-            app.seekerPosition++
-            app.playSound( app.notesToPlay[app.seekerPosition] ) if app.notesToPlay[app.seekerPosition]
-            $('.seeker').css('left', app.seekerPosition * 1.7)
-          , 1
-        else
-          app.playing = false
-          clearInterval(app.playNotes)
-          console.log('Pause')
-
+      @.playSong(e)
 
     # To deselect the selected elements
     $(document).on 'click', (e) =>
@@ -82,14 +64,28 @@ app.SongShowView = Backbone.View.extend
     app.seekerPosition = 0
     $('.seeker').css('left', '0px')
 
+  playSong: (e)->
+    if e.keyCode == 32 && !app.recording
+      if app.playing == false
+        app.playing = true
+        app.playNotes = setInterval ->
+          app.seekerPosition++
+          app.playSound( app.notesToPlay[app.seekerPosition] ) if app.notesToPlay[app.seekerPosition]
+          $('.seeker').css('left', app.seekerPosition * 1.7)
+        , 1
+      else
+        app.playing = false
+        clearInterval(app.playNotes)
+
   recordSong: ->
     if app.recording
-      console.log('stop recording')
       app.recording = false
+      console.log('stop record')
 
       clearInterval(app.recordNotes)
       console.log(app.seekerPosition, app.startRecordTime)
       duration = app.seekerPosition - app.startRecordTime
+
       app.segment.save({duration: duration}).done (response) ->
         segmentView = new app.SegmentView({model: app.segment})
         segmentView.render()
@@ -111,7 +107,7 @@ app.SongShowView = Backbone.View.extend
 
             unless app.seekerOnSegment
               app.segment = new app.Segment
-                timeline_id: app.selectedTimeline
+                timeline_id: app.selectedTimeline.get('id')
                 start_time: app.startRecordTime
               app.segment.save()
               app.seekerOnSegment = true
