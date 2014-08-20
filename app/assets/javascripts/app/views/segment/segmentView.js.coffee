@@ -29,7 +29,7 @@ app.SegmentView = Backbone.View.extend
 
     # Makes this segment draggable
     @.$el.draggable( {containment: '#timelines', snap: ".timeline"} )
-
+    # console.log $('.seeker')
     return @.$el
 
   moveTrack: ->
@@ -47,12 +47,12 @@ app.SegmentView = Backbone.View.extend
   selectSegment: ->
 
     # $('.segment.selected').removeClass('selected')
-    # console.log('toggle class in segment')
-    # @.$el.toggleClass('selected')
-    # app.selectedSegment = @.model
+    console.log('toggle class in segment')
+    @.$el.toggleClass('selected')
+    app.selectedSegment = @.model
 
-    # $('.timeline .selected').removeClass('selected')
-    # app.selectedTimeline = null
+    $('.timeline .selected').removeClass('selected')
+    app.selectedTimeline = null
 
   keyControls: (e) ->
     if e.keyCode == 8 and app.selectedSegment

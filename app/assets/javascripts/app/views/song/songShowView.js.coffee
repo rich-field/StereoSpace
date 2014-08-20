@@ -39,8 +39,9 @@ app.SongShowView = Backbone.View.extend
     $seeker.addClass('seeker')
     $('#timelines').append($seeker)
     $('.seeker').draggable({axis: 'x', containment: '#timelines'})
+    console.log $('.seeker')
     console.log('seeker added')
-
+    console.log $('.seeker')
     app.playing = false
 
     $(document).on 'keydown', (e) =>
@@ -56,8 +57,5 @@ app.SongShowView = Backbone.View.extend
           app.playing = false
           # $('.seeker').css('left', 0)
           $('.seeker').stop()
-
           console.log('Pause')
           # pause
-    $(document).on 'dblclick', (e) ->
-      console.log(e)

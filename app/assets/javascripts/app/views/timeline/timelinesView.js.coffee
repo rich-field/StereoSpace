@@ -11,13 +11,11 @@ app.TimelinesView = Backbone.View.extend
     @.render()
 
   render: ->
-    # Renders a single timeline and then
-    @.$el.html('')
+    # Renders each timeline in this song
     @.collection.each (model) =>
       timelineView = new app.TimelineView({model: model})
       @.$el.append( timelineView.render() )
     @.$el.css('width', @.song.get('duration')/4 + 'px')
-
   renderOne: (view, collection, event) ->
     timeline = collection.last()
     timelineView = new app.TimelineView({model: timeline})
