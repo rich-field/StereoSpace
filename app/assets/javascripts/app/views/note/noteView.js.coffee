@@ -17,10 +17,10 @@ app.NoteView = Backbone.View.extend
       @.keyControls(e)
 
     setInterval ->
-      if $('.seeker').css('left') == parseInt( $('.segment').css('left') ) + parseInt( $('.note').css('left') ) + 10 + 'px'
+      notePos = parseInt( $('.segment').css('left') ) + parseInt( $('.note').css('left') )
+      if parseInt( $('.seeker').css('left')) == ( notePos || notePos + 15 || notePos - 15 )
         console.log('inside the if')
-        app.seekerOnNote = true
-        @.playNote
+        app.playSound('p')
     , 10
 
 
