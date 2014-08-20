@@ -43,19 +43,22 @@ app.SegmentView = Backbone.View.extend
       @.$el.append( noteView.render() )
 
   selectSegment: ->
-    app.selectedTimeline = null
-    $('.timeline.selected').removeClass('selected')
-    $('.segment.selected').removeClass('selected')
-    app.selectedSegment = @.model
+
+    $('.selected').toggleClass('selected')
+    console.log('toggle class in segment')
     @.$el.toggleClass('selected')
+    app.selectedSegment = @.model
+
+    $('.timeline .selected').removeClass('selected')
+    app.selectedTimeline = null
 
   keyControls: (e) ->
     if e.keyCode == 8 and app.selectedSegment
-      e.stopPropagation();
+      e.stopPropagation()
       e.preventDefault()
-      @.deleteSegment
+      @.deleteSegment()
 
   deleteSegment: ->
-      $('.segment.selected').remove()
-      app.selectedSegment.destroy()
-      app.selectedSegment = null
+    $('.segment.selected').remove()
+    app.selectedSegment.destroy()
+    app.selectedSegment = null

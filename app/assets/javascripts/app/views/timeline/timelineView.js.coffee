@@ -25,7 +25,9 @@ app.TimelineView = Backbone.View.extend
     return @.$el
 
   selectTimeline: ->
-    $('.selected').toggleClass('selected')
+    # unless app.selectedSegment
+    $('.timeline.selected').removeClass('selected')
+    console.log('toggle class in timeline')
     @.$el.toggleClass('selected')
     app.selectedTimeline = @.model
 
@@ -33,7 +35,7 @@ app.TimelineView = Backbone.View.extend
     if e.keyCode == 8 and app.selectedTimeline
       e.stopPropagation();
       e.preventDefault()
-      @.deleteTimeline
+      @.deleteTimeline()
 
   deleteTimeline: ->
       $('.timeline.selected').remove()
