@@ -16,8 +16,10 @@ app.TimelineView = Backbone.View.extend
 
   render: ->
     timelineHTML = Handlebars.compile( app.templates.timelineView )
+    # Fetches segments for this timeline
     segments = new app.Segments
     segments.fetch(({data: {timeline_id: @.model.get('id')}})).done =>
+      #
       segments.each (model) =>
         segmentView = new app.SegmentView({model: model})
         @.$el.append( segmentView.render() )
@@ -26,10 +28,10 @@ app.TimelineView = Backbone.View.extend
 
   selectTimeline: ->
     # unless app.selectedSegment
-    $('.timeline.selected').removeClass('selected')
-    console.log('toggle class in timeline')
-    @.$el.toggleClass('selected')
-    app.selectedTimeline = @.model
+    # $('.timeline.selected').removeClass('selected')
+    # console.log('toggle class in timeline')
+    # @.$el.toggleClass('selected')
+    # app.selectedTimeline = @.model
 
   keyControls: (e) ->
     if e.keyCode == 8 and app.selectedTimeline

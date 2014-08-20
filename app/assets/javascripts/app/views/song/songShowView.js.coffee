@@ -34,10 +34,12 @@ app.SongShowView = Backbone.View.extend
     $('#save-song').on 'click', =>
       @.model.save()
 
+    # adds seeker to timelines div
     $seeker = $('<div/>')
     $seeker.addClass('seeker')
     $('#timelines').append($seeker)
     $('.seeker').draggable({axis: 'x', containment: '#timelines'})
+    console.log('seeker added')
 
     app.playing = false
 
