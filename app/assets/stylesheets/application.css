@@ -25,12 +25,15 @@ body {
   padding: 0;
   width: 100%;
   color: white;
-  background-color: black;
+  background-image: url('background.png');
+  background-size: fill;
+  /*background: no-repeat;*/
 }
 
 #visualizer {
   height: 300px;
   border: 1px solid black;
+  background-color: black;
 }
 
 #timelines-outer {
@@ -115,4 +118,5 @@ body {
   background-color: red;
   height: 350px;
   width: 350px;
+  margin-left: 18%;
 }
