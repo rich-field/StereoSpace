@@ -57,6 +57,8 @@ app.SegmentView = Backbone.View.extend
       e.stopPropagation()
       e.preventDefault()
       @.deleteSegment()
+    else if app.soundKeys[e.keyCode]
+      console.log('key in sound')
 
   deleteSegment: ->
     $('.segment.selected').remove()
