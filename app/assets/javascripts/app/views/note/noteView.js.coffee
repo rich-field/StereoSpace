@@ -18,11 +18,11 @@ app.NoteView = Backbone.View.extend
 
     setInterval ->
       notePos = parseInt( $('.segment').css('left') ) + parseInt( $('.note').css('left') )
-      if parseInt( $('.seeker').css('left')) == ( notePos || notePos + 15 || notePos - 15 )
+      seekerPos = parseInt( $('.seeker').css('left'))
+      if notePos + 15 > seekerPos > notePos - 15
         console.log('inside the if')
         app.playSound('p')
     , 10
-
 
   render: ->
     @.$el.css('left', @.model.get('point_in_segment'))
