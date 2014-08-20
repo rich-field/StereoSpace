@@ -20,7 +20,7 @@ app.NoteView = Backbone.View.extend
     setInterval ->
       # console.log('going')
     # while app.playing == true
-      if $('.seeker').css('left') == parseInt( $('.segment').css('left') ) + parseInt( $('.note').css('left') ) + 10 + 'px'
+      if $('.seeker').css('left') == parseInt( $('.segment').css('left') ) + parseInt( $('.note').css('left') ) + 10 + 'px' # Fuck This...
         console.log('inside the if')
         app.seekerOnNote = true
         @.playNote
