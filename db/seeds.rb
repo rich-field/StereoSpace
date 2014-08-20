@@ -21,7 +21,7 @@ s2_1 = Segment.create(:duration => 12000, :start_time => 900)
 s3_1 = Segment.create(:duration => 120, :start_time => 0)
 s3_2 = Segment.create(:duration => 1000, :start_time => 700)
 
-n1 = Note.create(:point_in_segment => 20, :sample_path => audio_path('u.wav') )
+n1 = Note.create(:point_in_segment => 20, :sample_path => audio_path('y.wav') )
 n2 = Note.create(:point_in_segment => 90, :sample_path => audio_path('semicolon.wav') )
 n3 = Note.create(:point_in_segment => 50, :sample_path => audio_path('slash.wav') )
 s1_1.notes << n1 << n2

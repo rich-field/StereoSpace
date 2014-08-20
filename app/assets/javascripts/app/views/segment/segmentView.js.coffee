@@ -10,6 +10,7 @@ app.SegmentView = Backbone.View.extend
     _.bindAll(this, 'render')
     _.bindAll(this, 'keyControls')
     _.bindAll(this, 'deleteSegment')
+    _.bindAll(this, 'renderNotes')
     @.model.bind('change', this.render)
     @.model.bind('change', this.renderNotes)
     @.renderNotes()

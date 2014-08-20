@@ -30,6 +30,11 @@ app.SongShowView = Backbone.View.extend
     $('#save-song').on 'click', =>
       @.model.save()
 
+    $('#rewind').on 'click', =>
+      app.seekerPosition = 0
+      $('.seeker').css('left', '0px')
+
+
     $('#record').on 'click', =>
       # unless app.playing
       if app.recording
@@ -45,13 +50,13 @@ app.SongShowView = Backbone.View.extend
           app.seekerOnSegment = false
           console.log(response,'done')
       else
+        app.seekerOnSegment = false
         app.recording = true
         console.log('record')
         console.log(app.notesToPlay)
 
         app.recordNotes = setInterval ->
           app.seekerPosition++
-          # app.seekerOnSegment
           # sets the start record time on the first key down
           $(document).on 'keydown', (e) ->
             # Will only run if there is a soundboard key
@@ -62,6 +67,7 @@ app.SongShowView = Backbone.View.extend
                 app.segment = new app.Segment
                   timeline_id: app.selectedTimeline
                   start_time: app.startRecordTime
+                app.segment.save()
                 app.seekerOnSegment = true
 
               app.notesToPlay[ app.seekerPosition ] = app.soundKeys[e.keyCode]
@@ -91,7 +97,6 @@ app.SongShowView = Backbone.View.extend
       # Spacebar controls play/pause
       if e.keyCode == 32 && !app.recording
         if app.playing == false
-          # seekerPosition = 0
           console.log('Play')
           app.playing = true
           app.playNotes = setInterval ->
