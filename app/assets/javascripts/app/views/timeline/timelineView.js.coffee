@@ -28,10 +28,10 @@ app.TimelineView = Backbone.View.extend
 
   selectTimeline: ->
     # unless app.selectedSegment
-    $('.timeline.selected').removeClass('selected')
-    console.log('toggle class in timeline')
-    @.$el.toggleClass('selected')
-    app.selectedTimeline = @.model
+    # $('.timeline.selected').removeClass('selected')
+    # console.log('toggle class in timeline')
+    # @.$el.toggleClass('selected')
+    # app.selectedTimeline = @.model
 
   keyControls: (e) ->
     if e.keyCode == 8 and app.selectedTimeline

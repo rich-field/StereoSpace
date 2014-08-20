@@ -20,7 +20,7 @@ app.SegmentView = Backbone.View.extend
   render: ->    # The model is the specific track passed into the timeline view
     segmentHTML = Handlebars.compile( app.templates.segmentView )
     copy = segmentHTML( @.model.toJSON() )
-    @.$el.css('width', @.model.get('duration') + 'px' )
+    @.$el.css('width', @.model.get('duration')/4 + 'px' )
     @.$el.css('left', @.model.get('start_time') + 'px' )
     @.$el.append( copy )
 
@@ -46,13 +46,13 @@ app.SegmentView = Backbone.View.extend
 
   selectSegment: ->
 
-    $('.segment.selected').removeClass('selected')
-    console.log('toggle class in segment')
-    @.$el.toggleClass('selected')
-    app.selectedSegment = @.model
+    # $('.segment.selected').removeClass('selected')
+    # console.log('toggle class in segment')
+    # @.$el.toggleClass('selected')
+    # app.selectedSegment = @.model
 
-    $('.timeline .selected').removeClass('selected')
-    app.selectedTimeline = null
+    # $('.timeline .selected').removeClass('selected')
+    # app.selectedTimeline = null
 
   keyControls: (e) ->
     if e.keyCode == 8 and app.selectedSegment

@@ -34,10 +34,12 @@ app.SongShowView = Backbone.View.extend
     $('#save-song').on 'click', =>
       @.model.save()
 
+    # adds seeker to timelines div
     $seeker = $('<div/>')
     $seeker.addClass('seeker')
     $('#timelines').append($seeker)
     $('.seeker').draggable({axis: 'x', containment: '#timelines'})
+    console.log('seeker added')
 
     app.playing = false
 
@@ -49,7 +51,7 @@ app.SongShowView = Backbone.View.extend
           seekerWidth = parseInt( $('.seeker').css('width') )
           timelineWidth = parseInt( $('#timelines').css('width') )
           $('.seeker').animate
-            left: "#{ ( timelineWidth - seekerWidth) }", @.model.get('duration')
+            left: "#{ ( timelineWidth - seekerWidth) }", @.model.get('duration'),
         else
           app.playing = false
           # $('.seeker').css('left', 0)
