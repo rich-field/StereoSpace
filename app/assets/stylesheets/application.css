@@ -81,23 +81,29 @@ body {
 .segment {
   height: 48px;
   width: 60px;
-  border: 1px solid black;
-  background: lime;
+  border: 1px solid rgba(0, 0, 0, 1);
+  background: rgba(7, 28, 52, 0.7);
   position: absolute;
   display: inline-block;
+  border-radius: 0.7em;
 }
 
 .segment.selected {
   background-color: #0000bf
 }
 
+/*.segment:hover{
+  box-shadow: 0 0 15px 5px #0000bf
+}*/
+
 .note {
   width: 10px;
   height: 15px;
   border-radius: 100%;
-  background-color: red;
+  background-color: #00e1ff;
   position: relative;
   display: inline-block;
+  box-shadow: 0 1px 15px 2px #00e1ff;
 }
 
 .note.selected {
