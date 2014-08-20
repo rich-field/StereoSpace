@@ -38,7 +38,8 @@ app.SongShowView = Backbone.View.extend
 
         clearInterval(app.recordNotes)
         console.log(app.seekerPosition, app.startRecordTime)
-        app.segment.save({duration: (app.seekerPosition + app.startRecordTime)}).done (response) ->
+        duration = app.seekerPosition - app.startRecordTime
+        app.segment.save({duration: duration}).done (response) ->
           segmentView = new app.SegmentView({model: app.segment})
           segmentView.render()
           app.seekerOnSegment = false
@@ -65,9 +66,10 @@ app.SongShowView = Backbone.View.extend
 
               app.notesToPlay[ app.seekerPosition ] = app.soundKeys[e.keyCode]
               note = new app.Note
-                point_in_segment: app.startRecordTime + app.seekerPosition
+                point_in_segment: (app.startRecordTime + app.seekerPosition)
                 segment_id: app.segment.get('id')
                 sample_path: "/audios/#{app.soundKeys[e.keyCode]}.wav"
+              note.save()
 
           app.playSound( app.notesToPlay[app.seekerPosition] ) if app.notesToPlay[app.seekerPosition]
           $('.seeker').css('left', app.seekerPosition * 1.7)
