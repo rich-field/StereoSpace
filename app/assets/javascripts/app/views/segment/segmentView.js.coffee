@@ -42,7 +42,6 @@ app.SegmentView = Backbone.View.extend
     # @.$el.html("")
     # Sets the notesToPlay object to itself if it exists, otherwise make a new object
     app.notesToPlay = app.notesToPlay or {}
-    console.log ( @.$el.html() )
     @.model.attributes.notes.each (model) =>
       # populates the app.notesToPlay object
       app.notesToPlay[( @.model.get('start_time') + model.get('point_in_segment') )] = model.get('sample_path').replace(".wav","").replace("/audios/", "")
@@ -50,7 +49,6 @@ app.SegmentView = Backbone.View.extend
       # creates a view for the note
       noteView = new app.NoteView({model: model})
       @.$el.append( noteView.render() )
-    console.log ( @.$el.html() )
 
   selectSegment: (e) ->
     # Prevent the event propogating to parent
