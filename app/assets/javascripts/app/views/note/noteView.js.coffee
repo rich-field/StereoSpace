@@ -21,8 +21,10 @@ app.NoteView = Backbone.View.extend
       seekerPos = parseInt( $('.seeker').css('left'))
       if notePos + 15 > seekerPos > notePos - 15
         console.log('inside the if')
-        app.playSound('p')
-    , 10
+        app.seekerOnNote = true
+        app.playSound('g')
+        # app.playSound( @.model.get('sample_path').replace(".wav","").replace("/audios/", "") )
+    , 1
 
   render: ->
     @.$el.css('left', @.model.get('point_in_segment'))

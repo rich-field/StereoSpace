@@ -60,11 +60,6 @@ app.SongShowView = Backbone.View.extend
           timelineWidth = parseInt( $('#timelines').css('width') )
           $('.seeker').animate
             left: "#{ ( timelineWidth - seekerWidth) }", @.model.get('duration'), 'linear'
-
-          setInterval ->
-            app.seekerPosition = $('.seeker').css('left')
-            # console.log app.seekerPosition
-          , 10
         else
           app.playing = false
           # $('.seeker').css('left', 0)
