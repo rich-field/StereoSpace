@@ -34,6 +34,12 @@ app.SongShowView = Backbone.View.extend
     $('#save-song').on 'click', =>
       @.model.save()
 
+    $('#record').on 'click', =>
+      if app.recording
+        app.recording = false
+      else
+        app.recording = true
+
     # adds seeker to timelines div
     $seeker = $('<div/>')
     $seeker.addClass('seeker')

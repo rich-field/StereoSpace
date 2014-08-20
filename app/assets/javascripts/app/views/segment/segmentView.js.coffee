@@ -57,7 +57,7 @@ app.SegmentView = Backbone.View.extend
       e.stopPropagation()
       e.preventDefault()
       @.deleteSegment()
-    else if app.soundKeys[e.keyCode]
+    else if app.soundKeys[e.keyCode] && app.recording
       console.log('key in sound')
 
   deleteSegment: ->
