@@ -18,9 +18,6 @@ app.NoteView = Backbone.View.extend
 
   render: ->
     @.$el.css('left', @.model.get('point_in_segment'))
-    @.$el.attr('data-noteid', @.model.get('id'))
-    @.$el.attr('data-notepos', @.model.get('point_in_segment'))
-    # <div class='note' data-note-id='89'>
     return @$el
 
   playNote: ->

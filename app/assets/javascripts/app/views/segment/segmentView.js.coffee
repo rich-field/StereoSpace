@@ -40,7 +40,9 @@ app.SegmentView = Backbone.View.extend
   renderNotes: ->
     # Clears notes before re rendering
     @.$el.html("")
+    # Sets the noteToPlay object to itself if it exists, otherwise make a new object
     app.notesToPlay = app.notesToPlay or {}
+
     @.model.attributes.notes.each (model) =>
       # populates the app.notesToPlay object
       app.notesToPlay[( @.model.get('start_time') + model.get('point_in_segment') )] = model.get('sample_path').replace(".wav","").replace("/audios/", "")

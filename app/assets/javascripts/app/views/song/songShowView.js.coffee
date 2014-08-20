@@ -5,6 +5,7 @@ app.SongShowView = Backbone.View.extend
 
   initialize: ->
     @.render
+    # clears the notes to play when you get to a different song view
     app.notesToPlay = {}
   render: ->
     $('#visualizer').html('')
@@ -51,17 +52,18 @@ app.SongShowView = Backbone.View.extend
         if app.playing == false
           console.log('Play')
           app.playing = true
-          seekerWidth = parseInt( $('.seeker').css('width') )
-          timelineWidth = parseInt( $('#timelines').css('width') )
-          $('.seeker').animate
-            left: "#{ ( timelineWidth - seekerWidth) }", @.model.get('duration'), 'linear'
+          app.playNotes = setInterval ->
+            app.seekerPosition++
+            app.playSound( app.notesToPlay[app.seekerPosition] ) if app.notesToPlay[app.seekerPosition]
+            $('.seeker').css('left', app.seekerPosition * 1.7)
+          , 1
         else
           app.playing = false
-          # $('.seeker').css('left', 0)
-          $('.seeker').stop()
+          clearInterval(app.playNotes)
           console.log('Pause')
-          # pause
 
+
+    # To deselect the selected elements
     $(document).on 'click', (e) =>
       e.stopPropagation()
       if !$(e.target).hasClass('timeline')
