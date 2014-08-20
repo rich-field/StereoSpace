@@ -39,10 +39,8 @@ app.SongShowView = Backbone.View.extend
     $seeker.addClass('seeker')
     $('#timelines').append($seeker)
     $('.seeker').draggable({axis: 'x', containment: '#timelines'})
-    console.log $('.seeker')
-    console.log('seeker added')
-    console.log $('.seeker')
-    app.playing = false
+
+    app.playing = false # Init app.playing to be false
 
     $(document).on 'keydown', (e) =>
       if e.keyCode == 32
