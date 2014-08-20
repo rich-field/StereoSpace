@@ -37,7 +37,7 @@ app.playSound = (sound, silent) ->
   unless app.sounds[sound]
     # Note: this will load asynchronously
     request = new XMLHttpRequest()
-    request.open "GET", "/audio/" + sound + ".wav", true
+    request.open "GET", "/audios/" + sound + ".wav", true
     request.responseType = "arraybuffer" # Read as binary data
 
     # Asynchronous callback
