@@ -6,13 +6,14 @@ class SegmentsController < ApplicationController
   end
 
   def create
-    @segments = Segment.create(:duration => params[:duration], :timeline_id => params[:timeline_id])
+    @segments = Segment.create(:start_time => params[:start_time], :timeline_id => params[:timeline_id])
     render :json => @segments
   end
 
   def update
     @segment = Segment.where(:timeline_id => params[:timeline_id]).where(:id => params[:id]).first
-    @segment.update(start_time: params[:start_time])
+    @segment.update(start_time: params[:start_time]) if params[:start_time]
+    @segment.update(duration: params[:duration]) if params[:duration]
     render :json => @segment
   end
 

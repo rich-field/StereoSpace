@@ -6,6 +6,8 @@ class NotesController < ApplicationController
   end
 
   def create
+    @note = Note.create(point_in_segment: params[:point_in_segment], segment_id: params[:segment_id], sample_path: params[:sample_path] )
+    render :json => @note
   end
 
   def destroy

@@ -48,8 +48,6 @@ body {
 }
 
 #timelines {
-  /*overflow: hidden;*/
-  /*overflow: auto;*/
   width: 100px;
   position: relative;
 }
@@ -57,7 +55,6 @@ body {
 .timeline {
   height: 48px;
   width: 100%;
-  /*padding: 5px;*/
   border: 1px solid black;
   background-color: #333;
 }
@@ -90,5 +87,11 @@ body {
 
 .note.selected {
   background-color: #fff;
+}
 
+#record {
+  border-radius: 100%;
+  background-color: red;
+  height: 400px;
+  width: 400px;
 }
