@@ -76,6 +76,5 @@ $(document).ready ->
       app.source.stop(0) if app.currentSound == app.sounds[soundId]
       app.playSound(soundId)
       app.currentSound = app.sounds[soundId]
-    # if soundId && app.currentSound
 
 
