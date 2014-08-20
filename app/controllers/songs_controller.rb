@@ -6,8 +6,10 @@ class SongsController < ApplicationController
 
   def create
     @song = Song.new
-    # @song.tracks
-    @song.save
+    @song.share_url = (0...20).map { ('a'..'z').to_a[rand(26)] }.join
+    until @song.save
+      @song.share_url = (0...20).map { ('a'..'z').to_a[rand(26)] }.join #makes random
+    end
     render :json => @song
   end
 

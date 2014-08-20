@@ -18,6 +18,7 @@ app.NoteView = Backbone.View.extend
 
     console.log('NoteView initialized')
     setInterval ->
+      # console.log('going')
     # while app.playing == true
       if $('.seeker').css('left') == parseInt( $('.segment').css('left') ) + parseInt( $('.note').css('left') ) + 10 + 'px'
         console.log('inside the if')
@@ -28,7 +29,7 @@ app.NoteView = Backbone.View.extend
 
   render: ->
     @.$el.css('left', @.model.get('point_in_segment'))
-    @.$el.data('note-id', @.model.get('id'))
+    @.$el.attr('data-noteid', @.model.get('id'))
     # <div class='note' data-note-id='89'>
     return @$el
 
