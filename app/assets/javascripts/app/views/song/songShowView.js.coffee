@@ -31,6 +31,31 @@ app.SongShowView = Backbone.View.extend
     # clears the notes to play when you get to a different song view
     app.notesToPlay = {}
 
+    app.playing = false # Init app.playing to be false
+    app.recording = false # Init app.recording to be false
+
+    $(document).on 'keydown', (e) ->
+      # Will only run if the key pressed is a soundboard key
+      if app.soundKeys[e.keyCode] && app.recording
+        app.startRecordTime = app.seekerPosition unless app.startRecordTime
+
+        unless app.seekerOnSegment
+          app.segment = new app.Segment
+            timeline_id: app.selectedTimeline.get('id')
+            start_time: app.startRecordTime
+          app.segment.save()
+          app.seekerOnSegment = true
+
+        app.notesToPlay[ app.seekerPosition ] = app.soundKeys[ e.keyCode ]
+
+        unless !!note
+          note = new app.Note
+            point_in_segment: (app.startRecordTime + app.seekerPosition)
+            segment_id: app.segment.get('id')
+            sample_path: "/audios/#{app.soundKeys[e.keyCode]}.wav"
+          note.save().done ->
+            console.log('made a note')
+            note = null
 
   render: ->
     $('#visualizer').html('')
@@ -50,9 +75,6 @@ app.SongShowView = Backbone.View.extend
     $('#timelines').append($seeker)
     $('.seeker').draggable({axis: 'x', containment: '#timelines'})
 
-    # SEEKER PLAY
-    app.playing = false # Init app.playing to be false
-
   addTimeline: ->
       newTimeline = new app.Timeline({song_id: @.model.get('id')})
       newTimeline.save();
@@ -62,10 +84,12 @@ app.SongShowView = Backbone.View.extend
     @.model.save()
 
   rewindSeeker: ->
+    # reset seeker position
     app.seekerPosition = 0
     $('.seeker').css('left', '0px')
 
   playSong: ->
+    # SEEKER PLAY
     if app.playing == false
       app.playing = true
       app.playNotes = setInterval ->
@@ -79,45 +103,27 @@ app.SongShowView = Backbone.View.extend
 
   recordSong: ->
     if app.recording
+      # To stop recording
       app.recording = false
-      console.log('stop record')
 
       clearInterval(app.recordNotes)
       console.log(app.seekerPosition, app.startRecordTime)
       duration = app.seekerPosition - app.startRecordTime
+      app.seekerOnSegment = false
 
       app.segment.save({duration: duration}).done (response) ->
         segmentView = new app.SegmentView({model: app.segment})
         segmentView.render()
-        app.seekerOnSegment = false
         console.log(response,'done')
     else
+      # to start recording
       app.seekerOnSegment = false
       app.recording = true
-      console.log('record')
       console.log(app.notesToPlay)
 
       app.recordNotes = setInterval ->
         app.seekerPosition++
         # sets the start record time on the first key down
-        $(document).on 'keydown', (e) ->
-          # Will only run if there is a soundboard key
-          if app.soundKeys[e.keyCode]
-            app.startRecordTime = app.seekerPosition unless app.startRecordTime
-
-            unless app.seekerOnSegment
-              app.segment = new app.Segment
-                timeline_id: app.selectedTimeline.get('id')
-                start_time: app.startRecordTime
-              app.segment.save()
-              app.seekerOnSegment = true
-
-            app.notesToPlay[ app.seekerPosition ] = app.soundKeys[e.keyCode]
-            note = new app.Note
-              point_in_segment: (app.startRecordTime + app.seekerPosition)
-              segment_id: app.segment.get('id')
-              sample_path: "/audios/#{app.soundKeys[e.keyCode]}.wav"
-            note.save()
 
         app.playSound( app.notesToPlay[app.seekerPosition] ) if app.notesToPlay[app.seekerPosition]
         $('.seeker').css('left', app.seekerPosition * 1.7)

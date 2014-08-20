@@ -12,7 +12,7 @@ app.SegmentView = Backbone.View.extend
     _.bindAll(this, 'deleteSegment')
     _.bindAll(this, 'renderNotes')
     @.model.bind('change', this.render)
-    # @.model.bind('change', this.renderNotes)
+    @.model.bind('change', this.renderNotes)
     @.renderNotes()
 
     $(document).on 'keydown', (e) =>
@@ -39,7 +39,7 @@ app.SegmentView = Backbone.View.extend
 
   renderNotes: ->
     # Clears notes before re rendering
-    # @.$el.html("")
+    @.$el.html("")
     # Sets the notesToPlay object to itself if it exists, otherwise make a new object
     app.notesToPlay = app.notesToPlay or {}
     @.model.attributes.notes.each (model) =>
