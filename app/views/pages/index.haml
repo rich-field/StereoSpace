@@ -1,8 +1,24 @@
 %div#main
+
+
   %div#visualizer
     this is the vizualizeur
 
   %div#song
+
+%script#preloader{type: 'text/template'}
+  %div#preloader.Preloader
+    %header.ip-header
+      %div.ip-loader
+        %svg.ip-inner{width: '60px', height: '60px', viewbox: '0 0 80 80'}
+          %path.ip-loader-circlebg{d: "M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"}
+          %path.ip-loader-circle#ip-loader-circle{d: "M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"}
+
+  %div.ip-main
+    %h2 Welcome to StereoSound
+
+
+
 
 
 %script#app-template{type: 'text/template'}
@@ -12,7 +28,7 @@
   %div#song
 
 %script#songs-template{type: 'text/template'}
-  %h2 Recent songs, and Rich is gay. So very gay.
+  %h2 Recent songs
   %div#song-list
 
 %script#song-template{type: 'text/template'}

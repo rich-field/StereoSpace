@@ -6,8 +6,13 @@ app.Router = Backbone.Router.extend
     "songs": "songsIndex" # All Songs
 
   initialize: ->
+    # $('body').html('')
+    # $('body').html(app.Preloader)
 
   index: ->
+    # preloader goes here
+    # loads all sounds
+    # when done, open songView
     app.song = new app.Song({title: 'New song', duration: 10000})
     view = new app.SongShowView( model: app.song )
     view.render()
@@ -20,4 +25,6 @@ app.Router = Backbone.Router.extend
   songsIndex: ->
     view = new app.SongsView({collection: app.songs})
     view.render()
+
+
 
