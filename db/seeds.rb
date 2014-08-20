@@ -1,3 +1,5 @@
+include ActionView::Helpers
+
 Song.destroy_all
 Timeline.destroy_all
 Segment.destroy_all
@@ -13,16 +15,15 @@ tl1 = Timeline.create
 tl2 = Timeline.create
 tl3 = Timeline.create
 
-s1_1 = Segment.create(:duration => 5000, :start_time => 0)
+s1_1 = Segment.create(:duration => 1000, :start_time => 0)
 s1_2 = Segment.create(:duration => 7000, :start_time => 400)
 s2_1 = Segment.create(:duration => 12000, :start_time => 900)
 s3_1 = Segment.create(:duration => 120, :start_time => 0)
 s3_2 = Segment.create(:duration => 1000, :start_time => 700)
 
-n1 = Note.create(:point_in_segment => 20)
-n2 = Note.create(:point_in_segment => 90)
-n3 = Note.create(:point_in_segment => 50)
-
+n1 = Note.create(:point_in_segment => 20, :sample_path => audio_path('u.wav') )
+n2 = Note.create(:point_in_segment => 90, :sample_path => audio_path('semicolon.wav') )
+n3 = Note.create(:point_in_segment => 50, :sample_path => audio_path('slash.wav') )
 s1_1.notes << n1 << n2
 s1_2.notes << n3
 
