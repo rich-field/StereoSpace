@@ -40,6 +40,9 @@ app.SongShowView = Backbone.View.extend
     $('#timelines').append($seeker)
     $('.seeker').draggable({axis: 'x', containment: '#timelines'})
 
+
+
+    # SEEKER PLAY
     app.playing = false # Init app.playing to be false
 
     $(document).on 'keydown', (e) =>
@@ -57,3 +60,14 @@ app.SongShowView = Backbone.View.extend
           $('.seeker').stop()
           console.log('Pause')
           # pause
+
+  $(document).on 'click', (e) =>
+    if !$(e.target).hasClass('timeline')
+      $('.timeline.selected').removeClass('selected')
+      app.selectedTimeline = null
+    if !$(e.target).hasClass('segment')
+      $('.segment.selected').removeClass('selected')
+      app.selectedSegment = null
+    if !$(e.target).hasClass('note')
+      $('.note.selected').removeClass('selected')
+      app.selectedNote = null

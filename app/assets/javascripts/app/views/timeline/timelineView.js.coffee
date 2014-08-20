@@ -25,7 +25,8 @@ app.TimelineView = Backbone.View.extend
         @.$el.append( segmentView.render() )
     return @.$el
 
-  selectTimeline: ->
+  selectTimeline: (e) ->
+
     $('.timeline.selected').removeClass('selected')
     @.$el.toggleClass('selected')
     app.selectedTimeline = @.model
