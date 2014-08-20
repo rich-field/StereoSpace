@@ -23,8 +23,9 @@ app.NoteView = Backbone.View.extend
       if $('.seeker').css('left') == parseInt( $('.segment').css('left') ) + parseInt( $('.note').css('left') ) + 10 + 'px' # Fuck This...
         console.log('inside the if')
         app.seekerOnNote = true
-        @.playNote
-    , 10
+        app.playSound('g')
+        # app.playSound( @.model.get('sample_path').replace(".wav","").replace("/audios/", "") )
+    , 1
 
 
   render: ->

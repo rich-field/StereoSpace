@@ -54,13 +54,7 @@ app.SongShowView = Backbone.View.extend
           timelineWidth = parseInt( $('#timelines').css('width') )
           $('.seeker').animate
             left: "#{ ( timelineWidth - seekerWidth) }", @.model.get('duration'), 'linear'
-          setInterval ->
-            if $('.seeker').css('left') == parseInt( $('.segment').css('left') ) + parseInt( $('.note').css('left') ) + 10 + 'px' # Fuck This...
-              app.playSound('semicolon')
-              console.log('inside the if')
-              # app.seekerOnNote = true
-              # app.playSound( @.model.get('sample_path').replace(".wav","").replace("/audios/", "") )
-          , 1
+
         else
           app.playing = false
           # $('.seeker').css('left', 0)
