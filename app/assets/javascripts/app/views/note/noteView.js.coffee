@@ -18,3 +18,4 @@ app.NoteView = Backbone.View.extend
     console.log(@.model.get('sample_path'))
     app.playSound( @.model.get('sample_path').replace(".wav","").replace("/audios/", "") )
 
+
