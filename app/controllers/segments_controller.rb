@@ -17,5 +17,8 @@ class SegmentsController < ApplicationController
   end
 
   def destroy
+    @segment = Segment.find params[:id]
+    @segment.destroy
+    render :text => "#{@segment.id} destroyed"
   end
 end

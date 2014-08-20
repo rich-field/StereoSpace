@@ -12,6 +12,7 @@ app.TimelinesView = Backbone.View.extend
 
   render: ->
     # Renders a single timeline and then
+    @.$el.html('')
     @.collection.each (model) =>
       timelineView = new app.TimelineView({model: model})
       @.$el.append( timelineView.render() )
