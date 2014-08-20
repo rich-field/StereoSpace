@@ -2,6 +2,11 @@ window.app = window.app or {}
 
 app.SongShowView = Backbone.View.extend
   el: '#song'
+  events:
+    'click #add-timeline': 'addTimeline'
+    'click #save-song': 'saveSong'
+    'click #rewind': 'rewindSeeker'
+    'click #record': 'recordSong'
 
   initialize: ->
     @.render
@@ -21,66 +26,6 @@ app.SongShowView = Backbone.View.extend
 
 
     # EVENTS
-
-    $('#add-timeline').on 'click', =>
-      newTimeline = new app.Timeline({song_id: @.model.get('id')})
-      newTimeline.save();
-      app.timelines.add(newTimeline);
-
-    $('#save-song').on 'click', =>
-      @.model.save()
-
-    $('#rewind').on 'click', =>
-      app.seekerPosition = 0
-      $('.seeker').css('left', '0px')
-
-
-    $('#record').on 'click', =>
-      # unless app.playing
-      if app.recording
-        console.log('stop recording')
-        app.recording = false
-
-        clearInterval(app.recordNotes)
-        console.log(app.seekerPosition, app.startRecordTime)
-        duration = app.seekerPosition - app.startRecordTime
-        app.segment.save({duration: duration}).done (response) ->
-          segmentView = new app.SegmentView({model: app.segment})
-          segmentView.render()
-          app.seekerOnSegment = false
-          console.log(response,'done')
-      else
-        app.seekerOnSegment = false
-        app.recording = true
-        console.log('record')
-        console.log(app.notesToPlay)
-
-        app.recordNotes = setInterval ->
-          app.seekerPosition++
-          # sets the start record time on the first key down
-          $(document).on 'keydown', (e) ->
-            # Will only run if there is a soundboard key
-            if app.soundKeys[e.keyCode]
-              app.startRecordTime = app.seekerPosition unless app.startRecordTime
-
-              unless app.seekerOnSegment
-                app.segment = new app.Segment
-                  timeline_id: app.selectedTimeline
-                  start_time: app.startRecordTime
-                app.segment.save()
-                app.seekerOnSegment = true
-
-              app.notesToPlay[ app.seekerPosition ] = app.soundKeys[e.keyCode]
-              note = new app.Note
-                point_in_segment: (app.startRecordTime + app.seekerPosition)
-                segment_id: app.segment.get('id')
-                sample_path: "/audios/#{app.soundKeys[e.keyCode]}.wav"
-              note.save()
-
-          app.playSound( app.notesToPlay[app.seekerPosition] ) if app.notesToPlay[app.seekerPosition]
-          $('.seeker').css('left', app.seekerPosition * 1.7)
-        , 1
-
 
     # adds seeker to timelines div
     $seeker = $('<div/>')
@@ -124,3 +69,60 @@ app.SongShowView = Backbone.View.extend
       if !$(e.target).hasClass('note')
         $('.note.selected').removeClass('selected')
         app.selectedNote = null
+
+  addTimeline: ->
+      newTimeline = new app.Timeline({song_id: @.model.get('id')})
+      newTimeline.save();
+      app.timelines.add(newTimeline);
+
+  saveSong: ->
+    @.model.save()
+
+  rewindSeeker: ->
+    app.seekerPosition = 0
+    $('.seeker').css('left', '0px')
+
+  recordSong: ->
+    if app.recording
+      console.log('stop recording')
+      app.recording = false
+
+      clearInterval(app.recordNotes)
+      console.log(app.seekerPosition, app.startRecordTime)
+      duration = app.seekerPosition - app.startRecordTime
+      app.segment.save({duration: duration}).done (response) ->
+        segmentView = new app.SegmentView({model: app.segment})
+        segmentView.render()
+        app.seekerOnSegment = false
+        console.log(response,'done')
+    else
+      app.seekerOnSegment = false
+      app.recording = true
+      console.log('record')
+      console.log(app.notesToPlay)
+
+      app.recordNotes = setInterval ->
+        app.seekerPosition++
+        # sets the start record time on the first key down
+        $(document).on 'keydown', (e) ->
+          # Will only run if there is a soundboard key
+          if app.soundKeys[e.keyCode]
+            app.startRecordTime = app.seekerPosition unless app.startRecordTime
+
+            unless app.seekerOnSegment
+              app.segment = new app.Segment
+                timeline_id: app.selectedTimeline
+                start_time: app.startRecordTime
+              app.segment.save()
+              app.seekerOnSegment = true
+
+            app.notesToPlay[ app.seekerPosition ] = app.soundKeys[e.keyCode]
+            note = new app.Note
+              point_in_segment: (app.startRecordTime + app.seekerPosition)
+              segment_id: app.segment.get('id')
+              sample_path: "/audios/#{app.soundKeys[e.keyCode]}.wav"
+            note.save()
+
+        app.playSound( app.notesToPlay[app.seekerPosition] ) if app.notesToPlay[app.seekerPosition]
+        $('.seeker').css('left', app.seekerPosition * 1.7)
+      , 1

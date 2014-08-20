@@ -62,7 +62,7 @@ app.processAudio = (data) ->
       # console.log app.Sound.getFrequencyDomain()
       # return
     # ), 500
-    app.source.start(0)
+    app.source.start(0,0,1.8)
     return
 
 # Load all sounds
