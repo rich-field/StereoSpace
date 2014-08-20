@@ -11,6 +11,7 @@ app.SegmentView = Backbone.View.extend
     _.bindAll(this, 'keyControls')
     _.bindAll(this, 'deleteSegment')
     @.model.bind('change', this.render)
+    # @.model.bind('change', this.renderNotes)
     @.renderNotes()
 
     $(document).on 'keydown', (e) =>
@@ -32,6 +33,7 @@ app.SegmentView = Backbone.View.extend
     return @.$el
 
   moveTrack: ->
+    # Checks if the left position has moved and saves the model
     if @.point_in_timeline != @.$el.css('left')
       @.model.save({start_time: parseInt(@.$el.css('left')) })
 
@@ -44,7 +46,7 @@ app.SegmentView = Backbone.View.extend
 
   selectSegment: ->
 
-    $('.selected').toggleClass('selected')
+    $('.segment.selected').removeClass('selected')
     console.log('toggle class in segment')
     @.$el.toggleClass('selected')
     app.selectedSegment = @.model
