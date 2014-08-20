@@ -12,14 +12,11 @@ app.NoteView = Backbone.View.extend
 
     _.bindAll(this, 'keyControls')
     _.bindAll(this, 'deleteNote')
+
     $(document).on 'keydown', (e) =>
       @.keyControls(e)
 
-
-    console.log('NoteView initialized')
     setInterval ->
-      # console.log('going')
-    # while app.playing == true
       if $('.seeker').css('left') == parseInt( $('.segment').css('left') ) + parseInt( $('.note').css('left') ) + 10 + 'px'
         console.log('inside the if')
         app.seekerOnNote = true
@@ -30,6 +27,7 @@ app.NoteView = Backbone.View.extend
   render: ->
     @.$el.css('left', @.model.get('point_in_segment'))
     @.$el.attr('data-noteid', @.model.get('id'))
+    @.$el.attr('data-notepos', @.model.get('point_in_segment'))
     # <div class='note' data-note-id='89'>
     return @$el
 
