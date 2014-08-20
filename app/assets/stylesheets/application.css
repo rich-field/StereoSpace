@@ -40,7 +40,7 @@ body {
   width: 100%;
   overflow: scroll;
   height: 200px;
-  background-color: #ddd;
+  background-color: rgba(0,0,0,0);
 }
 
 .seeker {
@@ -104,7 +104,7 @@ body {
   height: 15px;
   border-radius: 100%;
   background-color: #00e1ff;
-  position: relative;
+  position: absolute;
   display: inline-block;
   box-shadow: 0 1px 15px 2px #00e1ff;
 }

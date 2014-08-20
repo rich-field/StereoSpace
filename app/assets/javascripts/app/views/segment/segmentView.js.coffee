@@ -12,7 +12,7 @@ app.SegmentView = Backbone.View.extend
     _.bindAll(this, 'deleteSegment')
     _.bindAll(this, 'renderNotes')
     @.model.bind('change', this.render)
-    @.model.bind('change', this.renderNotes)
+    # @.model.bind('change', this.renderNotes)
     @.renderNotes()
 
     $(document).on 'keydown', (e) =>

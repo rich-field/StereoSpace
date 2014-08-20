@@ -35,7 +35,7 @@ app.SongShowView = Backbone.View.extend
     app.recording = false # Init app.recording to be false
 
     $(document).on 'keydown', (e) ->
-      # Will only run if the key pressed is a soundboard key
+      # Will only run if the key pressed is a soundboard key and the app is recording
       if app.soundKeys[e.keyCode] && app.recording
         app.startRecordTime = app.seekerPosition unless app.startRecordTime
 
@@ -48,14 +48,12 @@ app.SongShowView = Backbone.View.extend
 
         app.notesToPlay[ app.seekerPosition ] = app.soundKeys[ e.keyCode ]
 
-        unless !!note
-          note = new app.Note
-            point_in_segment: (app.startRecordTime + app.seekerPosition)
-            segment_id: app.segment.get('id')
-            sample_path: "/audios/#{app.soundKeys[e.keyCode]}.wav"
-          note.save().done ->
-            console.log('made a note')
-            note = null
+        note = new app.Note
+          point_in_segment: (app.startRecordTime - app.seekerPosition)
+          segment_id: app.segment.get('id')
+          sample_path: "/audios/#{app.soundKeys[e.keyCode]}.wav"
+        note.save().done ->
+          console.log('made a note')
 
   render: ->
     $('#visualizer').html('')
