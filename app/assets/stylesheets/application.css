@@ -24,6 +24,8 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
+  color: white;
+  background-color: black;
 }
 
 #visualizer {
@@ -44,7 +46,20 @@ body {
   position: absolute;
   z-index: 10;
   /*vertical-align: bottom;*/
-  background-color: cyan;
+  background-color: #00e1ff;
+  /*box-shadow: 0 0 0 0;*/
+}
+
+.seeker:hover {
+  -webkit-transition: all 0.15s ease-in-out;
+  -moz-transition: all 0.15s ease-in-out;
+  -o-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  box-shadow: 0 0 15px 5px #00e1ff
+}
+
+.seeker:active {
+  box-shadow: 0 0 15px 5px #00e1ff
 }
 
 #timelines {
@@ -92,6 +107,6 @@ body {
 #record {
   border-radius: 100%;
   background-color: red;
-  height: 400px;
-  width: 400px;
+  height: 350px;
+  width: 350px;
 }
