@@ -41,7 +41,7 @@ app.SongShowView = Backbone.View.extend
 
     app.playing = false
 
-    $(document).on 'keydown', (e) ->
+    $(document).on 'keydown', (e) =>
       if e.keyCode == 32
         if app.playing == false
           console.log('Play')
@@ -49,7 +49,7 @@ app.SongShowView = Backbone.View.extend
           seekerWidth = parseInt( $('.seeker').css('width') )
           timelineWidth = parseInt( $('#timelines').css('width') )
           $('.seeker').animate
-            left: "#{ ( timelineWidth - seekerWidth) }", 10000
+            left: "#{ ( timelineWidth - seekerWidth) }", @.model.get('duration')
         else
           app.playing = false
           # $('.seeker').css('left', 0)
