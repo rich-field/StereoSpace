@@ -12,7 +12,7 @@ app.SegmentView = Backbone.View.extend
     _.bindAll(this, 'deleteSegment')
     _.bindAll(this, 'renderNotes')
     @.model.bind('change', this.render)
-    @.model.bind('change', this.renderNotes)
+    # @.model.bind('change', this.renderNotes)
     @.renderNotes()
 
     $(document).on 'keydown', (e) =>
@@ -30,7 +30,6 @@ app.SegmentView = Backbone.View.extend
 
     # Makes this segment draggable
     @.$el.draggable( {containment: '#timelines', snap: ".timeline"} )
-
     return @.$el
 
   moveTrack: ->
@@ -40,17 +39,18 @@ app.SegmentView = Backbone.View.extend
 
   renderNotes: ->
     # Clears notes before re rendering
-    @.$el.html("")
-    # Sets the noteToPlay object to itself if it exists, otherwise make a new object
+    # @.$el.html("")
+    # Sets the notesToPlay object to itself if it exists, otherwise make a new object
     app.notesToPlay = app.notesToPlay or {}
-
+    console.log ( @.$el.html() )
     @.model.attributes.notes.each (model) =>
       # populates the app.notesToPlay object
       app.notesToPlay[( @.model.get('start_time') + model.get('point_in_segment') )] = model.get('sample_path').replace(".wav","").replace("/audios/", "")
       console.log(app.notesToPlay)
-      # creates a view
+      # creates a view for the note
       noteView = new app.NoteView({model: model})
       @.$el.append( noteView.render() )
+    console.log ( @.$el.html() )
 
   selectSegment: (e) ->
     # Prevent the event propogating to parent
@@ -69,6 +69,7 @@ app.SegmentView = Backbone.View.extend
       console.log('key in sound')
 
   deleteSegment: ->
+    ## FIXME Need to re-get the notes for this song and repopulate app.notes
     $('.segment.selected').remove()
     app.selectedSegment.destroy()
     app.selectedSegment = null

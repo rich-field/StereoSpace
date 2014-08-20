@@ -9,9 +9,29 @@ app.SongShowView = Backbone.View.extend
     'click #record': 'recordSong'
 
   initialize: ->
-    @.render
+    $(document).on 'keydown', (e) =>
+      # Spacebar controls play/pause
+      if e.keyCode == 32 && !app.recording
+        @.playSong(e)
+
+    # To deselect the selected elements
+    $(document).on 'click', (e) =>
+      e.stopPropagation()
+      if !$(e.target).hasClass('timeline') && !$(e.target).is('#record')
+        $('.timeline.selected').removeClass('selected')
+        app.selectedTimeline = null
+
+      if !$(e.target).hasClass('segment')
+        $('.segment.selected').removeClass('selected')
+        app.selectedSegment = null
+
+      if !$(e.target).hasClass('note')
+        $('.note.selected').removeClass('selected')
+        app.selectedNote = null
     # clears the notes to play when you get to a different song view
     app.notesToPlay = {}
+
+
   render: ->
     $('#visualizer').html('')
     html = Handlebars.compile( app.templates.songShowView )
@@ -33,25 +53,6 @@ app.SongShowView = Backbone.View.extend
     # SEEKER PLAY
     app.playing = false # Init app.playing to be false
 
-    $(document).on 'keydown', (e) =>
-      # Spacebar controls play/pause
-      @.playSong(e)
-
-    # To deselect the selected elements
-    $(document).on 'click', (e) =>
-      e.stopPropagation()
-      if !$(e.target).hasClass('timeline')
-        $('.timeline.selected').removeClass('selected')
-        app.selectedTimeline = null
-
-      if !$(e.target).hasClass('segment')
-        $('.segment.selected').removeClass('selected')
-        app.selectedSegment = null
-
-      if !$(e.target).hasClass('note')
-        $('.note.selected').removeClass('selected')
-        app.selectedNote = null
-
   addTimeline: ->
       newTimeline = new app.Timeline({song_id: @.model.get('id')})
       newTimeline.save();
@@ -64,18 +65,17 @@ app.SongShowView = Backbone.View.extend
     app.seekerPosition = 0
     $('.seeker').css('left', '0px')
 
-  playSong: (e)->
-    if e.keyCode == 32 && !app.recording
-      if app.playing == false
-        app.playing = true
-        app.playNotes = setInterval ->
-          app.seekerPosition++
-          app.playSound( app.notesToPlay[app.seekerPosition] ) if app.notesToPlay[app.seekerPosition]
-          $('.seeker').css('left', app.seekerPosition * 1.7)
-        , 1
-      else
-        app.playing = false
-        clearInterval(app.playNotes)
+  playSong: ->
+    if app.playing == false
+      app.playing = true
+      app.playNotes = setInterval ->
+        app.seekerPosition++
+        app.playSound( app.notesToPlay[app.seekerPosition] ) if app.notesToPlay[app.seekerPosition]
+        $('.seeker').css('left', app.seekerPosition * 1.7)
+      , 1
+    else
+      app.playing = false
+      clearInterval(app.playNotes)
 
   recordSong: ->
     if app.recording
