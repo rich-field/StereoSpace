@@ -38,9 +38,14 @@ app.SegmentView = Backbone.View.extend
       @.model.save({start_time: parseInt(@.$el.css('left')) })
 
   renderNotes: ->
-    # Clears notes before re rendering notes
+    # Clears notes before re rendering
     @.$el.html("")
+    app.notesToPlay = app.notesToPlay or {}
     @.model.attributes.notes.each (model) =>
+      # populates the app.notesToPlay object
+      app.notesToPlay[( @.model.get('start_time') + model.get('point_in_segment') )] = model.get('sample_path').replace(".wav","").replace("/audios/", "")
+      console.log(app.notesToPlay)
+      # creates a view
       noteView = new app.NoteView({model: model})
       @.$el.append( noteView.render() )
 

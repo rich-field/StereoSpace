@@ -5,7 +5,7 @@ app.SongShowView = Backbone.View.extend
 
   initialize: ->
     @.render
-
+    app.notesToPlay = {}
   render: ->
     $('#visualizer').html('')
     html = Handlebars.compile( app.templates.songShowView )
@@ -17,11 +17,6 @@ app.SongShowView = Backbone.View.extend
       timelines = new app.TimelinesView({collection: app.timelines, song: @.model})
 
     @.$el.html( copy )
-
-
-
-
-
 
 
     # EVENTS

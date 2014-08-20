@@ -8,8 +8,7 @@ app.Router = Backbone.Router.extend
   initialize: ->
 
   index: ->
-    app.song = new app.Song
-    # app.song.save()
+    app.song = new app.Song({title: 'New song', duration: 10000})
     view = new app.SongShowView( model: app.song )
     view.render()
 
@@ -19,7 +18,6 @@ app.Router = Backbone.Router.extend
     view.render()
 
   songsIndex: ->
-    # should make fetch happen here
     view = new app.SongsView({collection: app.songs})
     view.render()
 
