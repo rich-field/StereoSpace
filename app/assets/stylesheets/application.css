@@ -81,7 +81,7 @@ body {
 
 .note {
   width: 10px;
-  height: 10px;
+  height: 15px;
   border-radius: 100%;
   background-color: red;
   position: relative;

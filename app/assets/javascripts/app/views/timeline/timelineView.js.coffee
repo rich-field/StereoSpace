@@ -26,7 +26,7 @@ app.TimelineView = Backbone.View.extend
     return @.$el
 
   selectTimeline: (e) ->
-
+    e.stopPropagation()
     $('.timeline.selected').removeClass('selected')
     @.$el.toggleClass('selected')
     app.selectedTimeline = @.model

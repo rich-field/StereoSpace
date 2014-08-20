@@ -61,13 +61,16 @@ app.SongShowView = Backbone.View.extend
           console.log('Pause')
           # pause
 
-  $(document).on 'click', (e) =>
-    if !$(e.target).hasClass('timeline')
-      $('.timeline.selected').removeClass('selected')
-      app.selectedTimeline = null
-    if !$(e.target).hasClass('segment')
-      $('.segment.selected').removeClass('selected')
-      app.selectedSegment = null
-    if !$(e.target).hasClass('note')
-      $('.note.selected').removeClass('selected')
-      app.selectedNote = null
+    $(document).on 'click', (e) =>
+      e.stopPropagation()
+      if !$(e.target).hasClass('timeline')
+        $('.timeline.selected').removeClass('selected')
+        app.selectedTimeline = null
+
+      if !$(e.target).hasClass('segment')
+        $('.segment.selected').removeClass('selected')
+        app.selectedSegment = null
+
+      if !$(e.target).hasClass('note')
+        $('.note.selected').removeClass('selected')
+        app.selectedNote = null

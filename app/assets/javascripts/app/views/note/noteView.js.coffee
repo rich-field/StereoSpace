@@ -4,9 +4,18 @@ app.NoteView = Backbone.View.extend
   tagName: 'div'
   className: 'note'
   events:
+    'click': 'selectNote'
+    'keydown': 'keyControls'
     'mouseover': 'playNote'
 
   initialize: ->
+
+    _.bindAll(this, 'keyControls')
+    _.bindAll(this, 'deleteNote')
+    $(document).on 'keydown', (e) =>
+      @.keyControls(e)
+
+
     console.log('NoteView initialized')
     setInterval ->
     # while app.playing == true
@@ -14,13 +23,14 @@ app.NoteView = Backbone.View.extend
         console.log('inside the if')
         app.seekerOnNote = true
         @.playNote
-    , 1
+    , 10
 
 
   render: ->
-    @$el.css('left', @.model.get('point_in_segment'))
+    @.$el.css('left', @.model.get('point_in_segment'))
+    @.$el.data('note-id', @.model.get('id'))
+    # <div class='note' data-note-id='89'>
     return @$el
-
 
   playNote: ->
     # console.log('homajebus plz work')
@@ -28,3 +38,19 @@ app.NoteView = Backbone.View.extend
     app.playSound( @.model.get('sample_path').replace(".wav","").replace("/audios/", "") )
 
 
+  selectNote: (e) ->
+    e.stopPropagation()
+    $('.note.selected').removeClass('selected')
+    @.$el.toggleClass('selected')
+    app.selectedNote = @.model
+
+  keyControls: (e) ->
+    if e.keyCode == 8 and app.selectedNote
+      e.stopPropagation()
+      e.preventDefault()
+      @.deleteNote()
+
+  deleteNote: ->
+      $('.note.selected').remove()
+      app.selectedNote.destroy()
+      app.selectedNote = null
