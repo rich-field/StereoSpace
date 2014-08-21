@@ -49,6 +49,7 @@ app.SongShowView = Backbone.View.extend
             start_time: app.startRecordTime
           $segment = $('<div/>')
           $segment.addClass('segment')
+          $segment.appendTo( $('.timeline:last') )
           app.seekerOnSegment = true
         app.segment.save().done ->
           note = new app.Note
@@ -56,13 +57,10 @@ app.SongShowView = Backbone.View.extend
             segment_id: app.segment.get('id')
             sample_path: app.soundKeys[e.keyCode]
           note.save().done ->
-            console.log('made a note')
             $note = $('<div/>')
             $note.addClass('note')
             $note.css('left', ( app.seekerPosition - app.startRecordTime ))
-            $note.appendTo('.timeline')
-
-            console.log(( app.seekerPosition - app.startRecordTime ), 'point in segment' )
+            $note.appendTo($segment)
 
   render: ->
     $('#visualizer').html('')
