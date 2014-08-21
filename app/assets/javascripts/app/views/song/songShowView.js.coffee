@@ -47,14 +47,21 @@ app.SongShowView = Backbone.View.extend
           app.segment = new app.Segment
             timeline_id: if app.selectedTimeline then app.selectedTimeline.get('id') else app.timelines.last().get('id')
             start_time: app.startRecordTime
+          $segment = $('<div/>')
+          $segment.addClass('segment')
           app.seekerOnSegment = true
         app.segment.save().done ->
           note = new app.Note
             point_in_segment: ( app.seekerPosition - app.startRecordTime )
             segment_id: app.segment.get('id')
-            sample_path: "/audios/#{app.soundKeys[e.keyCode]}.wav"
+            sample_path: app.soundKeys[e.keyCode]
           note.save().done ->
             console.log('made a note')
+            $note = $('<div/>')
+            $note.addClass('note')
+            $note.css('left', ( app.seekerPosition - app.startRecordTime ))
+            $note.appendTo('.timeline')
+
             console.log(( app.seekerPosition - app.startRecordTime ), 'point in segment' )
 
   render: ->
@@ -95,7 +102,10 @@ app.SongShowView = Backbone.View.extend
       app.playing = true
       app.playNotes = setInterval ->
         app.seekerPosition++
-        app.playSound( app.notesToPlay[app.seekerPosition] ) if app.notesToPlay[app.seekerPosition]
+        if app.notesToPlay[app.seekerPosition]
+          app.source.stop(0) if app.currentSound = app.soundKeys[ app.notesToPlay[app.seekerPosition] ] && app.source
+          app.playSound( app.notesToPlay[app.seekerPosition] )
+          app.currentSound = app.soundKeys[ app.notesToPlay[app.seekerPosition] ]
         console.log( app.seekerPosition ) if app.notesToPlay[app.seekerPosition]
         $('.seeker').css('left', app.seekerPosition)
       , 1

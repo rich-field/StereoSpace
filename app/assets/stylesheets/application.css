@@ -126,7 +126,22 @@ body {
 #record {
   border-radius: 100%;
   background-color: red;
-  height: 350px;
-  width: 350px;
-  margin-left: 18%;
+  height: 5em;
+  width: 5em;
+  position: absolute;
+  left: calc(50vw - 5em);
+}
+
+#song-controls {
+
+}
+
+button {
+  padding: .5em;
+  font-size: 2em;
+  border-radius: .2em;
+  color: #fff;
+  background-color: #305e90;
+  /*background-color: #00e1ff;*/
+  border: 0;
 }
