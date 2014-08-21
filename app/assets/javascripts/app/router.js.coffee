@@ -24,9 +24,9 @@ app.Router = Backbone.Router.extend
     # view.render()
 
   show: (id) ->
-    app.song = app.songs.findWhere(share_url: id)
-    # until app.song
-      # app.song = app.songs.findWhere(share_url: id)
+    app.song = app.songs.findWhere(share_url: id) or app.song
+    # unless app.song
+      # app.router.navigate('', true)
     view = new app.SongShowView(model: app.song)
     view.render()
 
