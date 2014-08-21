@@ -1,6 +1,7 @@
 window.app = window.app or {}
 
 $(document).ready ->
+  $('#preloader').fadeOut()
   app.templates = {
     appView: $('#app-template').html()
     songsView: $('#songs-template').html()
