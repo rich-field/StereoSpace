@@ -8,8 +8,9 @@
   background-color: #fefefe;
   z-index: 99;
   height: 100%;
+}
 
-  .whirlpool {
+.whirlpool {
   width: 100px;
   height: 100px;
   margin: 100px auto;
@@ -119,5 +120,5 @@
     animation-timing-function: cubic-bezier(0.455, 0.030, 0.515, 0.955);
   }
 }
-}
+
 

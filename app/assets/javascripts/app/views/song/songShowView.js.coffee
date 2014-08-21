@@ -60,6 +60,7 @@ app.SongShowView = Backbone.View.extend
             $note = $('<div/>')
             $note.addClass('note')
             $note.css('left', ( app.seekerPosition - app.startRecordTime ))
+            $segment.width( $segment.css('width') + ( app.seekerPosition - app.startRecordTime ) )
             $note.appendTo($segment)
 
   render: ->
