@@ -42,7 +42,7 @@ app.SongShowView = Backbone.View.extend
 
         unless app.seekerOnSegment
           app.segment = new app.Segment
-            timeline_id: app.selectedTimeline.get('id')
+            timeline_id: if app.selectedTimeline then app.selectedTimeline.get('id') else app.timelines.last().get('id')
             start_time: app.startRecordTime
           app.segment.save()
           app.seekerOnSegment = true

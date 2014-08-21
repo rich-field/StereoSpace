@@ -19,11 +19,9 @@ app.SegmentView = Backbone.View.extend
       @.keyControls(e)
 
   render: ->    # The model is the specific track passed into the timeline view
-    segmentHTML = Handlebars.compile( app.templates.segmentView )
-    copy = segmentHTML( @.model.toJSON() )
-    @.$el.css('width', @.model.get('duration')/4 + 'px' )
+    @.$el.css('width', @.model.get('duration') + 'px' )
     @.$el.css('left', @.model.get('start_time') + 'px' )
-    @.$el.append( copy )
+    @.$el.css('position', 'absolute' )
 
     # To keep track of where the segment is when it's rendered
     @.point_in_timeline = @.$el.css('left')
@@ -53,18 +51,19 @@ app.SegmentView = Backbone.View.extend
   selectSegment: (e) ->
     # Prevent the event propogating to parent
     e.stopPropagation()
-    $('.segment.selected').removeClass('selected')
+    console.log(@.model.get('start_time'), 'start_time' )
+    console.log(@.model.get('duration'), 'duration' )
+    $('.selected').removeClass('selected')
     @.$el.addClass('selected')
     app.selectedSegment = @.model
     app.selectedTimeline = null
+    app.selectedNote = null
 
   keyControls: (e) ->
     if e.keyCode == 8 and app.selectedSegment
       e.stopPropagation()
       e.preventDefault()
       @.deleteSegment()
-    else if app.soundKeys[e.keyCode] && app.recording
-      console.log('key in sound')
 
   deleteSegment: ->
     ## FIXME Need to re-get the notes for this song and repopulate app.notes

@@ -17,14 +17,15 @@ app.NoteView = Backbone.View.extend
 
   render: ->
     @.$el.css('left', @.model.get('point_in_segment'))
-    # @.$el.css('top', @.model.get('point_in_segment')/5])
     return @$el
 
   selectNote: (e) ->
     e.stopPropagation()
-    $('.note.selected').removeClass('selected')
+    $('.selected').removeClass('selected')
     @.$el.toggleClass('selected')
     app.selectedNote = @.model
+    app.selectedTimelime = null
+    app.selectedSegment = null
 
   keyControls: (e) ->
     if e.keyCode == 8 and app.selectedNote
