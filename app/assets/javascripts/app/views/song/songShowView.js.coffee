@@ -68,7 +68,6 @@ app.SongShowView = Backbone.View.extend
             $note = $('<div/>')
             $note.addClass('note')
             $note.css('left', (app.seekerPosition - app.startRecordTime) )
-            # app.$segment.css('width', (app.startRecordTime + app.seekerPosition))
             $note.appendTo( app.$segment )
 
   render: ->
@@ -131,16 +130,14 @@ app.SongShowView = Backbone.View.extend
       app.recording = false
 
       clearInterval(app.recordNotes)
-      console.log(app.seekerPosition, app.startRecordTime)
       duration = app.seekerPosition - app.startRecordTime
       app.seekerOnSegment = false
       app.startRecordTime = null
       app.$segment = null
 
-      app.segment.save({duration: duration}).done (response) ->
-        segmentView = new app.SegmentView({model: app.segment})
-        segmentView.render()
-        console.log(response,'done')
+      app.segment.save({duration: duration}).done (response) =>
+        thisSongView = new app.SongShowView(model: @.model)
+        thisSongView.render()
     else
       # to start recording
       app.seekerOnSegment = false
