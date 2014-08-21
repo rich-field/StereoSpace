@@ -27,13 +27,19 @@ app.SegmentView = Backbone.View.extend
     @.point_in_timeline = @.$el.css('left')
 
     # Makes this segment draggable
-    @.$el.draggable( {containment: '#timelines', snap: ".timeline"} )
+    @.$el.draggable( {containment: '#timelines', snap: ".timeline", axis: 'x'} )
     return @.$el
 
   moveTrack: ->
     # Checks if the left position has moved and saves the model
     if @.point_in_timeline != @.$el.css('left')
       @.model.save({start_time: parseInt(@.$el.css('left')) })
+    app.notesToPlay = {}
+    app.notes.fetch({data: {segment_id: @.model.get('id')}}).done =>
+      app.notes.each (model) =>
+        # populates the app.notesToPlay object
+        app.notesToPlay[( @.model.get('start_time') + model.get('point_in_segment') )] = model.get('sample_path')
+        console.log(app.notesToPlay)
 
   renderNotes: ->
     # Clears notes before re rendering

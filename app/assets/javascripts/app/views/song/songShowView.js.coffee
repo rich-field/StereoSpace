@@ -44,18 +44,23 @@ app.SongShowView = Backbone.View.extend
         app.notesToPlay[ app.seekerPosition ] = app.soundKeys[ e.keyCode ]
 
         unless app.seekerOnSegment
+          # makes sure the segment is being recorded and appended to a timeline div
           app.selectedTimeline = app.selectedTimeline or app.timelines.last()
           app.selectedTimelineView = app.selectedTimelineView or $('.timeline:last')
+
+          # creates new segment
           app.segment = new app.Segment
             timeline_id: app.selectedTimeline.get('id')
             start_time: app.startRecordTime
+
+
           app.$segment = $('<div/>')
           app.$segment.css('position', 'absolute')
           app.$segment.css('width', (app.seekerPosition - app.startRecordTime))
           app.$segment.css('left', (app.startRecordTime + app.seekerPosition))
           app.$segment.addClass('segment')
+          app.$segment.draggable( {containment: '#timelines', snap: ".timeline", axis: 'x'} )
           app.$segment.appendTo( app.selectedTimelineView )
-          # app.$segment.appendTo( $('.timeline.selected') )
           app.seekerOnSegment = true
 
         app.segment.save().done ->
@@ -127,6 +132,7 @@ app.SongShowView = Backbone.View.extend
       console.log(app.seekerPosition, app.startRecordTime)
       duration = app.seekerPosition - app.startRecordTime
       app.seekerOnSegment = false
+      app.startRecordTime = null
       app.$segment = null
 
       app.segment.save({duration: duration}).done (response) ->
