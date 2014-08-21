@@ -1,25 +1,32 @@
 # STEREOSPACE
 
 StereoSpace is an online sound studio. As you build your song, StereoSpace will take you through a journey.
+Larlyn is a fag.
 
 ## Built With
 
 + Rails
 + Backbone
 + CoffeeScript
-+ SASS
 + ThreeJS
 + Web Audio API
 
-### Todo
+### TODO
 + [ ] ~~User login~~
 + [ ] Layout
-+ [ ] Soundboard trigger by keyboard
++ [x] Soundboard trigger by keyboard
++ [x] Record song
++ [x] Playback song
 + [ ] ~~Save songs to user~~
-+ [ ] Save songs to temp user
-+ [ ] Share songs to collab
++ [ ] ~~Save songs to temp user~~
++ [x] Share songs to collab
 + [ ] "Fork" song
 + [ ] Preloader
++ [ ] ~~Email~~
++ [ ] ~~Confirmation emails~~
++ [ ] ~~Reset password emails~~
+
+### Future plans
 + [ ] Visualisations
   + [ ] Ground
   + [ ] Earthquakes
@@ -29,6 +36,3 @@ StereoSpace is an online sound studio. As you build your song, StereoSpace will 
   + [ ] Lightning storm
   + [ ] Space junk
   + [ ] Meteor Shower
-+ [ ] ~~Email~~
-  + [ ] ~~Confirmation emails~~
-  + [ ] ~~Reset password emails~~
