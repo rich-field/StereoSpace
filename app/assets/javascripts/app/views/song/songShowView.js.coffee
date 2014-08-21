@@ -52,7 +52,7 @@ app.SongShowView = Backbone.View.extend
           note = new app.Note
             point_in_segment: ( app.seekerPosition - app.startRecordTime )
             segment_id: app.segment.get('id')
-            sample_path: "app.soundKeys[e.keyCode]"
+            sample_path: app.soundKeys[e.keyCode]
           note.save().done ->
             console.log('made a note')
             console.log(( app.seekerPosition - app.startRecordTime ), 'point in segment' )
