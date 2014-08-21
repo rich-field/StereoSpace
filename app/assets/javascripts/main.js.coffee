@@ -1,5 +1,4 @@
 window.app = window.app or {}
-$('body').html('loading')
 
 $(document).ready ->
   app.templates = {
