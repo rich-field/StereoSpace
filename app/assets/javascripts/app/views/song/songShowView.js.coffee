@@ -33,6 +33,7 @@ app.SongShowView = Backbone.View.extend
 
     app.playing = false # Init app.playing to be false
     app.recording = false # Init app.recording to be false
+    app.seekerPosition = 0
 
     $(document).on 'keydown', (e) ->
       # Will only run if the key pressed is a soundboard key and the app is recording
@@ -47,13 +48,15 @@ app.SongShowView = Backbone.View.extend
           app.seekerOnSegment = true
 
         app.notesToPlay[ app.seekerPosition ] = app.soundKeys[ e.keyCode ]
+        console.log( app.seekerPosition )
 
         note = new app.Note
-          point_in_segment: (app.startRecordTime - app.seekerPosition)
+          point_in_segment: ( app.seekerPosition - app.startRecordTime )
           segment_id: app.segment.get('id')
           sample_path: "/audios/#{app.soundKeys[e.keyCode]}.wav"
         note.save().done ->
           console.log('made a note')
+          console.log(( app.seekerPosition - app.startRecordTime ), 'point in segment' )
 
   render: ->
     $('#visualizer').html('')
@@ -74,9 +77,9 @@ app.SongShowView = Backbone.View.extend
     $('.seeker').draggable({axis: 'x', containment: '#timelines'})
 
   addTimeline: ->
-      newTimeline = new app.Timeline({song_id: @.model.get('id')})
-      newTimeline.save();
-      app.timelines.add(newTimeline);
+    newTimeline = new app.Timeline({song_id: @.model.get('id')})
+    newTimeline.save();
+    app.timelines.add(newTimeline);
 
   saveSong: ->
     @.model.save()
@@ -93,7 +96,8 @@ app.SongShowView = Backbone.View.extend
       app.playNotes = setInterval ->
         app.seekerPosition++
         app.playSound( app.notesToPlay[app.seekerPosition] ) if app.notesToPlay[app.seekerPosition]
-        $('.seeker').css('left', app.seekerPosition * 1.7)
+        console.log( app.seekerPosition ) if app.notesToPlay[app.seekerPosition]
+        $('.seeker').css('left', app.seekerPosition)
       , 1
     else
       app.playing = false
@@ -124,5 +128,5 @@ app.SongShowView = Backbone.View.extend
         # sets the start record time on the first key down
 
         app.playSound( app.notesToPlay[app.seekerPosition] ) if app.notesToPlay[app.seekerPosition]
-        $('.seeker').css('left', app.seekerPosition * 1.7)
+        $('.seeker').css('left', app.seekerPosition)
       , 1

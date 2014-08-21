@@ -13,6 +13,6 @@
 
 class Song < ActiveRecord::Base
   has_many :timelines
-  has_many :tracks, :through => :timelines
+  has_many :segments, :through => :timelines, :dependent => :destroy
   validates :share_url, :uniqueness => true
 end

@@ -13,5 +13,5 @@
 
 class Segment < ActiveRecord::Base
   belongs_to :timeline
-  has_many :notes
+  has_many :notes, :dependent => :destroy
 end

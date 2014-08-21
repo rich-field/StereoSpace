@@ -10,6 +10,6 @@
 #
 
 class Sample < ActiveRecord::Base
-  belongs_to :track
+  belongs_to :segment
   has_many :notes
 end

@@ -9,7 +9,7 @@
 #
 
 class Timeline < ActiveRecord::Base
-  has_many :segments
-  has_many :samples, through: :segments
+  has_many :segments, :dependent => :destroy
+  has_many :notes, through: :segments
   belongs_to :song
 end
