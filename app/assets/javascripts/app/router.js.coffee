@@ -15,11 +15,12 @@ app.Router = Backbone.Router.extend
     # preloader goes here
     # loads all sounds
     # when done, open songView
+
+
+    # Creates a new song and redirects you to its page
     app.song = new app.Song({title: 'New song', duration: 30000})
     app.song.save().done ->
       app.router.navigate("songs/#{app.song.get('share_url')}", true)
-    # view = new app.SongShowView( model: app.song )
-    # view.render()
 
   show: (id) ->
     app.song = app.songs.findWhere(share_url: id) or app.song

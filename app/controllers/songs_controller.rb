@@ -8,9 +8,9 @@ class SongsController < ApplicationController
     @song = Song.new
     @song.duration = 30000
     @song.timelines << Timeline.create
-    @song.share_url = (0...20).map { ('a'..'z').to_a[rand(26)] }.join
+    @song.share_url = (0...20).map { ('a'..'z').to_a[rand(26)] }.join #makes random string
     until @song.save
-      @song.share_url = (0...20).map { ('a'..'z').to_a[rand(26)] }.join #makes random
+      @song.share_url = (0...20).map { ('a'..'z').to_a[rand(26)] }.join
     end
     render :json => @song
   end

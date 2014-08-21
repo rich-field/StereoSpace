@@ -9,12 +9,6 @@ app.SongShowView = Backbone.View.extend
     'click #record': 'recordSong'
     'mouseup .seeker': 'repositionSeeker'
   initialize: ->
-    # @.model.save()
-    $(document).on 'keydown', (e) =>
-      # Spacebar controls play/pause
-      if e.keyCode == 32 && !app.recording
-        @.playSong(e)
-
     # To deselect the selected elements
     $(document).on 'click', (e) =>
       e.stopPropagation()
@@ -49,14 +43,15 @@ app.SongShowView = Backbone.View.extend
             timeline_id: app.selectedTimeline.get('id')
             start_time: app.startRecordTime
 
-
+          # Creates the DOM segment live, chaining
           app.$segment = $('<div/>')
-          app.$segment.css('position', 'absolute')
-          app.$segment.css('width', (app.seekerPosition - app.startRecordTime))
-          app.$segment.css('left', (app.seekerPosition))
-          app.$segment.addClass('segment')
-          app.$segment.draggable( {containment: '#timelines', snap: ".timeline", axis: 'x'} )
-          app.$segment.appendTo( app.selectedTimelineView )
+          .css('position', 'absolute')
+          .css('width', (app.seekerPosition - app.startRecordTime))
+          .css('left', (app.seekerPosition))
+          .addClass('segment')
+          .draggable( {containment: '#timelines', snap: ".timeline", axis: 'x'} )
+          .appendTo( app.selectedTimelineView )
+
           app.seekerOnSegment = true
 
         app.segment.save().done ->
@@ -87,6 +82,11 @@ app.SongShowView = Backbone.View.extend
     $seeker.addClass('seeker')
     $('#timelines').append($seeker)
     $('.seeker').draggable({axis: 'x', containment: '#timelines'})
+
+    $(document).on 'keydown', (e) =>
+      # Spacebar controls play/pause
+      if e.keyCode == 32 && !app.recording
+        @.playSong(e)
 
   addTimeline: ->
     newTimeline = new app.Timeline({song_id: @.model.get('id')})
@@ -128,6 +128,7 @@ app.SongShowView = Backbone.View.extend
     if app.recording
       # To stop recording
       app.recording = false
+      $('#record').text('record')
 
       clearInterval(app.recordNotes)
       duration = app.seekerPosition - app.startRecordTime
@@ -142,6 +143,8 @@ app.SongShowView = Backbone.View.extend
       # to start recording
       app.seekerOnSegment = false
       app.recording = true
+
+      $('#record').text('recording')
       console.log(app.notesToPlay)
       app.recordNotes = setInterval ->
         app.seekerPosition++
