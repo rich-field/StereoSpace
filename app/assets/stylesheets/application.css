@@ -105,9 +105,9 @@ body {
 
 }
 
-.segment:hover{
+/*.segment:hover{
   box-shadow: 0 0 15px 5px #305e90;
-}
+}*/
 
 .note {
   width: 10px;
