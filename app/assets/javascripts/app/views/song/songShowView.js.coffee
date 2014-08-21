@@ -4,7 +4,6 @@ app.SongShowView = Backbone.View.extend
   el: '#song'
   events:
     'click #add-timeline': 'addTimeline'
-    'click #save-song': 'saveSong'
     'click #rewind': 'rewindSeeker'
     'click #record': 'recordSong'
     'mouseup .seeker': 'repositionSeeker'
@@ -61,9 +60,9 @@ app.SongShowView = Backbone.View.extend
             sample_path: app.soundKeys[e.keyCode]
           note.save().done ->
             $note = $('<div/>')
-            $note.addClass('note')
-            $note.css('left', (app.seekerPosition - app.startRecordTime) )
-            $note.appendTo( app.$segment )
+            .addClass('note')
+            .css('left', (app.seekerPosition - app.startRecordTime) )
+            .appendTo( app.$segment )
 
   render: ->
     $('#visualizer').html('')
@@ -106,9 +105,6 @@ app.SongShowView = Backbone.View.extend
     newTimeline.save();
     app.timelines.add(newTimeline);
 
-  saveSong: ->
-    @.model.save()
-
   rewindSeeker: ->
     # reset seeker position
     app.seekerPosition = 0
@@ -121,9 +117,9 @@ app.SongShowView = Backbone.View.extend
       app.playNotes = setInterval ->
         app.seekerPosition++
         if app.notesToPlay[app.seekerPosition]
-          app.source.stop(0) if app.currentSound = app.soundKeys[ app.notesToPlay[app.seekerPosition] ] && app.source
+          app.source.stop(0) if app.currentSound = app.notesToPlay[app.seekerPosition] && app.source
           app.playSound( app.notesToPlay[app.seekerPosition] )
-          app.currentSound = app.soundKeys[ app.notesToPlay[app.seekerPosition] ]
+          app.currentSound = app.notesToPlay[app.seekerPosition]
         console.log( app.seekerPosition ) if app.notesToPlay[app.seekerPosition]
         $('.seeker').css('left', app.seekerPosition)
       , 1
@@ -148,11 +144,9 @@ app.SongShowView = Backbone.View.extend
       app.seekerOnSegment = false
       app.startRecordTime = null
       app.$segment = null
-
+      # re-render the timelines
       app.segment.save({duration: duration}).done (response) =>
         @.renderTimelines()
-        # thisSongView = new app.SongShowView(model: @.model)
-        # thisSongView.render()
     else
       # to start recording
       app.seekerOnSegment = false

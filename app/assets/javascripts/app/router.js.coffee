@@ -6,17 +6,10 @@ app.Router = Backbone.Router.extend
     "songs": "songsIndex" # All Songs
 
   initialize: ->
-    # $('body').html('')
-    # $('body').html(app.Preloader)
     app.playing = false # Init app.playing to be false
     app.recording = false # Init app.recording to be false
     app.seekerPosition = 0
   index: ->
-    # preloader goes here
-    # loads all sounds
-    # when done, open songView
-
-
     # Creates a new song and redirects you to its page
     app.song = new app.Song({title: 'New song', duration: 30000})
     app.song.save().done ->
@@ -30,8 +23,9 @@ app.Router = Backbone.Router.extend
     view.render()
 
   songsIndex: ->
-    view = new app.SongsView({collection: app.songs})
-    view.render()
+    app.songs.fetch().done ->
+      view = new app.SongsView({collection: app.songs})
+      view.render()
 
 
 

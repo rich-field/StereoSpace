@@ -74,7 +74,7 @@ app.SegmentView = Backbone.View.extend
     app.selectedSegment.destroy()
     app.selectedSegment = null
     app.notes.fetch({data: {segment_id: @.model.get('id')}}).done =>
-    app.notes.each (model) =>
-      # populates the app.notesToPlay object
-      app.notesToPlay[( @.model.get('start_time') + model.get('point_in_segment') )] = model.get('sample_path')
-      # console.log(app.notesToPlay)
+      app.notes.each (model) =>
+        # populates the app.notesToPlay object
+        app.notesToPlay[( @.model.get('start_time') + model.get('point_in_segment') )] = model.get('sample_path')
+        # console.log(app.notesToPlay)

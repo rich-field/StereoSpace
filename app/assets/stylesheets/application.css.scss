@@ -40,8 +40,14 @@ h2 {
   color:#00e1ff;
 }
 
-nav ul {
+nav{
+ ul {
   list-style: none;
+ }
+
+ li {
+  display: inline-block;
+ }
 }
 
 #visualizer {
