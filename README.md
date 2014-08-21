@@ -25,7 +25,7 @@ Right?
 + [ ] ~~Save songs to temp user~~
 + [x] Share songs to collab
 + [ ] "Fork" song
-+ [ ] Preloader
++ [x] Preloader
 + [ ] ~~Email~~
 + [ ] ~~Confirmation emails~~
 + [ ] ~~Reset password emails~~
