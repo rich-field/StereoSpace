@@ -120,7 +120,11 @@ app.SongShowView = Backbone.View.extend
       clearInterval(app.playNotes)
 
   recordSong: ->
-    $('#record').toggleClass('pause-animation')
+    if $('#record').css('-webkit-animation-play-state') == 'running'
+      $('#record').css('-webkit-animation-play-state', 'paused')
+    else
+      $('#record').css('-webkit-animation-play-state', 'running')
+
     if app.recording
       # To stop recording
       app.recording = false
