@@ -10,6 +10,13 @@
   height: 100%;
 }
 
+#initializing {
+  margin: auto;
+  font-size: 33px;
+  position: fixed;
+  bottom: 50%;
+}
+
 .whirlpool {
   width: 100px;
   height: 100px;
@@ -29,7 +36,7 @@
 
 .ring1:before
 {
-  left: 40px;
+  left: 60px;
   width: 40px;
   top: 12px;
   height: 12px;
@@ -38,7 +45,7 @@
 
 .ring2:before
 {
-  left: 35px;
+  left: 50px;
   width: 60px;
   top: 10.5px;
   height: 18px;
@@ -47,7 +54,7 @@
 
 .ring3:before
 {
-  left: 30px;
+  left: 40px;
   width: 80px;
   top: 9px;
   height: 24px;
@@ -56,7 +63,7 @@
 
 .ring4:before
 {
-  left: 25px;
+  left: 30px;
   width: 100px;
   top: 7.5px;
   height: 30px;
@@ -74,7 +81,7 @@
 
 .ring6:before
 {
-  left: 15px;
+  left: 10px;
   width: 140px;
   top: 4.5px;
   height: 42px;
@@ -83,7 +90,7 @@
 
 .ring7:before
 {
-  left: 10px;
+  left: 0px;
   width: 160px;
   top: 3px;
   height: 48px;
@@ -92,7 +99,7 @@
 
 .ring8:before
 {
-  left: 5px;
+  left: -10px;
   width: 180px;
   top: 1.5px;
   height: 54px;
@@ -101,6 +108,7 @@
 
 .ring9:before
 {
+  left: -20px;
   width: 200px;
   height: 60px;
   -webkit-animation: 2.5s ease 0.8s infinite spinner;
