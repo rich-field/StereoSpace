@@ -1,4 +1,4 @@
-#preloader  {
+#preloader {
   position: absolute;
   top: 0;
   left: 0;
@@ -8,8 +8,10 @@
   background-color: #fefefe;
   z-index: 99;
   height: 100%;
+}
 
-  .whirlpool {
+
+.whirlpool {
   width: 100px;
   height: 100px;
   margin: 100px auto;
@@ -105,7 +107,7 @@
   animation: 2.5s ease 0.8s infinite spinner;
 }
 
-@-webkit-keyframes spinner {
+@keyframes spinner {
   0% {
     transform: translateY(10px);
     animation-timing-function: cubic-bezier(0.455, 0.030, 0.515, 0.955);
@@ -119,5 +121,3 @@
     animation-timing-function: cubic-bezier(0.455, 0.030, 0.515, 0.955);
   }
 }
-}
-
