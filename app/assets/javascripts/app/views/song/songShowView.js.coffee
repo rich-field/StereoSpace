@@ -146,6 +146,7 @@ app.SongShowView = Backbone.View.extend
       app.$segment = null
       # re-render the timelines
       app.segment.save({duration: duration}).done (response) =>
+        app.notesToPlay = {}
         @.renderTimelines()
     else
       # to start recording
