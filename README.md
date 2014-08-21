@@ -1,6 +1,7 @@
 # STEREOSPACE
 
-StereoSpace is an online sound studio. I.E. LE SICKEST SHIT OUT
+StereoSpace is an online sound studio built as a single page application somewhat like Garage Band, Scratch Live or other staple sound producing software however this runs in your browser. Win! Right?
+
 
 ## Built With
 
