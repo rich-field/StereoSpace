@@ -47,6 +47,8 @@ app.SongShowView = Backbone.View.extend
           app.segment = new app.Segment
             timeline_id: if app.selectedTimeline then app.selectedTimeline.get('id') else app.timelines.last().get('id')
             start_time: app.startRecordTime
+          $segment = $('<div/>')
+          $segment.addClass('segment')
           app.seekerOnSegment = true
         app.segment.save().done ->
           note = new app.Note
@@ -55,6 +57,11 @@ app.SongShowView = Backbone.View.extend
             sample_path: app.soundKeys[e.keyCode]
           note.save().done ->
             console.log('made a note')
+            $note = $('<div/>')
+            $note.addClass('note')
+            $note.css('left', ( app.seekerPosition - app.startRecordTime ))
+            $note.append('.timeline')
+
             console.log(( app.seekerPosition - app.startRecordTime ), 'point in segment' )
 
   render: ->
