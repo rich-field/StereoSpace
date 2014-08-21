@@ -1,0 +1,147 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+* {
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  color: white;
+  background-image: url('background.png');
+  background-size: fill;
+  /*background: no-repeat;*/
+}
+
+#visualizer {
+  height: 300px;
+  border: 1px solid black;
+  background-color: black;
+}
+
+#timelines-outer {
+  width: 100%;
+  overflow: scroll;
+  height: 200px;
+  background-color: rgba(0,0,0,0);
+}
+
+.seeker {
+  height: 100%;
+  width: 5px;
+  position: absolute;
+  z-index: 10;
+  /*vertical-align: bottom;*/
+  background-color: #00e1ff;
+  /*box-shadow: 0 0 0 0;*/
+}
+
+.seeker:hover {
+  -webkit-transition: all 0.15s ease-in-out;
+  -moz-transition: all 0.15s ease-in-out;
+  -o-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+  box-shadow: 0 0 15px 5px #00e1ff
+}
+
+.seeker:active {
+  box-shadow: 0 0 15px 5px #00e1ff
+}
+
+#timelines {
+  width: 100px;
+  position: relative;
+}
+
+.timeline {
+  height: 48px;
+  width: 100%;
+  border: 1px solid black;
+  background-color: rgba(2, 7, 51, 0.5);
+}
+
+.timeline.selected {
+  background-color: #bf0000;
+}
+
+.segment {
+  height: 48px;
+  width: 60px;
+  border: 1px solid rgba(0, 0, 0, 1);
+  background: rgba(7, 28, 52, 0.7);
+  position: absolute;
+  display: inline-block;
+  border-radius: 0.7em;
+  -webkit-transition: background 0.15s ease-in-out,
+                      box-shadow 0.15s ease-in-out;
+  -moz-transition: background 0.15s ease-in-out,
+                   box-shadow 0.15s ease-in-out;
+  -o-transition: background 0.15s ease-in-out,
+                 box-shadow 0.15s ease-in-out;
+  transition: background 0.15s ease-in-out,
+              box-shadow 0.15s ease-in-out;
+}
+
+.segment.selected {
+  background-color: #305e90;
+  box-shadow: 0 0 30px 5px #305e90;
+
+}
+
+/*.segment:hover{
+  box-shadow: 0 0 15px 5px #305e90;
+}*/
+
+.note {
+  width: 10px;
+  height: 15px;
+  border-radius: 100%;
+  background-color: #00e1ff;
+  position: absolute;
+  display: inline-block;
+  box-shadow: 0 1px 15px 2px #00e1ff;
+}
+
+.note.selected {
+  background-color: #fff;
+}
+
+#record {
+  border-radius: 100%;
+  background-color: red;
+  height: 5em;
+  width: 5em;
+  position: absolute;
+  left: calc(50vw - 5em);
+}
+
+#song-controls {
+
+}
+
+button {
+  padding: .5em;
+  font-size: 2em;
+  border-radius: .2em;
+  color: #fff;
+  background-color: #305e90;
+  /*background-color: #00e1ff;*/
+  border: 0;
+}
