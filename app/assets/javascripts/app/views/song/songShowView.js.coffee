@@ -44,15 +44,17 @@ app.SongShowView = Backbone.View.extend
         app.notesToPlay[ app.seekerPosition ] = app.soundKeys[ e.keyCode ]
 
         unless app.seekerOnSegment
+          timelineRecordingOn = if app.selectedTimeline then app.selectedTimeline.get('id') else app.timelines.last().get('id')
           app.segment = new app.Segment
-            timeline_id: if app.selectedTimeline then app.selectedTimeline.get('id') else app.timelines.last().get('id')
+            timeline_id: timelineRecordingOn
             start_time: app.startRecordTime
-          $segment = $('<div/>')
-          $segment.css('position', 'absolute')
-          $segment.css('width', (app.startRecordTime + app.seekerPosition))
-          $segment.css('left', (app.startRecordTime + app.seekerPosition))
-          $segment.addClass('segment')
-          $segment.appendTo( $('.timeline:last') )
+          app.$segment = $('<div/>')
+          app.$segment.css('position', 'absolute')
+          app.$segment.css('width', (app.startRecordTime + app.seekerPosition))
+          app.$segment.css('left', (app.startRecordTime + app.seekerPosition))
+          app.$segment.addClass('segment')
+          app.$segment.appendTo( app.selectedTimelineView )
+          # app.$segment.appendTo( $('.timeline.selected') )
           app.seekerOnSegment = true
         app.segment.save().done ->
           note = new app.Note
@@ -63,8 +65,8 @@ app.SongShowView = Backbone.View.extend
             $note = $('<div/>')
             $note.addClass('note')
             $note.css('left', ( app.seekerPosition - app.startRecordTime ))
-            $segment.width( $segment.css('width') + ( app.seekerPosition - app.startRecordTime ) )
-            $note.appendTo($segment)
+            app.$segment.width( app.$segment.css('width') + ( app.seekerPosition - app.startRecordTime ) )
+            $note.appendTo( app.$segment )
 
   render: ->
     $('#visualizer').html('')
@@ -75,7 +77,6 @@ app.SongShowView = Backbone.View.extend
     app.timelines = new app.Timelines
     app.timelines.fetch( {data: {song_id: @.model.get('id')}} ).done =>
       timelines = new app.TimelinesView({collection: app.timelines, song: @.model})
-      app.timelines.save()
 
     @.$el.html( copy )
 
@@ -124,6 +125,7 @@ app.SongShowView = Backbone.View.extend
       console.log(app.seekerPosition, app.startRecordTime)
       duration = app.seekerPosition - app.startRecordTime
       app.seekerOnSegment = false
+      app.$segment = null
 
       app.segment.save({duration: duration}).done (response) ->
         segmentView = new app.SegmentView({model: app.segment})

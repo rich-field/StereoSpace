@@ -9,6 +9,7 @@ app.TimelineView = Backbone.View.extend
     _.bindAll(this, 'render')
     _.bindAll(this, 'keyControls')
     _.bindAll(this, 'deleteTimeline')
+    _.bindAll(this, 'selectTimeline')
     @.model.bind('change', this.render)
 
     $(document).on 'keydown', (e) =>
@@ -29,6 +30,8 @@ app.TimelineView = Backbone.View.extend
     $('.selected').removeClass('selected')
     @.$el.toggleClass('selected')
     app.selectedTimeline = @.model
+    # console.log(@.$el)
+    app.selectedTimelineView = @.$el
     app.selectedNote = null
     app.selectedSegment = null
 
