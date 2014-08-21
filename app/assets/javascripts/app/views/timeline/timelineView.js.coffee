@@ -15,7 +15,6 @@ app.TimelineView = Backbone.View.extend
       @.keyControls(e)
 
   render: ->
-    timelineHTML = Handlebars.compile( app.templates.timelineView )
     # Fetches segments for this timeline
     segments = new app.Segments
     segments.fetch(({data: {timeline_id: @.model.get('id')}})).done =>

@@ -17,7 +17,6 @@ app.NoteView = Backbone.View.extend
 
   render: ->
     @.$el.css('left', @.model.get('point_in_segment'))
-    # @.$el.css('top', @.model.get('point_in_segment')/5])
     return @$el
 
   selectNote: (e) ->

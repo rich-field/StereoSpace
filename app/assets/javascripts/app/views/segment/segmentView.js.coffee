@@ -50,6 +50,8 @@ app.SegmentView = Backbone.View.extend
   selectSegment: (e) ->
     # Prevent the event propogating to parent
     e.stopPropagation()
+    console.log(@.model.get('start_time'), 'start_time' )
+    console.log(@.model.get('duration'), 'duration' )
     $('.selected').removeClass('selected')
     @.$el.addClass('selected')
     app.selectedSegment = @.model
@@ -61,8 +63,6 @@ app.SegmentView = Backbone.View.extend
       e.stopPropagation()
       e.preventDefault()
       @.deleteSegment()
-    else if app.soundKeys[e.keyCode] && app.recording
-      console.log('key in sound')
 
   deleteSegment: ->
     ## FIXME Need to re-get the notes for this song and repopulate app.notes
