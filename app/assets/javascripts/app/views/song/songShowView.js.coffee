@@ -44,18 +44,20 @@ app.SongShowView = Backbone.View.extend
         app.notesToPlay[ app.seekerPosition ] = app.soundKeys[ e.keyCode ]
 
         unless app.seekerOnSegment
-          timelineRecordingOn = if app.selectedTimeline then app.selectedTimeline.get('id') else app.timelines.last().get('id')
+          app.selectedTimeline = app.selectedTimeline or app.timelines.last()
+          app.selectedTimelineView = app.selectedTimelineView or $('.timeline:last')
           app.segment = new app.Segment
-            timeline_id: timelineRecordingOn
+            timeline_id: app.selectedTimeline.get('id')
             start_time: app.startRecordTime
           app.$segment = $('<div/>')
           app.$segment.css('position', 'absolute')
-          app.$segment.css('width', (app.startRecordTime + app.seekerPosition))
+          app.$segment.css('width', (app.seekerPosition - app.startRecordTime))
           app.$segment.css('left', (app.startRecordTime + app.seekerPosition))
           app.$segment.addClass('segment')
           app.$segment.appendTo( app.selectedTimelineView )
           # app.$segment.appendTo( $('.timeline.selected') )
           app.seekerOnSegment = true
+
         app.segment.save().done ->
           note = new app.Note
             point_in_segment: ( app.seekerPosition - app.startRecordTime )
@@ -65,7 +67,7 @@ app.SongShowView = Backbone.View.extend
             $note = $('<div/>')
             $note.addClass('note')
             $note.css('left', ( app.seekerPosition - app.startRecordTime ))
-            app.$segment.width( app.$segment.css('width') + ( app.seekerPosition - app.startRecordTime ) )
+            # app.$segment.css('width', (app.startRecordTime + app.seekerPosition))
             $note.appendTo( app.$segment )
 
   render: ->
@@ -136,11 +138,11 @@ app.SongShowView = Backbone.View.extend
       app.seekerOnSegment = false
       app.recording = true
       console.log(app.notesToPlay)
-
+      # app.$segment.width( app.$segment.css('width') + ( app.seekerPosition - app.startRecordTime ) ) if app.$segment
       app.recordNotes = setInterval ->
         app.seekerPosition++
         # sets the start record time on the first key down
-
+        app.$segment.width( app.$segment.width() + 1 ) if app.$segment
         app.playSound( app.notesToPlay[app.seekerPosition] ) if app.notesToPlay[app.seekerPosition]
         $('.seeker').css('left', app.seekerPosition)
       , 1
