@@ -128,7 +128,8 @@ body {
   background-color: red;
   height: 5em;
   width: 5em;
-  margin-left: 18%;
+  position: absolute;
+  left: calc(50vw - 5em);
 }
 
 #song-controls {

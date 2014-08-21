@@ -60,7 +60,7 @@ app.SongShowView = Backbone.View.extend
             $note = $('<div/>')
             $note.addClass('note')
             $note.css('left', ( app.seekerPosition - app.startRecordTime ))
-            $note.append('.timeline')
+            $note.appendTo('.timeline')
 
             console.log(( app.seekerPosition - app.startRecordTime ), 'point in segment' )
 
