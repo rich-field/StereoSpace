@@ -53,7 +53,7 @@ app.SongShowView = Backbone.View.extend
           app.$segment = $('<div/>')
           app.$segment.css('position', 'absolute')
           app.$segment.css('width', (app.seekerPosition - app.startRecordTime))
-          app.$segment.css('left', (app.seekerPosition - app.startRecordTime))
+          app.$segment.css('left', (app.seekerPosition))
           app.$segment.addClass('segment')
           app.$segment.draggable( {containment: '#timelines', snap: ".timeline", axis: 'x'} )
           app.$segment.appendTo( app.selectedTimelineView )
