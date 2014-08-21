@@ -124,6 +124,7 @@ app.SongShowView = Backbone.View.extend
       clearInterval(app.playNotes)
 
   recordSong: ->
+    $('#record').toggleClass('bounce')
     if app.recording
       # To stop recording
       app.recording = false

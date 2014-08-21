@@ -129,15 +129,6 @@ body {
   background-color: #fff;
 }
 
-/*#record {
-  border-radius: 100%;
-  background-color: red;
-  height: 5em;
-  width: 5em;
-  position: absolute;
-  left: calc(50vw - 5em);
-}*/
-
 #song-controls {
 
 }
@@ -159,7 +150,6 @@ button {
   width: 4.5em;
   height: 4.5em;
   border:2px solid white;
-  // background-image:url("reddot.svg");
   background-size:40% auto;
   background-repeat:no-repeat;
   background-position:50% 50%;
@@ -169,7 +159,6 @@ button {
     -7px -7px 10px -4px $turquoise,
     inset 1px 1px 2px white,
     inset 0 0 10px 2px $turquoise;
-  -webkit-animation:bounce 1s infinite;
 
   &:before, &:after {content:'';position:absolute;}
   &:before {
@@ -217,3 +206,6 @@ button {
   }
 }
 
+.bounce {
+  -webkit-animation:bounce 1s infinite;
+}
