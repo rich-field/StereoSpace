@@ -12,7 +12,7 @@
 #
 
 class Song < ActiveRecord::Base
-  has_many :timelines
-  has_many :segments, :through => :timelines, :dependent => :destroy
+  has_many :timelines, :dependent => :destroy
+  has_many :segments, :through => :timelines
   validates :share_url, :uniqueness => true
 end
