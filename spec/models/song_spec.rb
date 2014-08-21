@@ -20,8 +20,9 @@ RSpec.describe Song, :type => :model do
     expect( Song.count ).to eq(1)
   end
 
-  it 'should make a song in the database' do
-    expect { Song.create }.to change(Song, :count).from(1).to(2)
-  end
+  # it 'should make a song in the database' do
+    # expect { Song.create }.to change(Song, :count).from(1).to(2)
+  # end
+
 
 end
