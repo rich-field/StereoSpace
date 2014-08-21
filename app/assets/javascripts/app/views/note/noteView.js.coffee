@@ -22,9 +22,11 @@ app.NoteView = Backbone.View.extend
 
   selectNote: (e) ->
     e.stopPropagation()
-    $('.note.selected').removeClass('selected')
+    $('.selected').removeClass('selected')
     @.$el.toggleClass('selected')
     app.selectedNote = @.model
+    app.selectedTimelime = null
+    app.selectedSegment = null
 
   keyControls: (e) ->
     if e.keyCode == 8 and app.selectedNote
