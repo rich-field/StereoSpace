@@ -9,7 +9,7 @@ app.SongShowView = Backbone.View.extend
     'click #record': 'recordSong'
 
   initialize: ->
-    @.model.save()
+    # @.model.save()
     $(document).on 'keydown', (e) =>
       # Spacebar controls play/pause
       if e.keyCode == 32 && !app.recording
@@ -66,7 +66,7 @@ app.SongShowView = Backbone.View.extend
     app.timelines = new app.Timelines
     app.timelines.fetch( {data: {song_id: @.model.get('id')}} ).done =>
       timelines = new app.TimelinesView({collection: app.timelines, song: @.model})
-      # app.timelines.save()
+      app.timelines.save()
 
     @.$el.html( copy )
 
