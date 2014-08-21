@@ -1,7 +1,6 @@
 # STEREOSPACE
 
-StereoSpace is an online sound studio. As you build your song, StereoSpace will take you through a journey.
-Larlyn is a fag.
+StereoSpace is an online sound studio. I.E. LE SICKEST SHIT OUT
 
 ## Built With
 
