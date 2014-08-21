@@ -93,7 +93,10 @@ app.SongShowView = Backbone.View.extend
       app.playing = true
       app.playNotes = setInterval ->
         app.seekerPosition++
-        app.playSound( app.notesToPlay[app.seekerPosition] ) if app.notesToPlay[app.seekerPosition]
+        if app.notesToPlay[app.seekerPosition]
+          # app.source.stop(0) if app.currentSound = app.notesToPlay[app.seekerPosition] && app.source
+          app.playSound( app.notesToPlay[app.seekerPosition] )
+          app.currentSound = app.notesToPlay[app.seekerPosition]
         console.log( app.seekerPosition ) if app.notesToPlay[app.seekerPosition]
         $('.seeker').css('left', app.seekerPosition)
       , 1
