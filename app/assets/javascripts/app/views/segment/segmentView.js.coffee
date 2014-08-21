@@ -51,8 +51,6 @@ app.SegmentView = Backbone.View.extend
   selectSegment: (e) ->
     # Prevent the event propogating to parent
     e.stopPropagation()
-    console.log(@.model.get('start_time'), 'start_time' )
-    console.log(@.model.get('duration'), 'duration' )
     $('.selected').removeClass('selected')
     @.$el.addClass('selected')
     app.selectedSegment = @.model

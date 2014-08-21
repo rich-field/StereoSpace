@@ -40,23 +40,21 @@ app.SongShowView = Backbone.View.extend
       if app.soundKeys[e.keyCode] && app.recording
         app.startRecordTime = app.seekerPosition unless app.startRecordTime
 
+        app.notesToPlay[ app.seekerPosition ] = app.soundKeys[ e.keyCode ]
+
         unless app.seekerOnSegment
           app.segment = new app.Segment
             timeline_id: if app.selectedTimeline then app.selectedTimeline.get('id') else app.timelines.last().get('id')
             start_time: app.startRecordTime
-          app.segment.save()
           app.seekerOnSegment = true
-
-        app.notesToPlay[ app.seekerPosition ] = app.soundKeys[ e.keyCode ]
-        console.log( app.seekerPosition )
-
-        note = new app.Note
-          point_in_segment: ( app.seekerPosition - app.startRecordTime )
-          segment_id: app.segment.get('id')
-          sample_path: "/audios/#{app.soundKeys[e.keyCode]}.wav"
-        note.save().done ->
-          console.log('made a note')
-          console.log(( app.seekerPosition - app.startRecordTime ), 'point in segment' )
+        app.segment.save().done ->
+          note = new app.Note
+            point_in_segment: ( app.seekerPosition - app.startRecordTime )
+            segment_id: app.segment.get('id')
+            sample_path: "/audios/#{app.soundKeys[e.keyCode]}.wav"
+          note.save().done ->
+            console.log('made a note')
+            console.log(( app.seekerPosition - app.startRecordTime ), 'point in segment' )
 
   render: ->
     $('#visualizer').html('')
