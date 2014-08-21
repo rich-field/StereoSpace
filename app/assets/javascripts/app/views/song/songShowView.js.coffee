@@ -48,6 +48,9 @@ app.SongShowView = Backbone.View.extend
             timeline_id: if app.selectedTimeline then app.selectedTimeline.get('id') else app.timelines.last().get('id')
             start_time: app.startRecordTime
           $segment = $('<div/>')
+          $segment.css('position', 'absolute')
+          $segment.css('width', (app.startRecordTime + app.seekerPosition))
+          $segment.css('left', (app.startRecordTime + app.seekerPosition))
           $segment.addClass('segment')
           $segment.appendTo( $('.timeline:last') )
           app.seekerOnSegment = true
