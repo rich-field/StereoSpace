@@ -148,7 +148,7 @@ app.SongShowView = Backbone.View.extend
       app.recordNotes = setInterval ->
         app.seekerPosition++
         # sets the start record time on the first key down
-        app.$segment.width( app.$segment.width() + 1 ) if app.$segment
+        app.$segment.css("width", "+=1") if app.$segment
         app.playSound( app.notesToPlay[app.seekerPosition] ) if app.notesToPlay[app.seekerPosition]
         $('.seeker').css('left', app.seekerPosition)
       , 1
