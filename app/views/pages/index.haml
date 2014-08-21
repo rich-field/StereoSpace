@@ -38,14 +38,14 @@
     URL: {{ share_url }}
 
 %script#song-show-template{type: 'text/template'}
-  %h1 Title: {{ title }}
-  %h2 Duration: {{ duration }}
+  -# %h1 Title: {{ title }}
+  -# %h2 Duration: {{ duration }}
   %div#timelines-outer
     %div#timelines
   %div#song-controls
     %button#add-timeline Add new timeline
     %button#save-song save song
-    %button#record record
+    %button#record.bounce record
     %button#rewind rewind
 
 

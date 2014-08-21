@@ -124,6 +124,7 @@ app.SongShowView = Backbone.View.extend
       clearInterval(app.playNotes)
 
   recordSong: ->
+    $('#record').toggleClass('bounce')
     if app.recording
       # To stop recording
       app.recording = false
@@ -144,7 +145,6 @@ app.SongShowView = Backbone.View.extend
       app.seekerOnSegment = false
       app.recording = true
       console.log(app.notesToPlay)
-      # app.$segment.width( app.$segment.css('width') + ( app.seekerPosition - app.startRecordTime ) ) if app.$segment
       app.recordNotes = setInterval ->
         app.seekerPosition++
         # sets the start record time on the first key down
