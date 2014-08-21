@@ -97,7 +97,6 @@ body {
                  box-shadow 0.15s ease-in-out;
   transition: background 0.15s ease-in-out,
               box-shadow 0.15s ease-in-out;
-
 }
 
 .segment.selected {

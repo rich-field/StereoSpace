@@ -21,6 +21,7 @@ app.SegmentView = Backbone.View.extend
   render: ->    # The model is the specific track passed into the timeline view
     @.$el.css('width', @.model.get('duration') + 'px' )
     @.$el.css('left', @.model.get('start_time') + 'px' )
+    @.$el.css('position', 'absolute' )
 
     # To keep track of where the segment is when it's rendered
     @.point_in_timeline = @.$el.css('left')
