@@ -12,5 +12,5 @@
 #
 
 class Note < ActiveRecord::Base
-  belongs_to :sample
+  belongs_to :segment
 end
