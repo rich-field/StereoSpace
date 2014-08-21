@@ -70,23 +70,36 @@ app.SongShowView = Backbone.View.extend
     html = Handlebars.compile( app.templates.songShowView )
     copy = html( this.model.toJSON() )
 
-    # Renders all the timelines this song
-    app.timelines = new app.Timelines
-    app.timelines.fetch( {data: {song_id: @.model.get('id')}} ).done =>
-      timelines = new app.TimelinesView({collection: app.timelines, song: @.model})
+    @.renderTimelines()
 
     @.$el.html( copy )
-
-    # adds seeker to timelines div
-    $seeker = $('<div/>')
-    $seeker.addClass('seeker')
-    $('#timelines').append($seeker)
-    $('.seeker').draggable({axis: 'x', containment: '#timelines'})
 
     $(document).on 'keydown', (e) =>
       # Spacebar controls play/pause
       if e.keyCode == 32 && !app.recording
         @.playSong(e)
+
+    @.renderSeeker()
+
+  renderTimelines: ->
+    # Renders all the timelines this song
+    app.timelines = new app.Timelines
+    app.timelines.fetch( {data: {song_id: @.model.get('id')}} ).done =>
+      timelines = new app.TimelinesView({collection: app.timelines, song: @.model})
+      @.renderSeeker()
+
+
+  renderSeeker: ->
+    # adds seeker to timelines div
+    $seeker = $('<div/>')
+    .addClass('seeker')
+    .draggable({axis: 'x', containment: '#timelines'})
+    .css('position', 'absolute')
+    .css('top', 0)
+    .css('left', app.seekerPosition)
+    .appendTo( $('#timelines') )
+
+
 
   addTimeline: ->
     newTimeline = new app.Timeline({song_id: @.model.get('id')})
@@ -137,8 +150,9 @@ app.SongShowView = Backbone.View.extend
       app.$segment = null
 
       app.segment.save({duration: duration}).done (response) =>
-        thisSongView = new app.SongShowView(model: @.model)
-        thisSongView.render()
+        @.renderTimelines()
+        # thisSongView = new app.SongShowView(model: @.model)
+        # thisSongView.render()
     else
       # to start recording
       app.seekerOnSegment = false
