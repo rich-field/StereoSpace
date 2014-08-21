@@ -6,7 +6,6 @@ app.NoteView = Backbone.View.extend
   events:
     'click': 'selectNote'
     'keydown': 'keyControls'
-    # 'mouseover': 'playNote'
 
   initialize: ->
 
@@ -20,11 +19,6 @@ app.NoteView = Backbone.View.extend
     @.$el.css('left', @.model.get('point_in_segment'))
     # @.$el.css('top', @.model.get('point_in_segment')/5])
     return @$el
-
-  # playNote: ->
-    # console.log('homajebus plz work')
-    # console.log(@.model.get('sample_path'))
-    # app.playSound( @.model.get('sample_path').replace(".wav","").replace("/audios/", "") )
 
   selectNote: (e) ->
     e.stopPropagation()
