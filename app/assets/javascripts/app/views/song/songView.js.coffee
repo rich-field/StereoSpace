@@ -17,5 +17,5 @@ app.SongView = Backbone.View.extend
     return @.$el
 
   view: ->
-    app.router.navigate("songs/#{@.model.get('id')}", true)
+    app.router.navigate("songs/#{@.model.get('share_url')}", true)
 

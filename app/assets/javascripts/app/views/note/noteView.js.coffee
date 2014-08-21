@@ -34,6 +34,7 @@ app.NoteView = Backbone.View.extend
       @.deleteNote()
 
   deleteNote: ->
-      $('.note.selected').remove()
-      app.selectedNote.destroy()
-      app.selectedNote = null
+    $('.note.selected').remove()
+    app.selectedNote.destroy()
+    app.selectedNote = null
+    app.notes.fetch().done ->

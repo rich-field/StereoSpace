@@ -30,7 +30,6 @@ app.TimelineView = Backbone.View.extend
     $('.selected').removeClass('selected')
     @.$el.toggleClass('selected')
     app.selectedTimeline = @.model
-    # console.log(@.$el)
     app.selectedTimelineView = @.$el
     app.selectedNote = null
     app.selectedSegment = null

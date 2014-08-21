@@ -32,10 +32,6 @@ app.SongShowView = Backbone.View.extend
     # clears the notes to play when you get to a different song view
     app.notesToPlay = {}
 
-    app.playing = false # Init app.playing to be false
-    app.recording = false # Init app.recording to be false
-    app.seekerPosition = 0
-
     $(document).on 'keydown', (e) ->
       # Will only run if the key pressed is a soundboard key and the app is recording
       if app.soundKeys[e.keyCode] && app.recording
@@ -124,7 +120,7 @@ app.SongShowView = Backbone.View.extend
       clearInterval(app.playNotes)
 
   recordSong: ->
-    $('#record').toggleClass('bounce')
+    $('#record').toggleClass('pause-animation')
     if app.recording
       # To stop recording
       app.recording = false
