@@ -7,7 +7,7 @@ app.SongShowView = Backbone.View.extend
     'click #save-song': 'saveSong'
     'click #rewind': 'rewindSeeker'
     'click #record': 'recordSong'
-
+    'mouseup .seeker': 'repositionSeeker'
   initialize: ->
     # @.model.save()
     $(document).on 'keydown', (e) =>
@@ -53,7 +53,7 @@ app.SongShowView = Backbone.View.extend
           app.$segment = $('<div/>')
           app.$segment.css('position', 'absolute')
           app.$segment.css('width', (app.seekerPosition - app.startRecordTime))
-          app.$segment.css('left', (app.startRecordTime + app.seekerPosition))
+          app.$segment.css('left', (app.seekerPosition - app.startRecordTime))
           app.$segment.addClass('segment')
           app.$segment.draggable( {containment: '#timelines', snap: ".timeline", axis: 'x'} )
           app.$segment.appendTo( app.selectedTimelineView )
@@ -67,7 +67,7 @@ app.SongShowView = Backbone.View.extend
           note.save().done ->
             $note = $('<div/>')
             $note.addClass('note')
-            $note.css('left', ( app.seekerPosition - app.startRecordTime ))
+            $note.css('left', (app.seekerPosition - app.startRecordTime) )
             # app.$segment.css('width', (app.startRecordTime + app.seekerPosition))
             $note.appendTo( app.$segment )
 
@@ -120,6 +120,7 @@ app.SongShowView = Backbone.View.extend
       clearInterval(app.playNotes)
 
   recordSong: ->
+    # To pause bounce animation
     if $('#record').css('-webkit-animation-play-state') == 'running'
       $('#record').css('-webkit-animation-play-state', 'paused')
     else
@@ -152,3 +153,6 @@ app.SongShowView = Backbone.View.extend
         app.playSound( app.notesToPlay[app.seekerPosition] ) if app.notesToPlay[app.seekerPosition]
         $('.seeker').css('left', app.seekerPosition)
       , 1
+
+  repositionSeeker: ->
+    app.seekerPosition = parseInt( $('.seeker').css('left') )

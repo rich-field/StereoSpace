@@ -16,14 +16,18 @@ app.Router = Backbone.Router.extend
     # loads all sounds
     # when done, open songView
     app.song = new app.Song({title: 'New song', duration: 30000})
+    console.log(app.song, 'RRR')
     app.song.save().done ->
+      console.log(app.song, 'ASJA')
       app.router.navigate("songs/#{app.song.get('share_url')}", true)
     # view = new app.SongShowView( model: app.song )
     # view.render()
 
   show: (id) ->
     app.song = app.songs.findWhere(share_url: id)
-    view = new app.SongShowView( model: app.song )
+    # until app.song
+      # app.song = app.songs.findWhere(share_url: id)
+    view = new app.SongShowView(model: app.song)
     view.render()
 
   songsIndex: ->
