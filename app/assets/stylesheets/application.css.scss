@@ -14,8 +14,8 @@
  *= require_self
  */
 
-$turquoise:#17beab;
-$blue:#071321;
+$turquoise: #D50408;
+$blue: #D50408;
 
 *, *:before, *:after {
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -161,8 +161,8 @@ button {
   font-size: 2em;
   border-radius: .2em;
   color: #fff;
-  background-color: #1A2553;
-  /*background-color: #00e1ff;*/
+  // background-color: #1A2553;
+  background-color: #00e1ff;
   border: 0;
 }
 
@@ -176,6 +176,7 @@ button {
   background-size:40% auto;
   background-repeat:no-repeat;
   background-position:50% 50%;
+  background-color: #D50408;
   border-radius:50%;
   box-shadow:
     0 0 20px 2px $turquoise,
