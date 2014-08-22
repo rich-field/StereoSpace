@@ -164,6 +164,7 @@ button {
   background-color: #1A2553;
   /*background-color: #00e1ff;*/
   border: 0;
+  border:2px solid white;
 }
 
 #record {
@@ -172,10 +173,10 @@ button {
   display:inline-block;
   width: 4.5em;
   height: 4.5em;
-  border:2px solid white;
   background-size:40% auto;
   background-repeat:no-repeat;
   background-position:50% 50%;
+  background-color: #bf0000;
   border-radius:50%;
   box-shadow:
     0 0 20px 2px $turquoise,
@@ -212,6 +213,7 @@ button {
     -webkit-animation:glow 1s infinite;
   }
 }
+
 @-webkit-keyframes bounce {
   0%, 100% {
     -webkit-transform:translateY(-7%);background-position:50% 48%;}
