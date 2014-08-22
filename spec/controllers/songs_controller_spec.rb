@@ -19,9 +19,9 @@ RSpec.describe SongsController, :type => :controller do
 
   describe 'CREATE /songs' do
     before do
-      get :index
+      get :create
     end
-    it 'should assign @songs to all songs' do
+    it 'should create a song' do
       expect( assigns(:songs).count ).to eq(3)
     end
   end

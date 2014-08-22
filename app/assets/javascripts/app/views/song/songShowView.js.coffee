@@ -153,7 +153,7 @@ app.SongShowView = Backbone.View.extend
       app.seekerOnSegment = false
       app.recording = true
 
-      $('#record').text('recording')
+      $('#record').text('stop')
       console.log(app.notesToPlay)
       app.recordNotes = setInterval ->
         app.seekerPosition++
