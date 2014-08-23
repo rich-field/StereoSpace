@@ -33,12 +33,23 @@ app.SegmentView = Backbone.View.extend
     # Checks if the left position has moved and saves the model
     if @.point_in_timeline != @.$el.css('left')
       @.model.save({start_time: parseInt(@.$el.css('left')) })
-    app.notesToPlay = {}
-    app.notes.fetch({data: {segment_id: @.model.get('id')}}).done =>
-      app.notes.each (model) =>
+    # app.notesToPlay = {}
+    # app.notes.fetch({data: {segment_id: @.model.get('id')}}).done =>
+      # app.notes.each (model) =>
         # populates the app.notesToPlay object
-        app.notesToPlay[( @.model.get('start_time') + model.get('point_in_segment') )] = model.get('sample_path')
-        console.log(app.notesToPlay)
+        # app.notesToPlay[( @.model.get('start_time') + model.get('point_in_segment') )] = model.get('sample_path')
+        # console.log(app.notesToPlay)
+    @.reRenderTimelines()
+    @renderSeeker()
+  renderSeeker: ->
+    # adds seeker to timelines div
+    $seeker = $('<div/>')
+    .addClass('seeker')
+    .draggable({axis: 'x', containment: '#timelines'})
+    .css('position', 'absolute')
+    .css('top', 0)
+    .css('left', app.seekerPosition)
+    .appendTo( $('#timelines') )
 
   renderNotes: ->
     # Clears notes before re rendering
@@ -73,8 +84,11 @@ app.SegmentView = Backbone.View.extend
     $('.segment.selected').remove()
     app.selectedSegment.destroy()
     app.selectedSegment = null
-    app.notes.fetch({data: {segment_id: @.model.get('id')}}).done =>
-      app.notes.each (model) =>
-        # populates the app.notesToPlay object
-        app.notesToPlay[( @.model.get('start_time') + model.get('point_in_segment') )] = model.get('sample_path')
-        # console.log(app.notesToPlay)
+    # app.notes.fetch({data: {segment_id: @.model.get('id')}}).done =>
+    #   app.notes.each (model) =>
+    #     # populates the app.notesToPlay object
+    #     app.notesToPlay[( @.model.get('start_time') + model.get('point_in_segment') )] = model.get('sample_path')
+    #     # console.log(app.notesToPlay)
+
+  reRenderTimelines: ->
+    timelines = new app.TimelinesView({collection: app.timelines, song: app.song})
