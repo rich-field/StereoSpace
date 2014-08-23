@@ -34,8 +34,8 @@ app.SongShowView = Backbone.View.extend
 
         unless app.seekerOnSegment
           # makes sure the segment is being recorded and appended to a timeline div
+          app.selectedTimelineView = if app.selectedTimeline then app.selectedTimelineView else $('.timeline:last')
           app.selectedTimeline = app.selectedTimeline or app.timelines.last()
-          app.selectedTimelineView = app.selectedTimelineView or $('.timeline:last')
 
           # creates new segment
           app.segment = new app.Segment
