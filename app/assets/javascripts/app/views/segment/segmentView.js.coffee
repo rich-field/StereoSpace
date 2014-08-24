@@ -39,8 +39,8 @@ app.SegmentView = Backbone.View.extend
         # populates the app.notesToPlay object
         # app.notesToPlay[( @.model.get('start_time') + model.get('point_in_segment') )] = model.get('sample_path')
         # console.log(app.notesToPlay)
-    @.reRenderTimelines()
-    @renderSeeker()
+      @.reRenderTimelines()
+      @renderSeeker()
   renderSeeker: ->
     # adds seeker to timelines div
     $seeker = $('<div/>')
