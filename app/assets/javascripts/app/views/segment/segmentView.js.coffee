@@ -84,6 +84,8 @@ app.SegmentView = Backbone.View.extend
     $('.segment.selected').remove()
     app.selectedSegment.destroy()
     app.selectedSegment = null
+    @.reRenderTimelines()
+    @.renderSeeker()
     # app.notes.fetch({data: {segment_id: @.model.get('id')}}).done =>
     #   app.notes.each (model) =>
     #     # populates the app.notesToPlay object
