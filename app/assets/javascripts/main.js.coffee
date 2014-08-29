@@ -1,8 +1,15 @@
+# Namespacing
 window.app = window.app or {}
 
+# Preloader function
+# The preloader div will not disappear until assets are loaded
 window.onload = ->
   $(document).ready ->
+
+    # Delays the preloader fading out by 2 seconds after everything has loaded
     $('#preloader').delay(2000).fadeOut()
+
+    # Grabs templates off the page for use in views
     app.templates = {
       appView: $('#app-template').html()
       songsView: $('#songs-template').html()
@@ -13,18 +20,16 @@ window.onload = ->
       segmentView: $('#segment-template').html()
     }
 
+    # Instaniates new collections to fetch later
     app.segments = new app.Segments
     app.samples = new app.Samples
     app.notes = new app.Notes
     app.songs = new app.Songs
     app.soundboards = new app.Soundboards
 
-    startApp = ->
+    # Fetches all songs
+    app.songs.fetch().done ->
+
+      # Starts router when done fetching
       app.router = new app.Router
       Backbone.history.start()
-
-    counter = 0
-
-    app.songs.fetch().done ->
-      counter++
-      startApp() if counter == 1
