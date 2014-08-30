@@ -68,17 +68,35 @@ app.playSound = (sound, silent) ->
 
 # Take the audio data and play it
 app.processAudio = (data) ->
+  # Decodes audiodata in the set up audiocontext
+  # It takes two args:
+  # 1. The data to decode
+  # 2. A function that will have a buffer passed in
   app.Sound.audioContext.decodeAudioData data, (buffer) ->
+    # Sets up the source(input) for the sound
     app.source = app.Sound.audioContext.createBufferSource()
+    # Takes the buffer and puts it in a variable
     myBuffer = buffer
+    # Sets the current source buffer to the set buffer
     app.source.buffer = myBuffer
+    # Connects the source to the analyser node..
     app.source.connect app.Sound.analyserNode
+    # .. and the analyser node to the destination(output)
     app.Sound.analyserNode.connect app.Sound.audioContext.destination
+    # Disables looping of the sound
     app.source.loop = false
+
+    # This is where you set the interval to get the frequency & time domain data
     # setInterval (->
       # console.log app.Sound.getFrequencyDomain()
       # return
     # ), 500
+
+    # Plays the sound
+        # The first number is how long from now to play the sound
+        # The second number is the start point in the sound
+        # The third number is where the sound will stop
+        # These are in seconds
     app.source.start(0,0,1.8)
     return
 
