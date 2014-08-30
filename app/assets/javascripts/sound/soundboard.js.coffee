@@ -1,6 +1,12 @@
+# Namespacing!
 window.app = window.app or {}
 
+# Makes new empty object to hold sounds in binary data.
+# This will prevent unnesesary requests to the server.
 app.sounds = {}
+
+# Sets up the bound keys for sound like so:
+# { keyCode: 'filename' }
 app.soundKeys =
     81: 'q'#Q
     87: 'w'#W
@@ -33,23 +39,34 @@ app.soundKeys =
     190: 'fullstop'#.
     188: 'comma'#,
 
+# Sets up the function to actually play the sound
+# It takes the sound as the first param and a boolean for the second
 app.playSound = (sound, silent) ->
+
+  # This will only send a request if the binary data for the wav file has not been inserted into the app.sounds object
   unless app.sounds[sound]
     # Note: this will load asynchronously
     request = new XMLHttpRequest()
     request.open "GET", "/audios/" + sound + ".wav", true
-    request.responseType = "arraybuffer" # Read as binary data
+    # Read as binary data
+    request.responseType = "arraybuffer"
 
-    # Asynchronous callback
+    # When the request has finished loading
     request.onload = ->
+      # Set the audioData to the response we get back
       audioData = request.response;
+      # Put the data into the sound object
       app.sounds[sound] = audioData
+      # Play the sound via Web audio api node setup unless the silent param is true
       app.processAudio(audioData) unless silent
 
+    # Send the request, not waiting for the previous requests to finish
     request.send()
   else
+    # Play the sound via Web audio api node setup
     app.processAudio(app.sounds[sound])
 
+# Take the audio data and play it
 app.processAudio = (data) ->
   app.Sound.audioContext.decodeAudioData data, (buffer) ->
     app.source = app.Sound.audioContext.createBufferSource()
@@ -65,16 +82,24 @@ app.processAudio = (data) ->
     app.source.start(0,0,1.8)
     return
 
-# Load all sounds
+# Load all sounds on start, with silent = true
 app.playSound(app.soundKeys[sound], true) for sound of app.soundKeys
 
 $(document).ready ->
-
+  # listens for a keydown event
   $(document).on 'keydown', (e) ->
+
+    # Sets var to be a value inside the key binding object
+    # The keyCode is attached to the key event
     soundId = app.soundKeys[e.keyCode]
+    # If the value exists
     if soundId
+      # Prevent 'Sound layering'
+      # This will stop the sound currently playing if the same key is pressed twice in quick succession
       app.source.stop(0) if app.currentSound == app.sounds[soundId]
+      # Plays the sound on keypress
       app.playSound(soundId)
+      # Sets the previously pressed key to be the current playing sound
       app.currentSound = app.sounds[soundId]
 
 
