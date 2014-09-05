@@ -6,9 +6,6 @@ window.app = window.app or {}
 app.SongShowView = Backbone.View.extend
   el: '#song'
   events:
-    'click #add-timeline': 'addTimeline'
-    'click #rewind': 'rewindSeeker'
-    'click #record': 'recordSong'
     'mouseup .seeker': 'repositionSeeker'
   initialize: ->
     # To deselect the selected elements
@@ -67,6 +64,18 @@ app.SongShowView = Backbone.View.extend
             .css('left', (app.seekerPosition - app.startRecordTime) )
             .appendTo( app.$segment )
 
+    $('#hello').on 'click', ->
+     @.remove()
+
+    $('#play').on 'click', =>
+      @playSong()
+
+    $('#record').on 'click', =>
+      @recordSong()
+
+    $('#add-timeline').on 'click', =>
+      @addTimeline()
+
   render: ->
     $('#visualizer').html('')
     html = Handlebars.compile( app.templates.songShowView )
@@ -120,7 +129,7 @@ app.SongShowView = Backbone.View.extend
       app.playNotes = setInterval ->
         app.seekerPosition++
         if app.notesToPlay[app.seekerPosition]
-          # app.source.stop(0) if app.currentSound = app.notesToPlay[app.seekerPosition] && app.source
+          app.source.stop(0) if app.currentSound = app.notesToPlay[app.seekerPosition] && app.source
           app.playSound( app.notesToPlay[app.seekerPosition] )
           app.currentSound = app.notesToPlay[app.seekerPosition]
         console.log( app.seekerPosition ) if app.notesToPlay[app.seekerPosition]
@@ -131,12 +140,6 @@ app.SongShowView = Backbone.View.extend
       clearInterval(app.playNotes)
 
   recordSong: ->
-    # To pause bounce animation
-    if $('#record').css('-webkit-animation-play-state') == 'running'
-      $('#record').css('-webkit-animation-play-state', 'paused')
-    else
-      $('#record').css('-webkit-animation-play-state', 'running')
-
     if app.recording
       # To stop recording
       app.recording = false

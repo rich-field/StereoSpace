@@ -26,12 +26,6 @@
   %div#song
 
 
-%script#app-template{type: 'text/template'}
-  %div#visualizer
-    this is the vizualizeur
-
-  %div#song
-
 %script#songs-template{type: 'text/template'}
   %h2 Recent songs
   %div#song-list
@@ -55,7 +49,6 @@
     -# %button#rewind rewind
 
 
-
 %script#timelines-template{type: 'text/template'}
   %div#timelines
 
@@ -63,7 +56,7 @@
 
 
 %script#segment-template{type: 'text/template'}
-
+  %div{:class => 'segment'}
 
 %script#note-template{type: 'text/template'}
 

@@ -32,14 +32,19 @@ $alert-border: #222;
   margin: 0;
 }
 
+html {
+  height: 100vh;
+  overflow: hidden;
+
+}
+
 
 body {
   width: 100%;
+  height: 100vh;
   color: white;
-  background-image: url('background.png');
-  background-size: fill;
+
   font-family: Roboto, sans-serif;
-  /*background: no-repeat;*/
 }
 
 h2 {
@@ -73,12 +78,13 @@ nav{
 #main {
   margin-left: 10%;
   width: 90%;
+  height: 100vh;
   display: inline-block;
 }
 
 #hello {
   // height: 100px;
-  position: absolute;
+  position: fixed;
   background-color: $alert-background;
   padding: 1em 2em;
 
@@ -90,11 +96,11 @@ nav{
 
   #summary {
     display: inline-block;
-    width: 80%;
+    width: 90%;
     vertical-align: top;
 
     p {
-      width: 40%;
+      width: 50%;
       display: inline-block;
       vertical-align: top;
       margin: 0 10px;
@@ -106,17 +112,21 @@ nav{
 
 #visualizer {
   height: 100vh;
-  border: 1px solid black;
+  // border: 1px solid black;
   background-color: black;
   overflow: auto;
 }
 
-#timelines-outer {
+#song {
   width: 100%;
+}
+
+#timelines-outer {
+  width: 90%;
   overflow: scroll;
-  height: 200px;
+  max-height: 180px;
   background-color: rgba(0,0,0,0);
-  position: fixed;
+  position: absolute;
   bottom: 0;
   background: $box-background;
 }
@@ -144,7 +154,7 @@ nav{
 }
 
 #timelines {
-  width: 100px;
+  // width: 100px;
   position: relative;
 }
 

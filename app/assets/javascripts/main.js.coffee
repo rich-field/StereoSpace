@@ -7,7 +7,7 @@ window.onload = ->
   $(document).ready ->
 
     # Delays the preloader fading out by 2 seconds after everything has loaded
-    $('#preloader').delay(2000).fadeOut()
+    $('#preloader').delay(1000).fadeOut()
 
     # Grabs templates off the page for use in views
     app.templates = {
