@@ -1,4 +1,8 @@
+# Namespace
 window.app = window.app or {}
+
+# Creates a constructor for the songlist view
+# Expects a song collection to be passed in {collection: app.songs}
 app.SongsView = Backbone.View.extend
   el: '#visualizer'
 

@@ -1,5 +1,8 @@
+# Namespacing
 window.app = window.app or {}
 
+# Creates a constructor to make a segment view
+# Expects a segment to be passed in {model: segment}
 app.SegmentView = Backbone.View.extend
   tagName: 'div'
   className: 'segment'
@@ -30,17 +33,17 @@ app.SegmentView = Backbone.View.extend
     return @.$el
 
   moveTrack: ->
-    # Checks if the left position has moved and saves the model
+    # Checks if the left position has moved and saves the model if so
     if @.point_in_timeline != @.$el.css('left')
-      @.model.save({start_time: parseInt(@.$el.css('left')) })
-    # app.notesToPlay = {}
-    # app.notes.fetch({data: {segment_id: @.model.get('id')}}).done =>
-      # app.notes.each (model) =>
-        # populates the app.notesToPlay object
-        # app.notesToPlay[( @.model.get('start_time') + model.get('point_in_segment') )] = model.get('sample_path')
-        # console.log(app.notesToPlay)
-      @.reRenderTimelines()
-      @renderSeeker()
+      @.model.save({start_time: parseInt(@.$el.css('left')) }).done ->
+        @.reRenderTimelines()
+        @renderSeeker()
+      # app.notesToPlay = {}
+      # app.notes.fetch({data: {segment_id: @.model.get('id')}}).done =>
+        # app.notes.each (model) =>
+          # populates the app.notesToPlay object
+          # app.notesToPlay[( @.model.get('start_time') + model.get('point_in_segment') )] = model.get('sample_path')
+          # console.log(app.notesToPlay)
   renderSeeker: ->
     # adds seeker to timelines div
     $seeker = $('<div/>')

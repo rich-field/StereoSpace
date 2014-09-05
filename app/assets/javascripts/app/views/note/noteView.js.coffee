@@ -1,8 +1,13 @@
+# Namespacing
 window.app = window.app or {}
 
+# Instantiates a constructor for a single note view within a segment.
+# Expects a note to be passed in {model: note}
 app.NoteView = Backbone.View.extend
+  # Creates a new <div> with the classname .note
   tagName: 'div'
   className: 'note'
+  # Listens for click and keydown events, sending them to functions within this constructor
   events:
     'click': 'selectNote'
     'keydown': 'keyControls'

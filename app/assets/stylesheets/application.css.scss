@@ -22,12 +22,12 @@ $blue: #D50408;
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
   box-sizing: border-box;         /* Opera/IE 8+ */
   outline: 0;
+  padding: 0;
+  margin: 0;
 }
 
 
 body {
-  margin: 0;
-  padding: 0;
   width: 100%;
   color: white;
   background-image: url('background.png');
@@ -41,19 +41,35 @@ h2 {
 }
 
 nav{
- ul {
-  list-style: none;
- }
-
- li {
+  width: 10%;
+  position: relative;
+  left: 0;
   display: inline-block;
- }
+  vertical-align: top;
+  ul {
+    list-style: none;
+  }
 
- a{
-  text-decoration: none;
-  color: white;
-  padding: 0 1em 0 1em;
- }
+  li {
+    display: inline-block;
+  }
+
+  a{
+    text-decoration: none;
+    color: white;
+    padding: 0 1em 0 1em;
+  }
+}
+
+#main {
+  width: 90%;
+  display: inline-block;
+}
+
+#hello {
+  height: 100px;
+  position: absolute;
+  background-color: #ddd;
 }
 
 #visualizer {

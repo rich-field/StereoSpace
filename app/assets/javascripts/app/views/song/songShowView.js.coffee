@@ -1,5 +1,8 @@
+# Namespace
 window.app = window.app or {}
 
+# Creates a constructor for a single songs "show" page
+# This expects a song to be passed in
 app.SongShowView = Backbone.View.extend
   el: '#song'
   events:

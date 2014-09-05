@@ -20,12 +20,8 @@ window.onload = ->
       segmentView: $('#segment-template').html()
     }
 
-    # Instaniates new collections to fetch later
-    app.segments = new app.Segments
-    app.samples = new app.Samples
-    app.notes = new app.Notes
+    # Instaniates new collection to fetch later
     app.songs = new app.Songs
-    app.soundboards = new app.Soundboards
 
     # Fetches all songs
     app.songs.fetch().done ->

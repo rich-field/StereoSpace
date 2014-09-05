@@ -29,7 +29,9 @@ app.Sound =
 
   # ------------------------------
   # Example of an audio connection
-  # Source node->Gain node-> Analyser node -> Output node
+  #
+  # Source node -> Gain node-> Analyser node -> Output node
+  # ------------------------------
   # connectAudioNodes: ->
     # @.sourceNode.connect @.gainNode
     # @.gainNode.connect @.analyserNode
