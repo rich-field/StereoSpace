@@ -14,8 +14,14 @@
  *= require_self
  */
 
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic,300,300italic);
+
 $turquoise: #D50408;
 $blue: #D50408;
+$box-background: #222;
+$box-border: #111;
+$alert-background: #555;
+$alert-border: #222;
 
 *, *:before, *:after {
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -32,7 +38,7 @@ body {
   color: white;
   background-image: url('background.png');
   background-size: fill;
-  font-family: sans-serif;
+  font-family: Roboto, sans-serif;
   /*background: no-repeat;*/
 }
 
@@ -42,10 +48,13 @@ h2 {
 
 nav{
   width: 10%;
-  position: relative;
+  position: absolute;
+  height: 100vh;
   left: 0;
   display: inline-block;
   vertical-align: top;
+  background: $box-background;
+  border: 2px solid $box-border;
   ul {
     list-style: none;
   }
@@ -62,18 +71,41 @@ nav{
 }
 
 #main {
+  margin-left: 10%;
   width: 90%;
   display: inline-block;
 }
 
 #hello {
-  height: 100px;
+  // height: 100px;
   position: absolute;
-  background-color: #ddd;
+  background-color: $alert-background;
+  padding: 1em 2em;
+
+  #close-hello {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+  }
+
+  #summary {
+    display: inline-block;
+    width: 80%;
+    vertical-align: top;
+
+    p {
+      width: 40%;
+      display: inline-block;
+      vertical-align: top;
+      margin: 0 10px;
+    }
+  }
 }
 
+
+
 #visualizer {
-  height: 300px;
+  height: 100vh;
   border: 1px solid black;
   background-color: black;
   overflow: auto;
@@ -84,6 +116,9 @@ nav{
   overflow: scroll;
   height: 200px;
   background-color: rgba(0,0,0,0);
+  position: fixed;
+  bottom: 0;
+  background: $box-background;
 }
 
 .seeker {
@@ -170,85 +205,4 @@ nav{
 
 #song-controls {
 
-}
-
-button {
-  padding: .5em;
-  font-size: 2em;
-  border-radius: .2em;
-  color: #fff;
-  // background-color: #1A2553;
-  background-color: #00e1ff;
-  border: 0;
-  border:2px solid white;
-    box-shadow:
-    0 0 20px 2px #00e1ff,
-    -7px -7px 10px -4px #00e1ff,
-    inset 1px 1px 2px white,
-    inset 0 0 10px 2px #00e1ff;
-}
-
-#record {
-  left: calc(50vw - 4.5em);
-  position:absolute;
-  display:inline-block;
-  width: 4.5em;
-  height: 4.5em;
-  background-size:40% auto;
-  background-repeat:no-repeat;
-  background-position:50% 50%;
-  background-color: #D50408;
-  border-radius:50%;
-  box-shadow:
-    0 0 20px 2px $turquoise,
-    -7px -7px 10px -4px $turquoise,
-    inset 1px 1px 2px white,
-    inset 0 0 10px 2px $turquoise;
-  -webkit-animation:bounce 1s infinite;
-  -webkit-animation-play-state: running;
-  &:before, &:after {content:'';position:absolute;}
-  &:before {
-    top:16px;
-    left:17px;
-    width:3px;
-    height:3px;
-    background-color:white;
-    border-radius:50%;
-    box-shadow:
-      0 0 10px 5px rgba(255,255,255,0.5),
-      -1px -1px 4px rgba(255,255,255,0.8),
-      -2px -2px 4px rgba(255,255,255,0.7),
-      -3px -3px 5px rgba(255,255,255,0.5),
-      -4px -4px 6px rgba(255,255,255,0.3),
-      1px 1px 4px rgba(255,255,255,0.8),
-      2px 2px 4px rgba(255,255,255,0.7),
-      3px 3px 5px rgba(255,255,255,0.5),
-      4px 4px 6px rgba(255,255,255,0.3);
-  }
-  &:after {
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    border-radius:50%;
-    -webkit-animation:glow 1s infinite;
-  }
-}
-
-@-webkit-keyframes bounce {
-  0%, 100% {
-    -webkit-transform:translateY(-7%);background-position:50% 48%;}
-  50% {-webkit-transform:translateY(7%);background-position:50% 52%;}
-}
-@-webkit-keyframes glow {
-  20% {
-    box-shadow:
-      0 0 0 0 rgba($turquoise, .3),
-      inset 0 0 0 0 rgba($turquoise, .3);
-  }
-  100% {
-    box-shadow:
-      0 0 0 100px rgba($turquoise, 0),
-      inset 0 0 0 102px rgba($turquoise, 0);
-  }
 }

@@ -1,0 +1,80 @@
+// button {
+//   padding: .5em;
+//   font-size: 2em;
+//   border-radius: .2em;
+//   color: #fff;
+//   // background-color: #1A2553;
+//   background-color: #00e1ff;
+//   border: 0;
+//   border:2px solid white;
+//     box-shadow:
+//     0 0 20px 2px #00e1ff,
+//     -7px -7px 10px -4px #00e1ff,
+//     inset 1px 1px 2px white,
+//     inset 0 0 10px 2px #00e1ff;
+// }
+
+// #record {
+//   left: calc(50vw - 4.5em);
+//   position:absolute;
+//   display:inline-block;
+//   width: 4.5em;
+//   height: 4.5em;
+//   background-size:40% auto;
+//   background-repeat:no-repeat;
+//   background-position:50% 50%;
+//   background-color: #D50408;
+//   border-radius:50%;
+//   box-shadow:
+//     0 0 20px 2px $turquoise,
+//     -7px -7px 10px -4px $turquoise,
+//     inset 1px 1px 2px white,
+//     inset 0 0 10px 2px $turquoise;
+//   -webkit-animation:bounce 1s infinite;
+//   -webkit-animation-play-state: running;
+//   &:before, &:after {content:'';position:absolute;}
+//   &:before {
+//     top:16px;
+//     left:17px;
+//     width:3px;
+//     height:3px;
+//     background-color:white;
+//     border-radius:50%;
+//     box-shadow:
+//       0 0 10px 5px rgba(255,255,255,0.5),
+//       -1px -1px 4px rgba(255,255,255,0.8),
+//       -2px -2px 4px rgba(255,255,255,0.7),
+//       -3px -3px 5px rgba(255,255,255,0.5),
+//       -4px -4px 6px rgba(255,255,255,0.3),
+//       1px 1px 4px rgba(255,255,255,0.8),
+//       2px 2px 4px rgba(255,255,255,0.7),
+//       3px 3px 5px rgba(255,255,255,0.5),
+//       4px 4px 6px rgba(255,255,255,0.3);
+//   }
+//   &:after {
+//     top:0;
+//     left:0;
+//     width:100%;
+//     height:100%;
+//     border-radius:50%;
+//     -webkit-animation:glow 1s infinite;
+//   }
+// }
+
+// @-webkit-keyframes bounce {
+//   0%, 100% {
+//     -webkit-transform:translateY(-7%);background-position:50% 48%;}
+//   50% {-webkit-transform:translateY(7%);background-position:50% 52%;}
+// }
+// @-webkit-keyframes glow {
+//   20% {
+//     box-shadow:
+//       0 0 0 0 rgba($turquoise, .3),
+//       inset 0 0 0 0 rgba($turquoise, .3);
+//   }
+//   100% {
+//     box-shadow:
+//       0 0 0 100px rgba($turquoise, 0),
+//       inset 0 0 0 102px rgba($turquoise, 0);
+//   }
+// }

@@ -14,7 +14,11 @@
 
 %div#main
   %div#hello
-    StereoSpace is an online sound studio built as a single page application somewhat like Garage Band, Scratch Live or other staple sound producing software however this runs in your browser.
+    %div#close-hello Close svg goes here
+    %div#summary
+      %p
+        <strong>StereoSpace</strong> is an online sound studio built as a single page application somewhat like Garage Band, Scratch Live or other staple sound producing software however this runs in your browser.
+      %p The keyboard is your soundboard. Once you like your beat, hit record and you can save it. You can add as many timelines as you like, and you can move the sound segment you made along the track.
 
   %div#visualizer
     this is the vizualizeur
@@ -45,10 +49,10 @@
   -# %h2 Duration: {{ duration }}
   %div#timelines-outer
     %div#timelines
-  %div#song-controls
-    %button#add-timeline Add new timeline
-    %button#record.bounce record
-    %button#rewind rewind
+  -# %div#song-controls
+    -# %button#add-timeline Add new timeline
+    -# %button#record.bounce record
+    -# %button#rewind rewind
 
 
 
