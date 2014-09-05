@@ -73,6 +73,9 @@ app.SongShowView = Backbone.View.extend
     $('#record').on 'click', =>
       @recordSong()
 
+    $('#rewind').on 'click', =>
+      @rewindSeeker()
+
     $('#add-timeline').on 'click', =>
       @addTimeline()
 
