@@ -8,17 +8,20 @@
   %body
 
     %nav
-      %div#logo Logo
+      %div#logo
+        = image_tag('icon-09.svg')
       %ul
-        %li= link_to("new song", "", :target => '_blank')
-        %li#add-timeline
-          Add TL
-        %li#play
+        %li.controls
+          = link_to "", :target => '_blank' do
+            = image_tag('icon-04.svg')
+        %li#add-timeline.controls
+          = image_tag('icon-08.svg')
+        %li#play.controls
           = image_tag('icon-03.svg', :class => 'svg-icon')
-        %li#record
+        %li#record.controls
           = image_tag('icon-01.svg', :class => 'svg-icon')
-        %li#rewind
+        %li#rewind.controls
           = image_tag('icon-07.svg', :class => 'svg-icon')
-        %li#hide
-          = image_tag('icon-08.svg', :class => 'svg-icon')
+        %li#hide.controls
+          = image_tag('icon-06.svg', :class => 'svg-icon')
     = yield

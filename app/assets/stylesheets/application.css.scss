@@ -52,7 +52,7 @@ h2 {
 }
 
 nav{
-  width: 5%;
+  width: 4.8%;
   position: absolute;
   height: 100vh;
   left: 0;
@@ -60,8 +60,11 @@ nav{
   vertical-align: top;
   background: $box-background;
   border: 2px solid $box-border;
+  padding-top: 2em;
+
   ul {
     list-style: none;
+    padding-top: 2em;
   }
 
   li {
@@ -69,21 +72,26 @@ nav{
     cursor: pointer;
   }
 
+  li:hover{
+    background: red;
+  }
+
   a{
     text-decoration: none;
     color: white;
   }
 
-  img {
+  .controls img {
     fill: #fff;
     height: 50px;
     padding: .8em;
   }
 }
 
+
 #main {
-  margin-left: 5%;
-  width: 95%;
+  margin-left: 4.8%;
+  width: 95.2%;
   height: 100vh;
   display: inline-block;
 }
