@@ -52,7 +52,7 @@ h2 {
 }
 
 nav{
-  width: 4.8%;
+  width: 60px;
   position: absolute;
   height: 100vh;
   left: 0;
@@ -90,8 +90,8 @@ nav{
 
 
 #main {
-  margin-left: 4.8%;
-  width: 95.2%;
+  margin-left: 60px;
+  width: calc(100% - 60px);
   height: 100vh;
   display: inline-block;
 }
