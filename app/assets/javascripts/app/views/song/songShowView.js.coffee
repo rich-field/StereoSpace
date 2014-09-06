@@ -89,6 +89,9 @@ app.SongShowView = Backbone.View.extend
 
     @.$el.html( copy )
 
+    $('#hide-timelines').on 'click', =>
+      $('#timelines-outer').fadeToggle();
+
     $(document).on 'keydown', (e) =>
       # Spacebar controls play/pause
       if e.keyCode == 32 && !app.recording
@@ -103,7 +106,6 @@ app.SongShowView = Backbone.View.extend
       timelines = new app.TimelinesView({collection: app.timelines, song: @.model})
       # @.renderSeeker()
 
-
   renderSeeker: ->
     # adds seeker to timelines div
     $seeker = $('<div/>')
@@ -113,8 +115,6 @@ app.SongShowView = Backbone.View.extend
     .css('top', 0)
     .css('left', app.seekerPosition)
     .appendTo( $('#timelines') )
-
-
 
   addTimeline: ->
     newTimeline = new app.Timeline({song_id: @.model.get('id')})
