@@ -8,12 +8,17 @@
   %body
 
     %nav
-      %div#logo Logo goes here
+      %div#logo Logo
       %ul
         %li= link_to("new song", "", :target => '_blank')
-        %li#add-timeline Add timeline
-        %li#play Play
-        %li#record Record
-        %li#rewind Rewind
-        %li#hide Hide timelines
+        %li#add-timeline
+          Add TL
+        %li#play
+          = image_tag('icon-03.svg', :class => 'svg-icon')
+        %li#record
+          = image_tag('icon-01.svg', :class => 'svg-icon')
+        %li#rewind
+          = image_tag('icon-07.svg', :class => 'svg-icon')
+        %li#hide
+          = image_tag('icon-08.svg', :class => 'svg-icon')
     = yield

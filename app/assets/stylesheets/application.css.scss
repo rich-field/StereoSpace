@@ -52,7 +52,7 @@ h2 {
 }
 
 nav{
-  width: 10%;
+  width: 5%;
   position: absolute;
   height: 100vh;
   left: 0;
@@ -65,19 +65,25 @@ nav{
   }
 
   li {
-    display: inline-block;
+    // display: inline-block;
+    cursor: pointer;
   }
 
   a{
     text-decoration: none;
     color: white;
-    padding: 0 1em 0 1em;
+  }
+
+  img {
+    fill: #fff;
+    height: 50px;
+    padding: .8em;
   }
 }
 
 #main {
-  margin-left: 10%;
-  width: 90%;
+  margin-left: 5%;
+  width: 95%;
   height: 100vh;
   display: inline-block;
 }
@@ -122,7 +128,7 @@ nav{
 }
 
 #timelines-outer {
-  width: 90%;
+  width: 95%;
   overflow: scroll;
   max-height: 180px;
   position: absolute;
@@ -153,7 +159,6 @@ nav{
 }
 
 #timelines {
-  // width: 100px;
   position: relative;
 }
 
@@ -210,8 +215,4 @@ nav{
 
 .note.selected {
   background-color: #fff;
-}
-
-#song-controls {
-
 }

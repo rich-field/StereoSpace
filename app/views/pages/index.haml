@@ -14,7 +14,8 @@
 
 %div#main
   %div#hello
-    %div#close-hello Close svg goes here
+    %div#close-hello
+      = image_tag('icon-05.svg')
     %div#summary
       %p
         <strong>StereoSpace</strong> is an online sound studio built as a single page application somewhat like Garage Band, Scratch Live or other staple sound producing software however this runs in your browser.
@@ -39,14 +40,8 @@
     URL: {{ share_url }}
 
 %script#song-show-template{type: 'text/template'}
-  -# %h1 Title: {{ title }}
-  -# %h2 Duration: {{ duration }}
   %div#timelines-outer
     %div#timelines
-  -# %div#song-controls
-    -# %button#add-timeline Add new timeline
-    -# %button#record.bounce record
-    -# %button#rewind rewind
 
 
 %script#timelines-template{type: 'text/template'}

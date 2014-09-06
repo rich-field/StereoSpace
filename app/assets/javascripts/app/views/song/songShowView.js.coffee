@@ -64,8 +64,9 @@ app.SongShowView = Backbone.View.extend
             .css('left', (app.seekerPosition - app.startRecordTime) )
             .appendTo( app.$segment )
 
-    $('#hello').on 'click', ->
-     @.remove()
+    $('#close-hello').on 'click', ->
+      $('#hello').fadeOut ->
+        $('#hello').remove()
 
     $('#play').on 'click', =>
       @playSong()
