@@ -147,7 +147,8 @@ app.SongShowView = Backbone.View.extend
     if app.recording
       # To stop recording
       app.recording = false
-      $('#record').text('record')
+      $recordSvg = $("<img src='/assets/icon-01.svg' class='svg-icon'>")
+      $('#record').html( $recordSvg )
 
       clearInterval(app.recordNotes)
       duration = app.seekerPosition - app.startRecordTime
@@ -163,7 +164,8 @@ app.SongShowView = Backbone.View.extend
       app.seekerOnSegment = false
       app.recording = true
 
-      $('#record').text('stop')
+      $stopSvg = $("<img src='/assets/icon-02.svg' class='svg-icon'>")
+      $('#record').html( $stopSvg )
       console.log(app.notesToPlay)
       app.recordNotes = setInterval ->
         app.seekerPosition++
