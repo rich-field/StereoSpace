@@ -18,19 +18,9 @@ app.TimelinesView = Backbone.View.extend
       @.$el.append( timelineView.render() )
     @.$el.css('width', @.song.get('duration') + 'px')
 
-    @.renderSeeker()
+    @song.renderSeeker()
 
   renderOne: (view, collection, event) ->
     timeline = collection.last()
     timelineView = new app.TimelineView({model: timeline})
     @.$el.append( timelineView.render() )
-
-  renderSeeker: ->
-    # adds seeker to timelines div
-    $seeker = $('<div/>')
-    .addClass('seeker')
-    .draggable({axis: 'x', containment: '#timelines'})
-    .css('position', 'absolute')
-    .css('top', 0)
-    .css('left', app.seekerPosition)
-    .appendTo( $('#timelines') )
