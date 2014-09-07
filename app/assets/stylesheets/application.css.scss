@@ -22,6 +22,8 @@ $box-background: #222;
 $box-border: #111;
 $alert-background: #555;
 $alert-border: #222;
+$seeker: #00e1ff;
+$note: #00e1ff;
 
 *, *:before, *:after {
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -101,11 +103,13 @@ nav{
   position: fixed;
   background-color: $alert-background;
   padding: 1em 2em;
+  line-height: 1.5em;
+  letter-spacing: 1px;
 
   #close-hello {
     display: inline-block;
-    height: 50px;
-    width: 50px;
+    // height: 5%;
+    width: 5%;
   }
 
   #summary {
@@ -113,12 +117,15 @@ nav{
     width: 90%;
     vertical-align: top;
 
-    p {
-      width: 40%;
-      display: inline-block;
-      vertical-align: top;
-      margin: 0 10px;
-    }
+  .two-col {
+    margin-left: 5%;
+    column-count: 2;
+    column-gap: 20px;
+    -moz-column-count: 2;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 20px;
+}
   }
 }
 
@@ -150,7 +157,7 @@ nav{
   position: absolute;
   z-index: 10;
   /*vertical-align: bottom;*/
-  background-color: #00e1ff;
+  background-color: $seeker;
   /*box-shadow: 0 0 0 0;*/
 }
 
@@ -159,11 +166,11 @@ nav{
   -moz-transition: all 0.15s ease-in-out;
   -o-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
-  box-shadow: 0 0 15px 5px #00e1ff
+  box-shadow: 0 0 15px 5px $seeker
 }
 
 .seeker:active {
-  box-shadow: 0 0 15px 5px #00e1ff
+  box-shadow: 0 0 15px 5px $seeker
 }
 
 #timelines {
@@ -215,10 +222,10 @@ nav{
   height: 15px;
   top: 15px;
   border-radius: 100%;
-  background-color: #00e1ff;
+  background-color: $note;
   position: absolute;
   display: inline-block;
-  box-shadow: 0 1px 15px 2px #00e1ff;
+  box-shadow: 0 1px 15px 2px $note;
 }
 
 .note.selected {
