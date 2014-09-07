@@ -27,11 +27,19 @@ app.Song = Backbone.Model.extend
     $('#record').on 'click', =>
       @recordSong()
 
+    $(document).on 'keydown', (e) =>
+      # Spacebar controls play/pause
+      if e.keyCode == 32 && !app.recording
+        @playSong()
+
     $('#rewind').on 'click', =>
       @rewindSeeker()
 
     $('#add-timeline').on 'click', =>
       @addTimeline()
+
+    $('#hide-timelines').on 'click', =>
+      $('#timelines-outer').fadeToggle();
 
   playSong: ->
     # SEEKER PLAY
@@ -40,7 +48,7 @@ app.Song = Backbone.Model.extend
       app.playNotes = setInterval ->
         app.seekerPosition++
         if app.notesToPlay[app.seekerPosition]
-          app.source.stop(0) if app.currentSound = app.notesToPlay[app.seekerPosition] && app.source
+          # app.source.stop(0) if app.currentSound = app.notesToPlay[app.seekerPosition] && app.source
           app.playSound( app.notesToPlay[app.seekerPosition] )
           app.currentSound = app.notesToPlay[app.seekerPosition]
         console.log( app.seekerPosition ) if app.notesToPlay[app.seekerPosition]
@@ -48,6 +56,7 @@ app.Song = Backbone.Model.extend
       , 1
     else
       app.playing = false
+      app.source.stop()
       clearInterval(app.playNotes)
 
   recordSong: ->
@@ -92,4 +101,20 @@ app.Song = Backbone.Model.extend
     app.timelines = new app.Timelines
     app.timelines.fetch( {data: {song_id: @get('id')}} ).done =>
       timelines = new app.TimelinesView({collection: app.timelines, song: @})
+
+  selectEvents: ->
+    # To deselect the selected elements
+    $(document).on 'click', (e) =>
+      e.stopPropagation()
+      if !$(e.target).hasClass('timeline') && !$(e.target).is('#record')
+        $('.timeline.selected').removeClass('selected')
+        app.selectedTimeline = null
+
+      if !$(e.target).hasClass('segment')
+        $('.segment.selected').removeClass('selected')
+        app.selectedSegment = null
+
+      if !$(e.target).hasClass('note')
+        $('.note.selected').removeClass('selected')
+        app.selectedNote = null
 

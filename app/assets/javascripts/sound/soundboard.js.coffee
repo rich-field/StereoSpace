@@ -87,8 +87,9 @@ app.processAudio = (data) ->
     app.source.loop = false
 
     # This is where you set the interval to get the frequency & time domain data
-    # setInterval (->
+    # app.visual = setInterval (->
       # console.log app.Sound.getFrequencyDomain()
+      # console.log app.Sound.getTimeDomain()
       # return
     # ), 500
 

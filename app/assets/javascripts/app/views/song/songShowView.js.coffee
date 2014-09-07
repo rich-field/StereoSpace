@@ -8,20 +8,6 @@ app.SongShowView = Backbone.View.extend
   events:
     'mouseup .seeker': 'repositionSeeker'
   initialize: ->
-    # To deselect the selected elements
-    $(document).on 'click', (e) =>
-      e.stopPropagation()
-      if !$(e.target).hasClass('timeline') && !$(e.target).is('#record')
-        $('.timeline.selected').removeClass('selected')
-        app.selectedTimeline = null
-
-      if !$(e.target).hasClass('segment')
-        $('.segment.selected').removeClass('selected')
-        app.selectedSegment = null
-
-      if !$(e.target).hasClass('note')
-        $('.note.selected').removeClass('selected')
-        app.selectedNote = null
     # clears the notes to play when you get to a different song view
     app.notesToPlay = {}
 
@@ -65,6 +51,7 @@ app.SongShowView = Backbone.View.extend
             .appendTo( app.$segment )
 
     @model.controlEvents()
+    @model.selectEvents()
 
   render: ->
     $('#visualizer').html('')
@@ -75,13 +62,48 @@ app.SongShowView = Backbone.View.extend
 
     @.$el.html( copy )
 
-    $('#hide-timelines').on 'click', =>
-      $('#timelines-outer').fadeToggle();
+    elem = $("#visualizer")[0]
+    visHeight = parseInt( $("#visualizer").css('height') )
+    visWidth = parseInt( $("#visualizer").css('width') )
 
-    $(document).on 'keydown', (e) =>
-      # Spacebar controls play/pause
-      if e.keyCode == 32 && !app.recording
-        @model.playSong()
+    two = new Two(
+      width: visWidth
+      height: visHeight
+    ).appendTo(elem)
+
+    # curve = two.makeCurve(110, 100, 120, 50, 140, 150, 160, 50, 180, 150, 190, 100, true);
+    curve = two.makeCurve(
+            0, visHeight/2,
+            # visWidth/8, 500,
+            # visWidth/4, 200,
+            # visWidth/2, 0,
+            # visWidth/.5, 109,
+            visWidth, visHeight/2,
+            true)
+    curve.linewidth = 3
+    curve.scale = 2.75
+    curve.stroke = '#fff'
+    # curve.rotation = Math.PI / 1 # Quarter-turn
+    curve.noFill()
+    console.log('twojs made')
+    circle = two.makeCircle(visWidth/2, visHeight/2, 50)
+    # rect = two.makeRectangle(70, 0, 100, 100)
+    circle.fill = "#FF8000"
+    circle.stroke = "orangered"
+    # rect.fill = "rgba(0, 200, 255, 0.75)"
+    # rect.stroke = "#1C75BC"
+
+    # # Groups can take an array of shapes and/or groups.
+    # group = two.makeGroup(circle, rect, curve)
+
+    # # And have translation, rotation, scale like all shapes.
+    # group.translation.set two.width / 2, two.height / 2
+    # group.rotation = Math.PI
+    # group.scale = 0.75
+
+    # # You can also set the same properties a shape have.
+    # group.linewidth = 7
+    two.update()
 
   repositionSeeker: ->
     app.seekerPosition = parseInt( $('.seeker').css('left') )
