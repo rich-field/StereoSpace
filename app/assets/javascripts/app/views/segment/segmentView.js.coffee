@@ -37,7 +37,6 @@ app.SegmentView = Backbone.View.extend
     if @.point_in_timeline != @.$el.css('left')
       @.model.save({start_time: parseInt(@.$el.css('left')) }).done ->
         app.song.renderTimelines()
-        # @renderSeeker()
       # app.notesToPlay = {}
       # app.notes.fetch({data: {segment_id: @.model.get('id')}}).done =>
         # app.notes.each (model) =>
@@ -62,7 +61,6 @@ app.SegmentView = Backbone.View.extend
     @.model.attributes.notes.each (model) =>
       # populates the app.notesToPlay object
       app.notesToPlay[( @.model.get('start_time') + model.get('point_in_segment') )] = model.get('sample_path')
-      # console.log(app.notesToPlay)
       # creates a view for the note
       noteView = new app.NoteView({model: model})
       @.$el.append( noteView.render() )

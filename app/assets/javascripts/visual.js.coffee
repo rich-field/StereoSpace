@@ -1,5 +1,7 @@
-#   elem = document.getElementById("draw-group")
-#   two = new Two(
-#     width: 285
-#     height: 200
-#   ).appendTo(elem)
+# setInterval (->
+#       # run visualiser here
+#       # $('#visualizer').css('background-color', )
+#       console.log app.Sound.getFrequencyDomain()
+#       console.log app.Sound.getTimeDomain()
+#       return
+#     ), 500

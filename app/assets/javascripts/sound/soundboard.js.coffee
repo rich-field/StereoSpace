@@ -89,10 +89,11 @@ app.processAudio = (data) ->
     # This is where you set the interval to get the frequency & time domain data
     # And feed it to the visualizer function
     # app.visual = setInterval (->
-      # run visualiser here
-      # console.log app.Sound.getFrequencyDomain()
-      # console.log app.Sound.getTimeDomain()
-      # return
+    #   # run visualiser here
+    #   # $('#visualizer').css('background-color', )
+    #   console.log app.Sound.getFrequencyDomain()
+    #   console.log app.Sound.getTimeDomain()
+    #   return
     # ), 500
 
     # Plays the sound

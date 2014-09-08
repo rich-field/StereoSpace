@@ -61,34 +61,40 @@ app.SongShowView = Backbone.View.extend
     @model.renderTimelines()
 
     @.$el.html( copy )
+    @visual()
 
-    elem = $("#visualizer")[0]
-    visHeight = parseInt( $("#visualizer").css('height') )
-    visWidth = parseInt( $("#visualizer").css('width') )
+  repositionSeeker: ->
+    app.seekerPosition = parseInt( $('.seeker').css('left') )
 
-    two = new Two(
-      width: visWidth
-      height: visHeight
-    ).appendTo(elem)
+  visual: ->
+    # elem = $("#visualizer")[0]
+    # visHeight = parseInt( $("#visualizer").css('height') )
+    # visWidth = parseInt( $("#visualizer").css('width') )
 
-    # curve = two.makeCurve(110, 100, 120, 50, 140, 150, 160, 50, 180, 150, 190, 100, true);
-    curve = two.makeCurve(
-            0, visHeight/2,
-            # visWidth/8, 500,
-            # visWidth/4, 400,
-            visWidth/2, (visHeight/2 + 40),
-            # visWidth/.5, 109,
-            0, visHeight/2,
-            false)
-    curve.linewidth = 3
-    curve.scale = 2.75
-    curve.stroke = '#fff'
-    # curve.rotation = Math.PI / 1 # Quarter-turn
-    curve.noFill()
-    console.log('twojs made')
-    circle = two.makeCircle(visWidth/2, visHeight/2, 50)
-    circle.fill = "#FF8000"
-    circle.stroke = "orangered"
+    # app.two = new Two(
+    #   width: visWidth
+    #   height: visHeight
+    # ).appendTo(elem)
+
+    # # app.curve = app.two.makePolygon(0, app.two.height/2, 120, 50, 140, 150, 160, 50, 180, 150, app.two.width, app.two.height/2,  true);
+    # app.curve = app.two.makePolygon(
+    #         0, visHeight/2,
+    #         # visWidth/8, 500,
+    #         # visWidth/4, 400,
+    #         visWidth/2, 0,
+    #         # visWidth/.5, 109,
+    #         visWidth, visHeight/2,
+    #         true)
+    # app.curve.linewidth = 3
+    # app.curve.scale = 2.75
+    # app.curve.stroke = '#fff'
+    # # curve.rotation = Math.PI / 1 # Quarter-turn
+    # app.curve.noFill()
+    # app.curve.translation.set app.two.width / 2, app.two.height / 2
+    # console.log('twojs made')
+    # app.circle = app.two.makeCircle(visWidth/2, visHeight/2, 50)
+    # app.circle.fill = "#FF8000"
+    # app.circle.stroke = "orangered"
 
     # curve2 = two.makeCurve(
     #     0, visHeight/2,
@@ -113,7 +119,4 @@ app.SongShowView = Backbone.View.extend
 
     # # You can also set the same properties a shape have.
     # group.linewidth = 7
-    two.update()
-
-  repositionSeeker: ->
-    app.seekerPosition = parseInt( $('.seeker').css('left') )
+    app.two.update()
