@@ -17,13 +17,17 @@ app.Song = Backbone.Model.extend
     $('.seeker').css('left', '0px')
 
   controlEvents: ->
+    # Sets up the events in the control panel menu
+    # Clicking th X will close the welcome box
     $('#close-hello').on 'click', ->
       $('#hello').fadeOut ->
         $('#hello').remove()
 
+    # Plays the song when you click the play graphic
     $('#play').on 'click', =>
       @playSong()
 
+    # Records the notes you play
     $('#record').on 'click', =>
       @recordSong()
 
@@ -48,7 +52,7 @@ app.Song = Backbone.Model.extend
       app.playNotes = setInterval ->
         app.seekerPosition++
         if app.notesToPlay[app.seekerPosition]
-          # app.source.stop(0) if app.currentSound = app.notesToPlay[app.seekerPosition] && app.source
+          app.source.stop(0) if app.currentSound == app.notesToPlay[app.seekerPosition] && app.source
           app.playSound( app.notesToPlay[app.seekerPosition] )
           app.currentSound = app.notesToPlay[app.seekerPosition]
         console.log( app.seekerPosition ) if app.notesToPlay[app.seekerPosition]
@@ -91,6 +95,8 @@ app.Song = Backbone.Model.extend
         $('.seeker').css('left', app.seekerPosition)
       , 1
 
+  stopSong: ->
+
   addTimeline: ->
     newTimeline = new app.Timeline({song_id: @.get('id')})
     newTimeline.save();
@@ -102,6 +108,7 @@ app.Song = Backbone.Model.extend
     app.timelines.fetch( {data: {song_id: @get('id')}} ).done =>
       timelines = new app.TimelinesView({collection: app.timelines, song: @})
 
+    @renderSeeker()
   selectEvents: ->
     # To deselect the selected elements
     $(document).on 'click', (e) =>

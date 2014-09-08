@@ -75,11 +75,11 @@ app.SongShowView = Backbone.View.extend
     curve = two.makeCurve(
             0, visHeight/2,
             # visWidth/8, 500,
-            # visWidth/4, 200,
-            # visWidth/2, 0,
+            # visWidth/4, 400,
+            visWidth/2, (visHeight/2 + 40),
             # visWidth/.5, 109,
-            visWidth, visHeight/2,
-            true)
+            0, visHeight/2,
+            false)
     curve.linewidth = 3
     curve.scale = 2.75
     curve.stroke = '#fff'
@@ -87,14 +87,24 @@ app.SongShowView = Backbone.View.extend
     curve.noFill()
     console.log('twojs made')
     circle = two.makeCircle(visWidth/2, visHeight/2, 50)
-    # rect = two.makeRectangle(70, 0, 100, 100)
     circle.fill = "#FF8000"
     circle.stroke = "orangered"
-    # rect.fill = "rgba(0, 200, 255, 0.75)"
-    # rect.stroke = "#1C75BC"
+
+    # curve2 = two.makeCurve(
+    #     0, visHeight/2,
+    #     # visWidth/8, 500,
+    #     # visWidth/4, 200,
+    #     visWidth/2, (visHeight/2 - 40),
+    #     # visWidth/.5, 109,
+    #     visWidth, visHeight/2,
+    #     true)
+    # curve2.linewidth = 3
+    # curve2.scale = 2.75
+    # curve2.stroke = '#fff'
+    # curve2.noFill()
 
     # # Groups can take an array of shapes and/or groups.
-    # group = two.makeGroup(circle, rect, curve)
+    # group = two.makeGroup(circle, curve)
 
     # # And have translation, rotation, scale like all shapes.
     # group.translation.set two.width / 2, two.height / 2

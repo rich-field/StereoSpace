@@ -36,8 +36,8 @@ app.SegmentView = Backbone.View.extend
     # Checks if the left position has moved and saves the model if so
     if @.point_in_timeline != @.$el.css('left')
       @.model.save({start_time: parseInt(@.$el.css('left')) }).done ->
-        @.reRenderTimelines()
-        @renderSeeker()
+        app.song.renderTimelines()
+        # @renderSeeker()
       # app.notesToPlay = {}
       # app.notes.fetch({data: {segment_id: @.model.get('id')}}).done =>
         # app.notes.each (model) =>
@@ -87,8 +87,8 @@ app.SegmentView = Backbone.View.extend
     $('.segment.selected').remove()
     app.selectedSegment.destroy()
     app.selectedSegment = null
-    @.reRenderTimelines()
-    @.renderSeeker()
+    app.song.renderTimelines()
+    # @.renderSeeker()
     # app.notes.fetch({data: {segment_id: @.model.get('id')}}).done =>
     #   app.notes.each (model) =>
     #     # populates the app.notesToPlay object
